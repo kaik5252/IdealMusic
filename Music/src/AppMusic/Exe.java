@@ -1,4 +1,4 @@
-package music;
+package AppMusic;
 
 import Control.ConfigMusic;
 import java.awt.*;
@@ -12,17 +12,26 @@ public class Exe extends JFrame {
 
     public Exe() {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        
+
+        JSlider duracao = new JSlider();
+        duracao.setMaximum(0);
+        duracao.setValue(0);
+        System.out.println(PLAY.getDurationMusic());
+        duracao.setMaximum(PLAY.getDurationMusic());
+        duracao.setOrientation(JSlider.HORIZONTAL);
+        duracao.setBounds(500, 500, 200, 20);
+        duracao.addChangeListener((ChangeEvent evt) -> {
+            PLAY.volume(duracao.getValue());
+        });
+
         JSlider volume = new JSlider();
         volume.setMaximum(0);
         volume.setValue(0);
         volume.setMinimum(-80);
         volume.setOrientation(JSlider.VERTICAL);
         volume.setBounds(10, 5, 15, 100);
-        volume.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                PLAY.volume(volume.getValue());
-            }
+        volume.addChangeListener((ChangeEvent evt) -> {
+            PLAY.volume(volume.getValue());
         });
 
         JButton button1 = new JButton("Play");
@@ -37,6 +46,7 @@ public class Exe extends JFrame {
             PLAY.stop();
         });
 
+        add(duracao);
         add(button1);
         add(button2);
         add(volume);
@@ -48,10 +58,6 @@ public class Exe extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Exe");
         setVisible(true);
-    }
-
-    private void volumeStateChanged(javax.swing.event.ChangeEvent evt) {
-
     }
 
     public static void main(String[] args) {

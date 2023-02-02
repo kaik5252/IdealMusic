@@ -1,4 +1,4 @@
-package music;
+package Testes;
 
 import java.awt.Color;
 import java.awt.Font;

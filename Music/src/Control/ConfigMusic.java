@@ -30,6 +30,10 @@ public class ConfigMusic {
         }
     }
 
+    public int getDurationMusic() {
+        return (int) clip.getMicrosecondLength()/1000000;
+    }
+    
     public void start() {
         if (reproducao == false) {
             clip.start();
@@ -39,7 +43,6 @@ public class ConfigMusic {
 
     public void volume(int volume) {
         this.volume = (float) volume;
-        System.out.println(this.volume);
         gainControl.setValue(volume);
     }
 
