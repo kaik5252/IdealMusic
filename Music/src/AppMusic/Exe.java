@@ -8,59 +8,87 @@ import javax.swing.event.*;
 
 public class Exe extends JFrame {
 
+    private boolean isProgrammaticChange = false;
+    Timer timer = null;
     private static final ConfigMusic PLAY = new ConfigMusic("src/sapao.wav");
 
     public Exe() {
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-
         JSlider duracao = new JSlider();
         duracao.setMaximum(0);
         duracao.setValue(0);
-        System.out.println(PLAY.getDurationMusic());
-        duracao.setMaximum(PLAY.getDurationMusic());
+        duracao.setMaximum(PLAY.getDurationMusicLenght());
         duracao.setOrientation(JSlider.HORIZONTAL);
         duracao.setBounds(500, 500, 200, 20);
-        duracao.addChangeListener((ChangeEvent evt) -> {
-            PLAY.volume(duracao.getValue());
-        });
+        ChangeListener changeListener = (ChangeEvent e) -> {
+            PLAY.setDurationMusic(duracao.getValue());
+        };
+        duracao.addChangeListener(changeListener);
 
+        timer = new Timer(2000, (ActionEvent e) -> {
+            if (!duracao.getValueIsAdjusting()) {
+                duracao.removeChangeListener(changeListener);
+                duracao.setValue(PLAY.getDurationMusic());
+                duracao.addChangeListener(changeListener);
+            }
+        });
+        System.out.println(PLAY.getDurationMusicLenght());
+
+        timer.start();
         JSlider volume = new JSlider();
+
         volume.setMaximum(0);
         volume.setValue(0);
         volume.setMinimum(-80);
         volume.setOrientation(JSlider.VERTICAL);
+
         volume.setBounds(10, 5, 15, 100);
-        volume.addChangeListener((ChangeEvent evt) -> {
-            PLAY.volume(volume.getValue());
-        });
+        volume.addChangeListener(
+                (ChangeEvent evt) -> {
+                    PLAY.volume(volume.getValue());
+                }
+        );
 
         JButton button1 = new JButton("Play");
-        button1.setBounds(50, 0, 100, 30);
-        button1.addActionListener((ActionEvent e) -> {
-            PLAY.start();
-        });
+
+        button1.setBounds(
+                50, 0, 100, 30);
+        button1.addActionListener(
+                (ActionEvent e) -> {
+                    PLAY.start();
+                }
+        );
 
         JButton button2 = new JButton("Pause");
-        button2.setBounds(50, 50, 100, 30);
-        button2.addActionListener((ActionEvent e) -> {
-            PLAY.stop();
-        });
+
+        button2.setBounds(
+                50, 50, 100, 30);
+        button2.addActionListener(
+                (ActionEvent e) -> {
+                    PLAY.stop();
+                }
+        );
 
         add(duracao);
-        add(button1);
-        add(button2);
-        add(volume);
-        setMinimumSize(dim);
-        setResizable(false);
-        setExtendedState(MAXIMIZED_BOTH);
-        setLayout(null);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Exe");
-        setVisible(true);
-    }
 
-    public static void main(String[] args) {
-        new Exe();
+        add(button1);
+
+        add(button2);
+
+        add(volume);
+
+        setResizable(
+                false);
+        setExtendedState(MAXIMIZED_BOTH);
+
+        setLayout(
+                null);
+        setLocationRelativeTo(
+                null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setTitle(
+                "Exe");
+        setVisible(
+                true);
     }
 }

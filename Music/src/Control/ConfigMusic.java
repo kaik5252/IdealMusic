@@ -30,8 +30,16 @@ public class ConfigMusic {
         }
     }
 
+    public int getDurationMusicLenght() {
+        return (int) clip.getMicrosecondLength();
+    }
+    
     public int getDurationMusic() {
-        return (int) clip.getMicrosecondLength()/1000000;
+        return (int) clip.getMicrosecondPosition();
+    }
+    
+    public void setDurationMusic(int duracao) {
+        clip.setMicrosecondPosition(duracao);
     }
     
     public void start() {
