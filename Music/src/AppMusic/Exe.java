@@ -12,7 +12,7 @@ public class Exe extends JFrame {
 
     public Exe() {
         JSlider duracao = new JSlider();
-        duracao.setMaximum(0);
+        duracao.setMinimum(0);
         duracao.setValue(0);
         duracao.setMaximum(PLAY.getDurationMusicLenght());
         duracao.setOrientation(JSlider.HORIZONTAL);
