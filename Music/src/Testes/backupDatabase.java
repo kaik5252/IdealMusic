@@ -10,22 +10,24 @@ import java.io.PrintWriter;
 
 public class backupDatabase {
     
-    private String textFile = "";
-    String linha = null;
+    private FileReader file = null;
+    private BufferedReader bufferFile = null;
+    private String res = null;
     
-    public String Read(String filePath) {
+    private String readUser(String filePath) {
         try {
-            FileReader file = new FileReader(filePath);
-            BufferedReader fileRead = new BufferedReader(file);
-            linha = "";
+            setFile(new FileReader(filePath));
+            setBufferFile(new BufferedReader(getFile()));
             try {
-                linha = fileRead.readLine();
-                while (linha != null) {
-                    setTextFile(linha + "\n");
-                    linha = fileRead.readLine();
+                setRes(getBufferFile().readLine());
+                while(getRes() != null) {
+                    if(getRes().indexOf("INSERT INTO user") == 0) {
+                        return getRes();
+                    }
+                    setRes(getBufferFile().readLine());
                 }
-                file.close();
-                return (String) getTextFile();
+//                getFile().close();
+//                return (String) getTextFile();
                 
             } catch (IOException error) {
                 // Caso gere um erro
@@ -33,14 +35,52 @@ public class backupDatabase {
                 return null;
                 
             } finally {
-                // Finaliza zerando a variável textFile
-                setAbsoluteTextFile("");
+                // Finaliza zerando a variável linha
+//                setAbsoluteTextFile("");
             }
         } catch (FileNotFoundException error) {
             PopUp.showAlert("Backup não funcionou!", "perigo!!!");
             return null;
         }
+        return null;
     }
+    
+    public static void main(String[] args) {
+        System.out.println(new backupDatabase().readUser("src/resources/bancoTeste.sql"));
+    }
+    
+//    private String readMusic(String filePath) {}
+//    private String readAvatar(String filePath) {}
+//    private String readArtist(String filePath) {}
+    
+//    public String Read(String filePath) {
+//        try {
+//            FileReader file = new FileReader(filePath);
+//            BufferedReader fileRead = new BufferedReader(file);
+//            linha = "";
+//            try {
+//                linha = fileRead.readLine();
+//                while (linha != null) {
+//                    setTextFile(linha + "\n");
+//                    linha = fileRead.readLine();
+//                }
+//                file.close();
+//                return (String) getTextFile();
+//                
+//            } catch (IOException error) {
+//                // Caso gere um erro
+//                PopUp.showAlert("Backup não funcionou!", "perigo!!!");
+//                return null;
+//                
+//            } finally {
+//                // Finaliza zerando a variável textFile
+//                setAbsoluteTextFile("");
+//            }
+//        } catch (FileNotFoundException error) {
+//            PopUp.showAlert("Backup não funcionou!", "perigo!!!");
+//            return null;
+//        }
+//    }
 
     public void Write(String filePath, String text) {
         try {
@@ -58,23 +98,44 @@ public class backupDatabase {
     }
 
     /**
-     * @return the textFile
+     * @return the file
      */
-    public String getTextFile() {
-        return textFile;
+    public FileReader getFile() {
+        return file;
     }
 
     /**
-     * @param textFile the textFile to set
+     * @param file the file to set
      */
-    public void setAbsoluteTextFile(String textFile) {
-        this.textFile = textFile;
+    public void setFile(FileReader file) {
+        this.file = file;
     }
-    
+
     /**
-     * @param textFile the textFile to set
+     * @return the bufferFile
      */
-    public void setTextFile(String textFile) {
-        this.textFile += textFile;
+    public BufferedReader getBufferFile() {
+        return bufferFile;
+    }
+
+    /**
+     * @param bufferFile the bufferFile to set
+     */
+    public void setBufferFile(BufferedReader bufferFile) {
+        this.bufferFile = bufferFile;
+    }
+
+    /**
+     * @return the res
+     */
+    public String getRes() {
+        return res;
+    }
+
+    /**
+     * @param res the linha to set
+     */
+    public void setRes(String res) {
+        this.res = res;
     }
 }

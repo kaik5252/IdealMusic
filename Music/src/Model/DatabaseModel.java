@@ -81,45 +81,50 @@ public class DatabaseModel {
             DBCONFIG.dbClose(getConn(), getPstm(), null);
         }
     }
-
+    
     // @author Kaik D' Andrade
     public void setPassUser(int userId, String oldPass, String newPass) {
 
         // Comando SQL
-        sql = "SELECT * FROM usuario WHERE u_id = " + userId;
+        sql = "SELECT u_passwd FROM usuario WHERE u_passwd = sha2(?, 512)";
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
             setConn(DBCONFIG.getConnection());
             setPstm(getConn().prepareStatement(sql));
 
+            //getPstm().setString(1, "sha2("+ oldPass +", 512)");
+            //getPstm().setInt(2, 512);
+            getPstm().setInt(1, Integer.parseInt(oldPass));
+            
             // Armazenando o resultado e jogando ele na variável userPass
-            setRes(getPstm().executeQuery(sql));
+            setRes(getPstm().executeQuery());
             getRes().next();
             String userPass = getRes().getString("u_passwd");
+            System.out.println(userPass);
 
-            // Verificando se a senha antiga passada como parâmetro está correta
-            if (userPass.equals(oldPass)) {
-                // Comando SQL
-                sql = "UPDATE usuario SET u_passwd = ? WHERE u_id = ?";
-
-                // Prepara, filtra e sanitiza o sql e depois troca os "?" pelos valores corretos e executa o comando SQL no banco
-                setPstm(getConn().prepareStatement(sql));
-                getPstm().setString(1, newPass);
-                getPstm().setInt(2, userId);
-                // executa o comando no banco de dados assim trocando a senha do usuário pela nova senha passada como parâmetro
-                getPstm().execute();
-
-                PopUp.showNotefy("Sucesso!!! Sua senha foi alterada.");
-            } else {
-                // exibe uma mensagem de alerta ao usuário
-                PopUp.showAlert("Senha incorreta, tente novamente...");
-
-                // Depois colocar aqui um método para limpar os campos
-                /**
-                 * 
-                 */
-            }
+//            // Verificando se a senha antiga passada como parâmetro está correta
+//            if (userPass.equals(oldPass)) {
+//                // Comando SQL
+//                sql = "UPDATE usuario SET u_passwd = ? WHERE u_id = ?";
+//
+//                // Prepara, filtra e sanitiza o sql e depois troca os "?" pelos valores corretos e executa o comando SQL no banco
+//                setPstm(getConn().prepareStatement(sql));
+//                getPstm().setString(1, newPass);
+//                getPstm().setInt(2, userId);
+//                // executa o comando no banco de dados assim trocando a senha do usuário pela nova senha passada como parâmetro
+//                getPstm().execute();
+//
+//                PopUp.showNotefy("Sucesso!!! Sua senha foi alterada.");
+//            } else {
+//                // exibe uma mensagem de alerta ao usuário
+//                PopUp.showAlert("Senha incorreta, tente novamente...");
+//
+//                // Depois colocar aqui um método para limpar os campos
+//                /**
+//                 * 
+//                 */
+//            }
         } catch (SQLException error) {
             // Caso gere um erro
             PopUp.showWarning("DatabaseModel\\setPassUser\n" + error);
@@ -128,6 +133,10 @@ public class DatabaseModel {
             // Finaliza a conexão ao banco de dados
             DBCONFIG.dbClose(getConn(), getPstm(), getRes());
         }
+    }
+    
+    public static void main(String[] args) {
+        new DatabaseModel().setPassUser(1, "12345678", "1234");
     }
 
     // @author Gabriel Souza
