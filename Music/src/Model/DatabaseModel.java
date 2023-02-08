@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 /**
  * @author Kaik D' Andrade
@@ -12,24 +13,52 @@ import java.sql.Connection;
  */
 public class DatabaseModel {
 
-    private static final ConfigDatabase DBCONFIG = new ConfigDatabase();
     private Connection conn = null;
     private PreparedStatement pstm = null;
     private ResultSet res = null;
     public String sql = null;
+    private static final String URL = "jdbc:mysql://localhost:3306/teste?user=root&password=";
+
+    public void conectDb() {
+        try {
+            // Inicializa a conexão se ocorrer nenhum error
+            setConn(DriverManager.getConnection(URL));
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning(error);
+        }
+    }
+
+    public void closeDb() {
+        // Zera as variáveis referentes ao banco de dados
+        if (getRes() != null) try {
+            getRes().close();
+        } catch (SQLException ignore) {
+        }
+
+        if (getPstm() != null) try {
+            getPstm().close();
+        } catch (SQLException ignore) {
+        }
+
+        if (getConn() != null) try {
+            getConn().close();
+        } catch (SQLException ignore) {
+        }
+    }
 
     // @author Gabriel Souza
-    public void insertUser(String userName, String userEmail, String userPass, String userType) {
+    public void createUser(String userName, String userEmail, String userPass, String userType) {
 
         // Comando SQL
-        sql = "INSERT INTO usuario (u_name, u_email, u_passwd, u_type) VALUES (?, ?, sha2(?, 512), ?)";
+        sql = "INSERT INTO user(u_name, u_email, u_passwd, u_type) VALUES (?, ?, sha2(?, 512), ?)";
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConn(DBCONFIG.getConnection());
+            conectDb();
             setPstm(getConn().prepareStatement(sql));
 
-            // Alterando o "?" pelo valores corretos
+            // Alterando os "?" pelos valores corretos
             getPstm().setString(1, userName);
             getPstm().setString(2, userEmail);
             getPstm().setString(3, userPass);
@@ -37,16 +66,58 @@ public class DatabaseModel {
 
             // Executa o comando SQL no banco de dados
             getPstm().execute();
-            
+
+            // Exibe uma notificação ao usuário
             PopUp.showNotefy("Sucesso!!! Usuário criado, seja bem vindo(a).");
 
         } catch (SQLException error) {
             // Caso gere um erro
-            PopUp.showWarning(error);
+            PopUp.showWarning("DatabaseModel\\createUser\n" + error);
 
         } finally {
-            // Finaliza a conexão com o banco de dados
-            DBCONFIG.dbClose(getConn(), getPstm(), null);
+            // Finaliza toda a conexão com o banco de dados
+            closeDb();
+        }
+    }
+
+    // @author Kaik D' Andrade
+    public void readUser(String userEmail, String userPassword) {
+        
+        // Comando SQL
+        sql = "SELECT * FROM user WHERE u_email = ? AND u_password = sha2(?, 512)";
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
+            conectDb();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Altera os "?" pelos valores corretos
+            getPstm().setString(1, userEmail);
+            getPstm().setString(2, userPassword);
+
+            // Executando o comando SQL no banco de dados
+            setRes(pstm.executeQuery());
+
+            if (getRes().next()) {
+                /**
+                 * Se for True....
+                 */
+            } else {
+                // Exibe uma mensagem de alerta ao usuário
+                PopUp.showAlert("Email e/ou senha incorreto(s).\nVerifique os dados e tente novamente...");
+
+                // Depois colocar aqui um método para limpar o campo de senha
+                /**
+                 *
+                 */
+            }
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\readUser\n" + error);
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            closeDb();
         }
     }
 
@@ -54,45 +125,50 @@ public class DatabaseModel {
     public void updateUser(int userId, String userName, String userEmail) {
 
         // Comando SQL
-        sql = "UPDATE usuario SET u_name = ?, u_email = ? WHERE u_id = ?";
+        sql = "UPDATE user SET u_name = ?, u_email = ? WHERE u_id = ?";
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConn(DBCONFIG.getConnection());
+            conectDb();
             setPstm(getConn().prepareStatement(sql));
-            
-            // Alterando o "?" pelos valores corretos
+
+            // Alterando os "?" pelos valores corretos
             getPstm().setString(1, userName);
             getPstm().setString(2, userEmail);
             getPstm().setInt(3, userId);
-            
+
             // Executa o comando SQL no banco de dados
             getPstm().execute();
-            
-            // Exibe um mensagem de conclusão
+
+            // Exibe uma notificação ao usuário
             PopUp.showNotefy("Sucesso!!! Dados alterados.");
 
         } catch (SQLException error) {
             // Caso gere um erro
-            PopUp.showWarning(error);
+            PopUp.showWarning("DatabaseModel\\updateUser\n" + error);
 
         } finally {
-            // Finaliza a conexão com o banco de dados
-            DBCONFIG.dbClose(getConn(), getPstm(), null);
+            // Finaliza a toda a conexão com o banco de dados
+            closeDb();
         }
     }
     
     // @author Kaik D' Andrade
-    public void setPassUser(int userId, String oldPass, String newPass) {
+    public void setPassword(String oldPass, String newPass) {
 
         // Comando SQL
+<<<<<<< Updated upstream
         sql = "SELECT u_passwd FROM usuario WHERE u_passwd = sha2(?, 512)";
+=======
+        sql = "SELECT u_password FROM user WHERE u_password = sha2(?, 512)";
+>>>>>>> Stashed changes
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
-            setConn(DBCONFIG.getConnection());
+            conectDb();
             setPstm(getConn().prepareStatement(sql));
 
+<<<<<<< Updated upstream
             //getPstm().setString(1, "sha2("+ oldPass +", 512)");
             //getPstm().setInt(2, 512);
             getPstm().setInt(1, Integer.parseInt(oldPass));
@@ -125,13 +201,46 @@ public class DatabaseModel {
 //                 * 
 //                 */
 //            }
+=======
+            // Altera os "?" pelos valores corretos
+            getPstm().setString(1, oldPass);
+
+            // Executando o comando SQL no banco de dados
+            setRes(pstm.executeQuery());
+
+            if (getRes().next()) {
+                // Comando SQL
+                sql = "UPDATE user SET u_password = ? WHERE u_password = sha2(?, 512)";
+
+                // Prepara, filtra e sanitiza o sql
+                setPstm(getConn().prepareStatement(sql));
+
+                // Altera os "?" pelos valores corretos
+                getPstm().setString(1, newPass);
+                getPstm().setString(2, oldPass);
+
+                // executa o comando no banco de dados
+                getPstm().execute();
+
+                // Exibe uma notificação ao usuário
+                PopUp.showNotefy("Sucesso!!! Sua senha foi alterada.");
+            } else {
+                // Exibe uma mensagem de alerta ao usuário
+                PopUp.showAlert("Senha incorreta, tente novamente...");
+
+                // Depois colocar aqui um método para limpar os campos
+                /**
+                 *
+                 */
+            }
+>>>>>>> Stashed changes
         } catch (SQLException error) {
             // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\setPassUser\n" + error);
+            PopUp.showWarning("DatabaseModel\\setPassword\n" + error);
 
         } finally {
-            // Finaliza a conexão ao banco de dados
-            DBCONFIG.dbClose(getConn(), getPstm(), getRes());
+            // Finaliza toda a conexão com o banco de dados
+            closeDb();
         }
     }
     
@@ -143,17 +252,17 @@ public class DatabaseModel {
     public void deleteUser(int userId) {
 
         // Comando SQL
-        sql = "UPDATE usuario SET u_status = 'del' WHERE u_id = ?";
+        sql = "UPDATE user SET u_status = 'del' WHERE u_id = ?";
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConn(DBCONFIG.getConnection());
+            conectDb();
             setPstm(getConn().prepareStatement(sql));
 
-            // Altera o "?" pelo id do usuário passado como parâmetro
+            // Altera os "?" pelos valores corretos
             getPstm().setInt(1, userId);
 
-            // executa o comando SQL no banco de dados
+            // Executa o comando SQL no banco de dados
             getPstm().execute();
 
         } catch (SQLException error) {
@@ -161,12 +270,41 @@ public class DatabaseModel {
             PopUp.showWarning("DatabaseModel\\deleteUser\n" + error);
 
         } finally {
-            // Finaliza a conexão ao banco de dados
-            DBCONFIG.dbClose(getConn(), getPstm(), null);
+            // Finaliza toda a conexão com o banco de dados
+            closeDb();
         }
     }
-    
-    
+
+    // @author Kaik D' Andrade
+    public void createArtist(String artistName) {
+
+        // Comando SQL
+        sql = "INSERT INTO artist(u_name) VALUES (?)";
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            conectDb();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Alterando os "?" pelos valores corretos
+            getPstm().setString(1, artistName);
+
+            // Executa o comando SQL no banco de dados
+            getPstm().execute();
+
+            // Exibe uma notificação ao usuário
+            PopUp.showNotefy("Sucesso!!! Novo artista cadastrado.");
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning(error);
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            closeDb();
+        }
+    }
+
 //        public void insertMusic(Music music) throws FileNotFoundException {
 //
 //        String sql = "INSERT INTO music ( m_name, m_duration, m_banner, m_music) VALUES ( ?, ?, ?, ? )";
@@ -244,11 +382,6 @@ public class DatabaseModel {
 //        }
 //
 //    }
-
-    
-    
-    
-
     /**
      * @return the conn
      */
