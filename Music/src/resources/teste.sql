@@ -14,7 +14,6 @@ INSERT INTO usuario (u_passwd) VALUES
 );
 
 INSERT INTO usuario(u_password) VALUES
->>>>>>> Stashed changes
 (sha2('01234567', 512)),
 (sha2('12345678', 512));
 

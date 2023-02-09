@@ -1,20 +1,11 @@
 package Model;
 
 import Control.PopUp;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Kaik D' Andrade
@@ -163,10 +154,10 @@ public class DatabaseModel {
     }
 
     // @author Kaik D' Andrade
-    public void setPassword(String oldPass, String newPass) {
+    public void setPassword(int userId, String oldPass, String newPass) {
 
         // Comando SQL
-        sql = "SELECT u_password FROM user WHERE u_password = sha2(?, 512)";
+        sql = "SELECT * FROM user WHERE u_id = ? AND u_password = sha2(?, 512)";
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
@@ -174,7 +165,8 @@ public class DatabaseModel {
             setPstm(getConn().prepareStatement(sql));
 
             // Altera os "?" pelos valores corretos
-            getPstm().setString(1, oldPass);
+            getPstm().setInt(1, userId);
+            getPstm().setString(2, oldPass);
 
             // Executando o comando SQL no banco de dados
             setRes(pstm.executeQuery());
