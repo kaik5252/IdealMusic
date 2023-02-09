@@ -7,5 +7,7 @@ User {
 
 Artist {
 	Create
-	
+        Read
+        Update
+        Delete
 }

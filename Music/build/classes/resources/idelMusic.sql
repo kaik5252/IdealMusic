@@ -94,9 +94,17 @@ INSERT INTO user(u_name, u_email, u_password, u_type, u_avatarid) VALUES
 ("Kaik D' Andrade", 'kaikdossantossilva2@gmail.com', 'root0000', 'adm', 1), 
 ('Gabriel Souza', 'gabriel.s.av707@gmail.com', 'root0000', 'adm', 1);
 
-/* Dados para realizar os testes da funcionalidade do app (Temporário)*/
-INSERT INTO artist() VALUES ();
+/* As categorias das músicas */
+INSERT INTO category(ctg_name) VALUES 
+('Nacional'), 
+('Internacional');
 
-INSERT INTO category() VALUES ();
+/* Dados para realizar os testes da funcionalidade do app (Temporário)*/
+INSERT INTO artist(art_name) VALUES 
+('Pitty'), 
+('Ariana Grande'), 
+('Dua Lipa'), 
+('Billie Eilish'), 
+('Gloria Groove');
 
 INSERT INTO music() VALUES ();

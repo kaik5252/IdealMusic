@@ -141,7 +141,7 @@ public class DatabaseModel {
             getPstm().execute();
 
             // Exibe uma notificação ao usuário
-            PopUp.showNotefy("Sucesso!!! Dados alterados.");
+            PopUp.showNotefy("Sucesso!!! Dados do usuário alterados.");
 
         } catch (SQLException error) {
             // Caso gere um erro
@@ -264,6 +264,99 @@ public class DatabaseModel {
         }
     }
 
+//    // @author Gabriel Souza Método em beta
+//    public void readArtist() {
+//
+//        // Comando SQL
+//        sql = "SELECT * FROM artist WHERE [...]";
+//
+//        try {
+//            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
+//            conectDb();
+//            setPstm(getConn().prepareStatement(sql));
+//
+//            // Altera os "?" pelos valores corretos
+//            // getPstm().setString(1, );
+//
+//            // Executando o comando SQL no banco de dados
+//            setRes(pstm.executeQuery());
+//
+//        } catch (SQLException error) {
+//
+//            // Caso gere um erro
+//            PopUp.showWarning("DatabaseModel\\readArtist\n" + error);
+//
+//        } finally {
+//
+//            // Finaliza toda a conexão com o banco de dados
+//            closeDb();
+//        }
+//    }
+
+    // @author Gabriel Souza
+    public void updateArtist(int artId, String artName) {
+
+        // Comando SQL
+        sql = "UPDATE artist SET art_name = ? WHERE art_id = ?";
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            conectDb();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Alterando os "?" pelos valores corretos
+            getPstm().setString(1, artName);
+            getPstm().setInt(2, artId);
+
+            // Executa o comando SQL no banco de dados
+            getPstm().execute();
+
+            // Exibe uma notificação ao artista
+            PopUp.showNotefy("Sucesso!!! Dados do artista alterados.");
+
+        } catch (SQLException error) {
+
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\updateArtist\n" + error);
+
+        } finally {
+
+            // Finaliza toda a conexão com o banco de dados
+            closeDb();
+        }
+    }
+
+    // @author Gabriel Souza
+    public void deleteArtist(int artId) {
+
+        // Comando SQL
+        sql = "DELETE FROM artist WHERE art_id = ?";
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            conectDb();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Altera os "?" pelos valores corretos
+            getPstm().setInt(1, artId);
+
+            // Executa o comando SQL no banco de dados
+            getPstm().execute();
+
+        } catch (SQLException error) {
+
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\deleteArtist\n" + error);
+
+        } finally {
+
+            // Finaliza toda a conexão com o banco de dados
+            closeDb();
+        }
+    }
+
+    
+    
 //    // Método beta para copiar os arquivo para dentro do app
 //    public static void teste() throws FileNotFoundException, IOException {
 //        File sourceFile = new File("src/resources/sapao.wav");
@@ -280,8 +373,6 @@ public class DatabaseModel {
 //        fileInputStream.close();
 //        fileOutputStream.close();
 //    }
-    
-    
 //        public void insertMusic(Music music) throws FileNotFoundException {
 //
 //        String sql = "INSERT INTO music ( m_name, m_duration, m_banner, m_music) VALUES ( ?, ?, ?, ? )";
@@ -359,7 +450,6 @@ public class DatabaseModel {
 //        }
 //
 //    }
-
     /**
      * @return the conn
      */
