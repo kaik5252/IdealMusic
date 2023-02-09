@@ -6,7 +6,7 @@ USE idealmusic;
 
 CREATE TABLE avatar (
     avatar_id INT AUTO_INCREMENT PRIMARY KEY,
-    avatar_img VARCHAR(255) NOT NULL,
+    avatar_img TEXT NOT NULL,
     avatar_type ENUM('user', 'adm') DEFAULT 'user'
 );
 

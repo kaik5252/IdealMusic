@@ -11,3 +11,22 @@ Artist {
         Update
         Delete
 }
+
+Playlist {
+        Create - Kaik
+        Read - Gabriel
+        Update - Gabriel
+        Delete - Kaik
+}
+
+Favorite {
+
+}
+
+Avatar {
+
+}
+
+Music {
+
+}

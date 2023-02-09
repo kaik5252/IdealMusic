@@ -1,6 +1,10 @@
 package Model;
 
 import Control.PopUp;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,6 +22,10 @@ public class DatabaseModel {
     private ResultSet res = null;
     public String sql = null;
     private static final String URL = "jdbc:mysql://localhost:3306/teste?user=root&password=";
+    private File sourceFile = null;
+    private File destinationFile = null;
+    private FileInputStream fileInputStream = null;
+    private FileOutputStream fileOutputStream = null;
 
     public void conectDb() {
         try {
@@ -292,7 +300,7 @@ public class DatabaseModel {
 //            closeDb();
 //        }
 //    }
-
+    
     // @author Gabriel Souza
     public void updateArtist(int artId, String artName) {
 
@@ -355,25 +363,46 @@ public class DatabaseModel {
         }
     }
 
-    
-    
-//    // Método beta para copiar os arquivo para dentro do app
-//    public static void teste() throws FileNotFoundException, IOException {
-//        File sourceFile = new File("src/resources/sapao.wav");
-//        File destinationFile = new File("src/resources/icons/sapao.wav");
+
+//public class ByteToImage {
+//   public static void convert(byte[] imageByteArray, String filePath) {
+//      try {
+//         ByteArrayInputStream bis = new ByteArrayInputStream(imageByteArray);
+//         BufferedImage bImage = ImageIO.read(bis);
+//         ImageIO.write(bImage, "jpg", new File(filePath));
+//      } catch (Exception e) {
+//         e.printStackTrace();
+//      }
+//   }
+//}
+
+
+
+// Método beta para copiar os arquivo para dentro do app
+//    public void teste(String caminho, String destino) {
+//        try {
+//            setSourceFile(new File(caminho));
+//            setDestinationFile(new File(destino));
 //
-//        FileInputStream fileInputStream = new FileInputStream(sourceFile);
-//        FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);
+//            set
+//                    FileInputStream(new FileInputStream(getSourceFile()));
+//            FileOutputStream fileOutputStream = new FileOutputStream(getDestinationFile());
 //
-//        byte[] buffer = new byte[1024];
-//        int length;
-//        while ((length = fileInputStream.read(buffer)) > 0) {
-//            fileOutputStream.write(buffer, 0, length);
+//            byte[] buffer = new byte[1024];
+//            int length;
+//            while ((length = fileInputStream.read(buffer)) > 0) {
+//                fileOutputStream.write(buffer, 0, length);
+//            }
+//        } catch (IOException e) {
+//
+//        } finally {
+//            getFileInputStream().close();
+//            getFileOutputStream().close();
 //        }
-//        fileInputStream.close();
-//        fileOutputStream.close();
 //    }
-//        public void insertMusic(Music music) throws FileNotFoundException {
+
+        // @author Gabriel Souza
+//        public void insertMusic(Music music) {
 //
 //        String sql = "INSERT INTO music ( m_name, m_duration, m_banner, m_music) VALUES ( ?, ?, ?, ? )";
 //
@@ -450,6 +479,7 @@ public class DatabaseModel {
 //        }
 //
 //    }
+    
     /**
      * @return the conn
      */
@@ -490,5 +520,61 @@ public class DatabaseModel {
      */
     public void setRes(ResultSet res) {
         this.res = res;
+    }
+
+    /**
+     * @return the sourceFile
+     */
+    public File getSourceFile() {
+        return sourceFile;
+    }
+
+    /**
+     * @param sourceFile the sourceFile to set
+     */
+    public void setSourceFile(File sourceFile) {
+        this.sourceFile = sourceFile;
+    }
+
+    /**
+     * @return the destinationFile
+     */
+    public File getDestinationFile() {
+        return destinationFile;
+    }
+
+    /**
+     * @param destinationFile the destinationFile to set
+     */
+    public void setDestinationFile(File destinationFile) {
+        this.destinationFile = destinationFile;
+    }
+
+    /**
+     * @return the fileInputStream
+     */
+    public FileInputStream getFileInputStream() {
+        return fileInputStream;
+    }
+
+    /**
+     * @param fileInputStream the fileInputStream to set
+     */
+    public void setFileInputStream(FileInputStream fileInputStream) {
+        this.fileInputStream = fileInputStream;
+    }
+
+    /**
+     * @return the fileOutputStream
+     */
+    public FileOutputStream getFileOutputStream() {
+        return fileOutputStream;
+    }
+
+    /**
+     * @param fileOutputStream the fileOutputStream to set
+     */
+    public void setFileOutputStream(FileOutputStream fileOutputStream) {
+        this.fileOutputStream = fileOutputStream;
     }
 }
