@@ -1,11 +1,20 @@
 package Model;
 
 import Control.PopUp;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Kaik D' Andrade
@@ -82,7 +91,7 @@ public class DatabaseModel {
 
     // @author Kaik D' Andrade
     public void readUser(String userEmail, String userPassword) {
-        
+
         // Comando SQL
         sql = "SELECT * FROM user WHERE u_email = ? AND u_password = sha2(?, 512)";
 
@@ -152,56 +161,18 @@ public class DatabaseModel {
             closeDb();
         }
     }
-    
+
     // @author Kaik D' Andrade
     public void setPassword(String oldPass, String newPass) {
 
         // Comando SQL
-<<<<<<< Updated upstream
-        sql = "SELECT u_passwd FROM usuario WHERE u_passwd = sha2(?, 512)";
-=======
         sql = "SELECT u_password FROM user WHERE u_password = sha2(?, 512)";
->>>>>>> Stashed changes
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
             conectDb();
             setPstm(getConn().prepareStatement(sql));
 
-<<<<<<< Updated upstream
-            //getPstm().setString(1, "sha2("+ oldPass +", 512)");
-            //getPstm().setInt(2, 512);
-            getPstm().setInt(1, Integer.parseInt(oldPass));
-            
-            // Armazenando o resultado e jogando ele na variável userPass
-            setRes(getPstm().executeQuery());
-            getRes().next();
-            String userPass = getRes().getString("u_passwd");
-            System.out.println(userPass);
-
-//            // Verificando se a senha antiga passada como parâmetro está correta
-//            if (userPass.equals(oldPass)) {
-//                // Comando SQL
-//                sql = "UPDATE usuario SET u_passwd = ? WHERE u_id = ?";
-//
-//                // Prepara, filtra e sanitiza o sql e depois troca os "?" pelos valores corretos e executa o comando SQL no banco
-//                setPstm(getConn().prepareStatement(sql));
-//                getPstm().setString(1, newPass);
-//                getPstm().setInt(2, userId);
-//                // executa o comando no banco de dados assim trocando a senha do usuário pela nova senha passada como parâmetro
-//                getPstm().execute();
-//
-//                PopUp.showNotefy("Sucesso!!! Sua senha foi alterada.");
-//            } else {
-//                // exibe uma mensagem de alerta ao usuário
-//                PopUp.showAlert("Senha incorreta, tente novamente...");
-//
-//                // Depois colocar aqui um método para limpar os campos
-//                /**
-//                 * 
-//                 */
-//            }
-=======
             // Altera os "?" pelos valores corretos
             getPstm().setString(1, oldPass);
 
@@ -224,6 +195,7 @@ public class DatabaseModel {
 
                 // Exibe uma notificação ao usuário
                 PopUp.showNotefy("Sucesso!!! Sua senha foi alterada.");
+
             } else {
                 // Exibe uma mensagem de alerta ao usuário
                 PopUp.showAlert("Senha incorreta, tente novamente...");
@@ -233,7 +205,6 @@ public class DatabaseModel {
                  *
                  */
             }
->>>>>>> Stashed changes
         } catch (SQLException error) {
             // Caso gere um erro
             PopUp.showWarning("DatabaseModel\\setPassword\n" + error);
@@ -242,10 +213,6 @@ public class DatabaseModel {
             // Finaliza toda a conexão com o banco de dados
             closeDb();
         }
-    }
-    
-    public static void main(String[] args) {
-        new DatabaseModel().setPassUser(1, "12345678", "1234");
     }
 
     // @author Gabriel Souza
@@ -305,6 +272,24 @@ public class DatabaseModel {
         }
     }
 
+//    // Método beta para copiar os arquivo para dentro do app
+//    public static void teste() throws FileNotFoundException, IOException {
+//        File sourceFile = new File("src/resources/sapao.wav");
+//        File destinationFile = new File("src/resources/icons/sapao.wav");
+//
+//        FileInputStream fileInputStream = new FileInputStream(sourceFile);
+//        FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);
+//
+//        byte[] buffer = new byte[1024];
+//        int length;
+//        while ((length = fileInputStream.read(buffer)) > 0) {
+//            fileOutputStream.write(buffer, 0, length);
+//        }
+//        fileInputStream.close();
+//        fileOutputStream.close();
+//    }
+    
+    
 //        public void insertMusic(Music music) throws FileNotFoundException {
 //
 //        String sql = "INSERT INTO music ( m_name, m_duration, m_banner, m_music) VALUES ( ?, ?, ?, ? )";
@@ -382,6 +367,7 @@ public class DatabaseModel {
 //        }
 //
 //    }
+
     /**
      * @return the conn
      */

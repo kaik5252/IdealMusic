@@ -1,0 +1,11 @@
+User {
+	Create
+	Read
+	Update
+	Delete
+}
+
+Artist {
+	Create
+	
+}
