@@ -24,11 +24,10 @@ public class IdealMusic extends javax.swing.JFrame {
         panelMusic = new javax.swing.JPanel();
         scrollListMusic = new javax.swing.JScrollPane();
         listMusic = new javax.swing.JList<>();
-        btnMusicNacional = new javax.swing.JButton();
-        btnMusicInternacional = new javax.swing.JButton();
         labelMusic1 = new javax.swing.JLabel();
         labelMusic2 = new javax.swing.JLabel();
         boxMusicArtist = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         panelUsers = new javax.swing.JPanel();
         panelAdmMain = new javax.swing.JPanel();
         labelAdm2 = new javax.swing.JLabel();
@@ -64,11 +63,6 @@ public class IdealMusic extends javax.swing.JFrame {
         btnFavoriteRemovePlaylist = new javax.swing.JButton();
         btnFavoriteRemoveMusic = new javax.swing.JButton();
         labelFavorite2 = new javax.swing.JLabel();
-        panelPlaylist = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
         panelPlayer = new javax.swing.JPanel();
         labelPlayerImage = new javax.swing.JLabel();
         labelPLayerMusic = new javax.swing.JLabel();
@@ -82,11 +76,11 @@ public class IdealMusic extends javax.swing.JFrame {
         btnPlayerControl = new javax.swing.JButton();
         btnPlayerBack = new javax.swing.JButton();
         btnPlayerLike = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         sliderPlayerVolume = new javax.swing.JSlider();
         panelMenu = new javax.swing.JPanel();
         labelMenuLogo = new javax.swing.JLabel();
         btnMenuMusic = new javax.swing.JButton();
-        btnMenuPlaylist = new javax.swing.JButton();
         btnMenuFavorite = new javax.swing.JButton();
         btnMenuUser = new javax.swing.JButton();
 
@@ -98,6 +92,7 @@ public class IdealMusic extends javax.swing.JFrame {
         panelMain.setLayout(new java.awt.CardLayout());
 
         panelMusic.setBackground(new java.awt.Color(0, 71, 171));
+        panelMusic.setMinimumSize(new java.awt.Dimension(980, 489));
 
         listMusic.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         listMusic.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -105,26 +100,6 @@ public class IdealMusic extends javax.swing.JFrame {
         listMusic.setAlignmentY(0.0F);
         listMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         scrollListMusic.setViewportView(listMusic);
-
-        btnMusicNacional.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        btnMusicNacional.setText("Nacional");
-        btnMusicNacional.setAlignmentY(0.0F);
-        btnMusicNacional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMusicNacional.setFocusable(false);
-        btnMusicNacional.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnMusicNacional.setMaximumSize(new java.awt.Dimension(150, 30));
-        btnMusicNacional.setMinimumSize(new java.awt.Dimension(120, 30));
-        btnMusicNacional.setPreferredSize(new java.awt.Dimension(120, 30));
-
-        btnMusicInternacional.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        btnMusicInternacional.setText("Internacional");
-        btnMusicInternacional.setAlignmentY(0.0F);
-        btnMusicInternacional.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMusicInternacional.setFocusable(false);
-        btnMusicInternacional.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnMusicInternacional.setMaximumSize(new java.awt.Dimension(150, 30));
-        btnMusicInternacional.setMinimumSize(new java.awt.Dimension(120, 30));
-        btnMusicInternacional.setPreferredSize(new java.awt.Dimension(120, 30));
 
         labelMusic1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         labelMusic1.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,6 +116,8 @@ public class IdealMusic extends javax.swing.JFrame {
         boxMusicArtist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         boxMusicArtist.setFocusable(false);
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout panelMusicLayout = new javax.swing.GroupLayout(panelMusic);
         panelMusic.setLayout(panelMusicLayout);
         panelMusicLayout.setHorizontalGroup(
@@ -148,33 +125,29 @@ public class IdealMusic extends javax.swing.JFrame {
             .addGroup(panelMusicLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollListMusic, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMusicLayout.createSequentialGroup()
+                    .addComponent(scrollListMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 974, Short.MAX_VALUE)
+                    .addGroup(panelMusicLayout.createSequentialGroup()
+                        .addGap(186, 186, 186)
                         .addComponent(labelMusic2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(boxMusicArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelMusic1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMusicInternacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMusicNacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelMusicLayout.setVerticalGroup(
             panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMusicLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnMusicNacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnMusicInternacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelMusic1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelMusic2)
-                        .addComponent(boxMusicArtist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(scrollListMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addGroup(panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelMusic2)
+                    .addComponent(boxMusicArtist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelMusic1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(scrollListMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -272,7 +245,7 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAdmMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtAdmSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelAdm3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(labelAdm3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                     .addGroup(panelAdmMainLayout.createSequentialGroup()
                         .addComponent(checkboxAdmMusic)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -478,12 +451,12 @@ public class IdealMusic extends javax.swing.JFrame {
             .addGroup(panelUsersLayout.createSequentialGroup()
                 .addComponent(panelUserMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE))
         );
         panelUsersLayout.setVerticalGroup(
             panelUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelUserMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+            .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
         );
 
         panelMain.add(panelUsers, "panelUsers");
@@ -540,7 +513,7 @@ public class IdealMusic extends javax.swing.JFrame {
         panelFavoriteLayout.setHorizontalGroup(
             panelFavoriteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFavoriteLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(panelFavoriteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFavoriteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(labelFavorite1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -551,12 +524,12 @@ public class IdealMusic extends javax.swing.JFrame {
                     .addComponent(btnFavoriteRemovePlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(scrollFavorite1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                     .addComponent(labelFavorite2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         panelFavoriteLayout.setVerticalGroup(
             panelFavoriteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFavoriteLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelFavoriteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelFavorite1)
                     .addComponent(labelFavorite2))
@@ -573,50 +546,8 @@ public class IdealMusic extends javax.swing.JFrame {
 
         panelMain.add(panelFavorite, "panelFavorite");
 
-        panelPlaylist.setBackground(new java.awt.Color(0, 71, 171));
-        panelPlaylist.setAlignmentX(0.0F);
-        panelPlaylist.setAlignmentY(0.0F);
-
-        jList1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList1.setAlignmentX(0.0F);
-        jList1.setAlignmentY(0.0F);
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jScrollPane1.setViewportView(jList1);
-
-        jLabel1.setText("Procurar playlists em destaque:");
-
-        javax.swing.GroupLayout panelPlaylistLayout = new javax.swing.GroupLayout(panelPlaylist);
-        panelPlaylist.setLayout(panelPlaylistLayout);
-        panelPlaylistLayout.setHorizontalGroup(
-            panelPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlaylistLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
-                    .addGroup(panelPlaylistLayout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        panelPlaylistLayout.setVerticalGroup(
-            panelPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlaylistLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(panelPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        panelMain.add(panelPlaylist, "panelPlaylist");
-
         panelPlayer.setBackground(new java.awt.Color(179, 7, 83));
-        panelPlayer.setMaximumSize(new java.awt.Dimension(32767, 200));
+        panelPlayer.setMaximumSize(new java.awt.Dimension(32767, 250));
         panelPlayer.setMinimumSize(new java.awt.Dimension(900, 150));
         panelPlayer.setPreferredSize(new java.awt.Dimension(991, 150));
 
@@ -740,14 +671,36 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(179, 7, 83));
+
         sliderPlayerVolume.setBackground(new java.awt.Color(179, 7, 83));
         sliderPlayerVolume.setForeground(new java.awt.Color(179, 7, 83));
         sliderPlayerVolume.setMaximum(0);
         sliderPlayerVolume.setMinimum(-80);
         sliderPlayerVolume.setOrientation(javax.swing.JSlider.VERTICAL);
-        sliderPlayerVolume.setValue(0);
         sliderPlayerVolume.setMinimumSize(new java.awt.Dimension(20, 130));
         sliderPlayerVolume.setPreferredSize(new java.awt.Dimension(20, 130));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 134, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout panelPlayerLayout = new javax.swing.GroupLayout(panelPlayer);
         panelPlayer.setLayout(panelPlayerLayout);
@@ -755,20 +708,20 @@ public class IdealMusic extends javax.swing.JFrame {
             panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPlayerLayout.createSequentialGroup()
                 .addComponent(labelPlayerImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelPLayerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelPlayerArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPlayerLayout.setVerticalGroup(
             panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPlayerImage, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlayerLayout.createSequentialGroup()
+            .addComponent(labelPlayerImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelPlayerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -777,10 +730,10 @@ public class IdealMusic extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(labelPlayerArtist)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlayerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelPlayerLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         panelMenu.setBackground(new java.awt.Color(179, 7, 83));
@@ -812,22 +765,6 @@ public class IdealMusic extends javax.swing.JFrame {
             }
         });
 
-        btnMenuPlaylist.setBackground(new java.awt.Color(0, 0, 0));
-        btnMenuPlaylist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/textPlaylists.png"))); // NOI18N
-        btnMenuPlaylist.setAlignmentY(0.0F);
-        btnMenuPlaylist.setBorder(null);
-        btnMenuPlaylist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMenuPlaylist.setFocusable(false);
-        btnMenuPlaylist.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnMenuPlaylist.setMaximumSize(new java.awt.Dimension(300, 1000000));
-        btnMenuPlaylist.setMinimumSize(new java.awt.Dimension(300, 120));
-        btnMenuPlaylist.setPreferredSize(new java.awt.Dimension(300, 115));
-        btnMenuPlaylist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuPlaylistActionPerformed(evt);
-            }
-        });
-
         btnMenuFavorite.setBackground(new java.awt.Color(0, 0, 0));
         btnMenuFavorite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/textFavorite.png"))); // NOI18N
         btnMenuFavorite.setAlignmentY(0.0F);
@@ -835,7 +772,7 @@ public class IdealMusic extends javax.swing.JFrame {
         btnMenuFavorite.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMenuFavorite.setFocusable(false);
         btnMenuFavorite.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnMenuFavorite.setMaximumSize(new java.awt.Dimension(300, 1000000));
+        btnMenuFavorite.setMaximumSize(new java.awt.Dimension(300, 150));
         btnMenuFavorite.setMinimumSize(new java.awt.Dimension(300, 120));
         btnMenuFavorite.setPreferredSize(new java.awt.Dimension(300, 115));
         btnMenuFavorite.addActionListener(new java.awt.event.ActionListener() {
@@ -871,21 +808,17 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
                 .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnMenuPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnMenuFavorite, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnMenuFavorite, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMenuUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(labelMenuLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(labelMenuLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnMenuMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(btnMenuPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(btnMenuFavorite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
@@ -901,15 +834,15 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelPlayer, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)))
+                    .addComponent(panelPlayer, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(panelPlayer, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
-            .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
         );
 
         pack();
@@ -930,10 +863,6 @@ public class IdealMusic extends javax.swing.JFrame {
     private void btnMenuMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMusicActionPerformed
         openCard("panelMusic");
     }//GEN-LAST:event_btnMenuMusicActionPerformed
-
-    private void btnMenuPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPlaylistActionPerformed
-        openCard("panelPlaylist");
-    }//GEN-LAST:event_btnMenuPlaylistActionPerformed
 
     private void btnUserCreatePlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserCreatePlaylistActionPerformed
         // TODO add your handling code here:
@@ -997,10 +926,7 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroupAdmSearch;
     private javax.swing.JButton btnMenuFavorite;
     private javax.swing.JButton btnMenuMusic;
-    private javax.swing.JButton btnMenuPlaylist;
     private javax.swing.JButton btnMenuUser;
-    private javax.swing.JButton btnMusicInternacional;
-    private javax.swing.JButton btnMusicNacional;
     private javax.swing.JButton btnPlayerBack;
     private javax.swing.JButton btnPlayerControl;
     private javax.swing.JButton btnPlayerLike;
@@ -1014,11 +940,9 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JButton btnUserUpdatePassword;
     private javax.swing.JCheckBox checkBoxAdmArtist;
     private javax.swing.JCheckBox checkboxAdmMusic;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelAdm2;
     private javax.swing.JLabel labelAdm3;
     private javax.swing.JLabel labelFavorite1;
@@ -1045,7 +969,6 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelMusic;
     private javax.swing.JPanel panelPlayer;
-    private javax.swing.JPanel panelPlaylist;
     private javax.swing.JPanel panelUserMain;
     private javax.swing.JPanel panelUsers;
     private javax.swing.JScrollPane scrollAdmList;
