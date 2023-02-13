@@ -12,6 +12,7 @@ Artist {
         Delete
 }
 
+// Andamento... ↓
 Playlist {
         Create - Kaik
         Read - Gabriel

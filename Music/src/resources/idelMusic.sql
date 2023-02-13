@@ -7,7 +7,7 @@ USE idealmusic;
 CREATE TABLE avatar (
     avatar_id INT AUTO_INCREMENT PRIMARY KEY,
     avatar_img TEXT NOT NULL,
-    avatar_type ENUM('user', 'adm') DEFAULT 'user'
+    avatar_type ENUM('user', 'adm', 'both') DEFAULT 'both'
 );
 
 CREATE TABLE favorite (
@@ -34,7 +34,7 @@ CREATE TABLE user (
     u_type ENUM('user', 'adm') NOT NULL,
     u_status ENUM('on', 'del') DEFAULT 'on',
     u_avatarid INT NOT NULL,
-    u_ownid INT,
+    u_ownid INT DEFAULT 1,
     FOREIGN KEY u_avatarid REFERENCES avatar(avatar_id),
     FOREIGN KEY u_ownid REFERENCES own(own_id)
 );
@@ -84,15 +84,16 @@ CREATE TABLE acquire (
 
 
 
-
+/* @author Kaik D' Andrade */
 /* Os avatares */
 INSERT INTO avatar(avatar_img, avatar_type) VALUES 
+('src/resources/avatar/default.png', 'both'), 
 ('src/resources/avatar/adm.jpg', 'adm');
 
 /* Conta ADM */
-INSERT INTO user(u_name, u_email, u_password, u_type, u_avatarid) VALUES 
-("Kaik D' Andrade", 'kaikdossantossilva2@gmail.com', 'root0000', 'adm', 1), 
-('Gabriel Souza', 'gabriel.s.av707@gmail.com', 'root0000', 'adm', 1);
+INSERT INTO user(u_name, u_email, u_password, u_type) VALUES 
+("Kaik D' Andrade", 'kaikdossantossilva2@gmail.com', 'root0000', 'adm'), 
+('Gabriel Souza', 'gabriel.s.av707@gmail.com', 'root0000', 'adm');
 
 /* As categorias das músicas */
 INSERT INTO category(ctg_name) VALUES 

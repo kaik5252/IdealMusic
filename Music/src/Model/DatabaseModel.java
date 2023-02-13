@@ -364,19 +364,6 @@ public class DatabaseModel {
     }
 
 
-//public class ByteToImage {
-//   public static void convert(byte[] imageByteArray, String filePath) {
-//      try {
-//         ByteArrayInputStream bis = new ByteArrayInputStream(imageByteArray);
-//         BufferedImage bImage = ImageIO.read(bis);
-//         ImageIO.write(bImage, "jpg", new File(filePath));
-//      } catch (Exception e) {
-//         e.printStackTrace();
-//      }
-//   }
-//}
-
-
 
 // Método beta para copiar os arquivo para dentro do app
 //    public void teste(String caminho, String destino) {
