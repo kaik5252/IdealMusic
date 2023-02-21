@@ -7,18 +7,18 @@ use idealmusic;
 CREATE TABLE avatar (
     avid INT AUTO_INCREMENT PRIMARY KEY,
     avimg VARCHAR(255) NOT NULL,
-    avtype ENUM ('user', 'adm', 'both') DEFAULT 'user'
+    avtype ENUM('user', 'adm', 'both') DEFAULT 'user'
 );
 
 CREATE TABLE users (
     uid INT AUTO_INCREMENT PRIMARY KEY,
     uname VARCHAR(255) NOT NULL,
     uemail VARCHAR(255) UNIQUE NOT NULL,
-    upassword VARCHAR(255) NOT NULL,
-    uaid INT,
-    utype ENUM ('user', 'adm') NOT NULL,
-    ustatus ENUM ('on', 'del') DEFAULT 'on',
-    FOREIGN KEY (uaid) REFERENCES avatar(avid)
+    upassword CHAR(128) NOT NULL,
+    uavatar INT,
+    utype ENUM('user', 'adm') NOT NULL,
+    ustatus ENUM('on', 'del') DEFAULT 'on',
+    FOREIGN KEY (uavatar) REFERENCES avatar(avid)
 );
 
 CREATE TABLE category (
