@@ -13,7 +13,7 @@ CREATE TABLE avatar (
 CREATE TABLE users (
     uid INT AUTO_INCREMENT PRIMARY KEY,
     uname VARCHAR(255) NOT NULL,
-    uemail VARCHAR(255) UNIQUE NOT NULL,
+    uemail VARCHAR(255) NOT NULL,
     upassword CHAR(128) NOT NULL,
     uavatar INT,
     utype ENUM('user', 'adm') NOT NULL,
@@ -42,7 +42,6 @@ CREATE TABLE music (
 );
 
 CREATE TABLE favorite (
-    fid INT AUTO_INCREMENT PRIMARY KEY,
     fuser INT,
     fmusic INT,
     FOREIGN KEY (fuser) REFERENCES users(uid),
@@ -55,3 +54,7 @@ CREATE TABLE allocated (
     FOREIGN KEY (allo_artist) REFERENCES artist(aid),
     FOREIGN KEY (allo_music) REFERENCES music(mid)
 );
+
+INSERT INTO avatar(avimg, avtype) VALUES ('default.png', 'both');
+
+INSERT INTO category(cname) VALUES ('Nacional'), ('Internacional');
