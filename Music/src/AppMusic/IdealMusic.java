@@ -942,10 +942,8 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(panelCreateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelCreateAvatar1)
-                    .addGroup(panelCreateAvatarLayout.createSequentialGroup()
-                        .addComponent(labelCreateAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(223, 223, 223))
+                    .addComponent(labelCreateAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCreateAvatarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelCreateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1165,6 +1163,11 @@ public class IdealMusic extends javax.swing.JFrame {
         btnAdmCreateAvatar.setMaximumSize(new java.awt.Dimension(250, 30));
         btnAdmCreateAvatar.setMinimumSize(new java.awt.Dimension(230, 30));
         btnAdmCreateAvatar.setPreferredSize(new java.awt.Dimension(230, 30));
+        btnAdmCreateAvatar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdmCreateAvatarActionPerformed(evt);
+            }
+        });
 
         labelAdm4.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         labelAdm4.setForeground(new java.awt.Color(255, 255, 255));
@@ -1407,8 +1410,8 @@ public class IdealMusic extends javax.swing.JFrame {
         );
         panelUsersLayout.setVerticalGroup(
             panelUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-            .addComponent(panelUserMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+            .addComponent(panelUserMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         panelMain.add(panelUsers, "panelUsers");
@@ -1837,7 +1840,7 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addGap(133, 133, 133))
         );
 
-        panelMain.add(panelUpdateAvatar, "card6");
+        panelMain.add(panelUpdateAvatar, "panelcreateAvatar");
 
         panelUpdate.setAlignmentX(0.0F);
         panelUpdate.setAlignmentY(0.0F);
@@ -2836,7 +2839,7 @@ public class IdealMusic extends javax.swing.JFrame {
         boxCreateMusicArtist.removeAllItems();
         boxCreateMusicArtist.addItem("None");
 
-        ArrayList<String> artists = dbModel.realAll("artist", null, "aname");
+        ArrayList<String> artists = dbModel.readAll("artist", null, "aname");
         for (int i = 0; i < artists.size(); i++) {
             boxCreateMusicArtist.addItem(artists.get(i));
         }
@@ -2942,10 +2945,10 @@ public class IdealMusic extends javax.swing.JFrame {
             String avatarName = txtCreateAvatarImg.getText().substring(txtCreateAvatarImg.getText().lastIndexOf("/") + 1);
             avatarName = avatarName.substring(0, avatarName.lastIndexOf(".")) + time + extension;
             String status = boxCreateAvatarStatus.getSelectedItem().toString();
-            if(/*Depois...*/ 2 > 4) {
-            
-            }
-            dbModel.createAvatar(avatarName, avatarImg, status);
+            if(status.contains("Ambos")) status = "both";
+            if(status.contains("Usuário Comum")) status = "user";
+            if(status.contains("Usuário adiministrador")) status = "adm";
+            // dbModel.createAvatar(avatarName, avatarImg, status);
             clearTextFields(txtCreateAvatarImg);
             frameUtiliti.setVisible(false);
             avatarName = null;
@@ -2956,6 +2959,13 @@ public class IdealMusic extends javax.swing.JFrame {
     private void btnCreateAvatarCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAvatarCancelActionPerformed
         clearTextFields(txtCreateAvatarImg);
     }//GEN-LAST:event_btnCreateAvatarCancelActionPerformed
+
+    private void btnAdmCreateAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmCreateAvatarActionPerformed
+        frameUtiliti.setVisible(true);
+        frameUtiliti.setLocationRelativeTo(null);
+        frameUtiliti.setTitle("Cadastrar Avatar?");
+        openCard(panelUtilitiMain, "panelCreateAvatar");
+    }//GEN-LAST:event_btnAdmCreateAvatarActionPerformed
 
     /**
      * @param args the command line arguments

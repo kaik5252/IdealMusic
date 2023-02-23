@@ -376,11 +376,13 @@ public class DatabaseModel {
 
     /**
      * Método resposável por cadastrar uma nova música no banco de dados
+     *
      * @param musicName é o nome da música
      * @param bannerName é o nome do banner da música
      * @param bannerPath é o caminho(path) do banner no computador do usuário
      * @param soundName é o nome do arquivo da música
-     * @param soundPath é o caminho do arquivo da música no computador do usuário
+     * @param soundPath é o caminho do arquivo da música no computador do
+     * usuário
      * @param ctg é o índice da categoria da música
      * @param artist é o artista da música
      */
@@ -428,6 +430,7 @@ public class DatabaseModel {
 
     /**
      * Método resposável por cadastrar uma nova música no banco de dados
+     *
      * @param avatarName é o nome do arquivo do avatar
      * @param avatarPath é o caminho(path) do avatar no computador do usuário
      * @param status é o status do avatar
@@ -466,7 +469,7 @@ public class DatabaseModel {
             sql = null;
         }
     }
-    
+
 //    public void editMusic(Music music) {
 //
 //        String sql = "UPDATE music SET  m_name = ?, m_duration = ?, m_banner = ?, m_music = ? WHERE id = ?";
@@ -515,7 +518,7 @@ public class DatabaseModel {
 //        }
 //
 //    }
-    public ArrayList<String> realAll(String table, String limit, String field) {
+    public ArrayList<String> readAll(String table, String limit, String field) {
 
         // Inicializando as varíaveis
         ArrayList<String> data = new ArrayList<>();
@@ -551,6 +554,13 @@ public class DatabaseModel {
         }
 
         return null;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<String> list = new DatabaseModel().readAll("artist", null, "aname");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
     }
 
     /**
