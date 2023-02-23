@@ -1,18 +1,19 @@
 package AppMusic;
 
 import Control.PopUp;
+import Control.Validator;
 import Model.DatabaseModel;
 import java.io.File;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class IdealMusic extends javax.swing.JFrame {
 
     private DatabaseModel dbModel = new DatabaseModel();
+    private int userId = 0;
     boolean minimize = false;
     boolean muted = false;
     int som = 0;
@@ -87,7 +88,7 @@ public class IdealMusic extends javax.swing.JFrame {
         txtCreateAvatarImg = new javax.swing.JTextField();
         btnCreateAvatarSelectImg = new javax.swing.JButton();
         labelCreateAvatar4 = new javax.swing.JLabel();
-        bocCreateAvatarStatus = new javax.swing.JComboBox<>();
+        boxCreateAvatarStatus = new javax.swing.JComboBox<>();
         btnCreateAvatarCancel = new javax.swing.JButton();
         btnCreateAvatarEnter = new javax.swing.JButton();
         checkboxGroupUpdate = new javax.swing.ButtonGroup();
@@ -486,9 +487,7 @@ public class IdealMusic extends javax.swing.JFrame {
         logUser.getContentPane().add(panelLogMain, "card4");
 
         frameUtiliti.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        frameUtiliti.setMaximumSize(new java.awt.Dimension(500, 338));
         frameUtiliti.setMinimumSize(new java.awt.Dimension(500, 338));
-        frameUtiliti.setPreferredSize(new java.awt.Dimension(500, 338));
         frameUtiliti.setResizable(false);
 
         panelUtilitiMain.setMaximumSize(new java.awt.Dimension(500, 300));
@@ -544,6 +543,11 @@ public class IdealMusic extends javax.swing.JFrame {
         btnUserPasswordEnter.setMaximumSize(new java.awt.Dimension(100, 30));
         btnUserPasswordEnter.setMinimumSize(new java.awt.Dimension(100, 30));
         btnUserPasswordEnter.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnUserPasswordEnter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserPasswordEnterActionPerformed(evt);
+            }
+        });
 
         btnUserPasswordCancel.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         btnUserPasswordCancel.setText("Cancelar");
@@ -554,6 +558,11 @@ public class IdealMusic extends javax.swing.JFrame {
         btnUserPasswordCancel.setMaximumSize(new java.awt.Dimension(100, 30));
         btnUserPasswordCancel.setMinimumSize(new java.awt.Dimension(100, 30));
         btnUserPasswordCancel.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnUserPasswordCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserPasswordCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelUserPasswordLayout = new javax.swing.GroupLayout(panelUserPassword);
         panelUserPassword.setLayout(panelUserPasswordLayout);
@@ -562,10 +571,7 @@ public class IdealMusic extends javax.swing.JFrame {
             .addGroup(panelUserPasswordLayout.createSequentialGroup()
                 .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelUserPasswordLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(labelUserPassword1))
-                    .addGroup(panelUserPasswordLayout.createSequentialGroup()
-                        .addGap(73, 73, 73)
+                        .addGap(58, 58, 58)
                         .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelUserPassword3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelUserPassword2))
@@ -577,15 +583,18 @@ public class IdealMusic extends javax.swing.JFrame {
                                 .addComponent(btnUserPasswordEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtUserPasswordNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtUserPasswordOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(96, 96, 96))
+                                .addComponent(txtUserPasswordOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelUserPasswordLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(labelUserPassword1)))
+                .addGap(90, 90, 90))
         );
         panelUserPasswordLayout.setVerticalGroup(
             panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelUserPasswordLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(43, 43, 43)
                 .addComponent(labelUserPassword1)
-                .addGap(40, 40, 40)
+                .addGap(30, 30, 30)
                 .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelUserPassword2)
                     .addComponent(txtUserPasswordOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -832,7 +841,7 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addComponent(labelCreateArtist2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelCreateArtist1)
-                .addGap(38, 38, 38)
+                .addGap(51, 51, 51)
                 .addGroup(panelCreateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCreateArtistName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelCreateArtist3))
@@ -862,6 +871,7 @@ public class IdealMusic extends javax.swing.JFrame {
         labelCreateAvatar3.setForeground(new java.awt.Color(255, 255, 255));
         labelCreateAvatar3.setText("Ícone:");
 
+        txtCreateAvatarImg.setEditable(false);
         txtCreateAvatarImg.setAlignmentX(0.0F);
         txtCreateAvatarImg.setAlignmentY(0.0F);
         txtCreateAvatarImg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -877,19 +887,24 @@ public class IdealMusic extends javax.swing.JFrame {
         btnCreateAvatarSelectImg.setMaximumSize(new java.awt.Dimension(75, 25));
         btnCreateAvatarSelectImg.setMinimumSize(new java.awt.Dimension(75, 25));
         btnCreateAvatarSelectImg.setPreferredSize(new java.awt.Dimension(75, 25));
+        btnCreateAvatarSelectImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateAvatarSelectImgActionPerformed(evt);
+            }
+        });
 
         labelCreateAvatar4.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         labelCreateAvatar4.setForeground(new java.awt.Color(255, 255, 255));
         labelCreateAvatar4.setText("Categoria:");
 
-        bocCreateAvatarStatus.setMaximumRowCount(3);
-        bocCreateAvatarStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ambos", "Usuário Comum", "Usuário adiministrador" }));
-        bocCreateAvatarStatus.setAlignmentX(0.0F);
-        bocCreateAvatarStatus.setAlignmentY(0.0F);
-        bocCreateAvatarStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bocCreateAvatarStatus.setMaximumSize(new java.awt.Dimension(200, 30));
-        bocCreateAvatarStatus.setMinimumSize(new java.awt.Dimension(200, 30));
-        bocCreateAvatarStatus.setPreferredSize(new java.awt.Dimension(200, 30));
+        boxCreateAvatarStatus.setMaximumRowCount(3);
+        boxCreateAvatarStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ambos", "Usuário Comum", "Usuário adiministrador" }));
+        boxCreateAvatarStatus.setAlignmentX(0.0F);
+        boxCreateAvatarStatus.setAlignmentY(0.0F);
+        boxCreateAvatarStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        boxCreateAvatarStatus.setMaximumSize(new java.awt.Dimension(200, 30));
+        boxCreateAvatarStatus.setMinimumSize(new java.awt.Dimension(200, 30));
+        boxCreateAvatarStatus.setPreferredSize(new java.awt.Dimension(200, 30));
 
         btnCreateAvatarCancel.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         btnCreateAvatarCancel.setText("Cancelar");
@@ -899,6 +914,11 @@ public class IdealMusic extends javax.swing.JFrame {
         btnCreateAvatarCancel.setMaximumSize(new java.awt.Dimension(90, 30));
         btnCreateAvatarCancel.setMinimumSize(new java.awt.Dimension(90, 30));
         btnCreateAvatarCancel.setPreferredSize(new java.awt.Dimension(90, 30));
+        btnCreateAvatarCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateAvatarCancelActionPerformed(evt);
+            }
+        });
 
         btnCreateAvatarEnter.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         btnCreateAvatarEnter.setText("Cadastrar");
@@ -908,19 +928,26 @@ public class IdealMusic extends javax.swing.JFrame {
         btnCreateAvatarEnter.setMaximumSize(new java.awt.Dimension(90, 30));
         btnCreateAvatarEnter.setMinimumSize(new java.awt.Dimension(90, 30));
         btnCreateAvatarEnter.setPreferredSize(new java.awt.Dimension(90, 30));
+        btnCreateAvatarEnter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateAvatarEnterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCreateAvatarLayout = new javax.swing.GroupLayout(panelCreateAvatar);
         panelCreateAvatar.setLayout(panelCreateAvatarLayout);
         panelCreateAvatarLayout.setHorizontalGroup(
             panelCreateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCreateAvatarLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCreateAvatarLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(panelCreateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCreateAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCreateAvatar1))
-                .addContainerGap(223, Short.MAX_VALUE))
+                    .addComponent(labelCreateAvatar1)
+                    .addGroup(panelCreateAvatarLayout.createSequentialGroup()
+                        .addComponent(labelCreateAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(223, 223, 223))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCreateAvatarLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelCreateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelCreateAvatar4)
                     .addComponent(labelCreateAvatar3))
@@ -931,10 +958,10 @@ public class IdealMusic extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnCreateAvatarEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtCreateAvatarImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bocCreateAvatarStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxCreateAvatarStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCreateAvatarSelectImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(68, 68, 68))
         );
         panelCreateAvatarLayout.setVerticalGroup(
             panelCreateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -943,7 +970,7 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addComponent(labelCreateAvatar1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelCreateAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(31, 31, 31)
                 .addGroup(panelCreateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCreateAvatar3)
                     .addComponent(txtCreateAvatarImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -951,7 +978,7 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelCreateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCreateAvatar4)
-                    .addComponent(bocCreateAvatarStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxCreateAvatarStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelCreateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateAvatarCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1380,8 +1407,8 @@ public class IdealMusic extends javax.swing.JFrame {
         );
         panelUsersLayout.setVerticalGroup(
             panelUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-            .addComponent(panelUserMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(panelUserMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
 
         panelMain.add(panelUsers, "panelUsers");
@@ -2808,7 +2835,7 @@ public class IdealMusic extends javax.swing.JFrame {
         openCard(panelMain, "panelUsers");
         boxCreateMusicArtist.removeAllItems();
         boxCreateMusicArtist.addItem("None");
-        
+
         ArrayList<String> artists = dbModel.realAll("artist", null, "aname");
         for (int i = 0; i < artists.size(); i++) {
             boxCreateMusicArtist.addItem(artists.get(i));
@@ -2843,7 +2870,7 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdmCreateArtistActionPerformed
 
     private void btnCreateArtistEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateArtistEnterActionPerformed
-        if(verifyTextFields(txtCreateArtistName)) {
+        if (verifyTextFields(txtCreateArtistName)) {
             dbModel.createArtist(txtCreateArtistName.getText().trim());
             clearTextFields(txtCreateArtistName);
         }
@@ -2860,10 +2887,75 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateUserAdmCancelActionPerformed
 
     private void btnCreateUserAdmEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserAdmEnterActionPerformed
-        if(verifyTextFields(txtCreateUserAdmName, txtCreateUserAdmEmail, txtCreateUserAdmPassword)) {
-            frameUtiliti.setVisible(false);
+        if (verifyTextFields(txtCreateUserAdmName, txtCreateUserAdmEmail, txtCreateUserAdmPassword)) {
+            String userName = txtCreateUserAdmName.getText().trim();
+            String email = txtCreateUserAdmEmail.getText().trim();
+            String pass = new String(txtCreateUserAdmPassword.getPassword()).trim();
+            if (Validator.isEmail(email) && Validator.isPassword(pass)) {
+                dbModel.createUser(userName, email, pass, "adm");
+                clearTextFields(txtCreateUserAdmName, txtCreateUserAdmEmail, txtCreateUserAdmPassword);
+                frameUtiliti.setVisible(false);
+
+            } else {
+                // Caso o e-mail e/ou senha estejam incorreto(s)
+                PopUp.showAlert("E-mail e/ou senha incorreto(s)...\nLembre-se a senha deve conter(2 letras minúsculas, 2 letras maiúsculas e 4 números).\n*Opcionalmente `#`.", "Dados Invalidos:");
+                clearTextFields(txtCreateUserAdmEmail, txtCreateUserAdmPassword);
+                userName = null;
+                email = null;
+                pass = null;
+            }
         }
     }//GEN-LAST:event_btnCreateUserAdmEnterActionPerformed
+
+    private void btnUserPasswordEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserPasswordEnterActionPerformed
+        if (verifyTextFields(txtUserPasswordNew, txtUserPasswordOld)) {
+            String passNew = new String(txtUserPasswordNew.getPassword()).trim();
+            String passOld = new String(txtUserPasswordOld.getPassword()).trim();
+            if (Validator.isPassword(passNew) && Validator.isPassword(passOld)) {
+                dbModel.setPassword(userId, passOld, passOld);
+                clearTextFields(txtUserPasswordNew, txtUserPasswordOld);
+                frameUtiliti.setVisible(false);
+
+            } else {
+                PopUp.showAlert("senha(s) incorreta(s)...\nLembre-se a senha deve conter(2 letras minúsculas, 2 letras maiúsculas e 4 números).\n*Opcionalmente `#`.", "Dados Invalidos:");
+                clearTextFields(txtUserPasswordNew, txtUserPasswordOld);
+                passNew = null;
+                passOld = null;
+            }
+        }
+    }//GEN-LAST:event_btnUserPasswordEnterActionPerformed
+
+    private void btnUserPasswordCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserPasswordCancelActionPerformed
+        clearTextFields(txtUserPasswordNew, txtUserPasswordOld);
+        frameUtiliti.setVisible(false);
+    }//GEN-LAST:event_btnUserPasswordCancelActionPerformed
+
+    private void btnCreateAvatarSelectImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAvatarSelectImgActionPerformed
+        fileChooser("Selecionar Avatar:", txtCreateAvatarImg, "Avatar", "png");
+    }//GEN-LAST:event_btnCreateAvatarSelectImgActionPerformed
+
+    private void btnCreateAvatarEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAvatarEnterActionPerformed
+        if (verifyTextFields(txtCreateAvatarImg)) {
+            String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss"));
+            String avatarImg = txtCreateAvatarImg.getText().trim();
+            String extension = txtCreateAvatarImg.getText().substring(txtCreateAvatarImg.getText().lastIndexOf("."));
+            String avatarName = txtCreateAvatarImg.getText().substring(txtCreateAvatarImg.getText().lastIndexOf("/") + 1);
+            avatarName = avatarName.substring(0, avatarName.lastIndexOf(".")) + time + extension;
+            String status = boxCreateAvatarStatus.getSelectedItem().toString();
+            if(/*Depois...*/ 2 > 4) {
+            
+            }
+            dbModel.createAvatar(avatarName, avatarImg, status);
+            clearTextFields(txtCreateAvatarImg);
+            frameUtiliti.setVisible(false);
+            avatarName = null;
+            avatarImg = null;
+        }
+    }//GEN-LAST:event_btnCreateAvatarEnterActionPerformed
+
+    private void btnCreateAvatarCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAvatarCancelActionPerformed
+        clearTextFields(txtCreateAvatarImg);
+    }//GEN-LAST:event_btnCreateAvatarCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2901,7 +2993,7 @@ public class IdealMusic extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> bocCreateAvatarStatus;
+    private javax.swing.JComboBox<String> boxCreateAvatarStatus;
     private javax.swing.JComboBox<String> boxCreateMusicArtist;
     private javax.swing.JComboBox<String> boxCreateMusicCategory;
     private javax.swing.JComboBox<String> boxMusicArtist;

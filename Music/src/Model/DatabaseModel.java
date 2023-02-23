@@ -359,7 +359,7 @@ public class DatabaseModel {
             // Executa o comando SQL no banco de dados
             getPstm().execute();
 
-            // Exibe uma notificação ao artista
+            // Exibe uma notificação ao usuário
             PopUp.showNotefy("Sucesso!!! Dados do artista alterados.");
 
         } catch (SQLException error) {
@@ -411,7 +411,7 @@ public class DatabaseModel {
             Path destination = Paths.get(retPath("sounds") + "/" + soundName);
             Files.copy(source, destination);
 
-            // Exibe uma notificação ao artista
+            // Exibe uma notificação ao usuário
             PopUp.showNotefy("Sucesso!!! Música cadastrada.");
 
         } catch (IOException | SQLException error) {
@@ -426,6 +426,47 @@ public class DatabaseModel {
         }
     }
 
+    /**
+     * Método resposável por cadastrar uma nova música no banco de dados
+     * @param avatarName é o nome do arquivo do avatar
+     * @param avatarPath é o caminho(path) do avatar no computador do usuário
+     * @param status é o status do avatar
+     */
+    public void createAvatar(String avatarName, String avatarPath, String status) {
+
+        // Comando SQL
+        sql = "INSERT INTO avatar(avimg, avstatus) VALUES (?, ?)";
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            conectDb();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Alterando os "?" pelos valores corretos
+            getPstm().setString(1, avatarName);
+            getPstm().setString(2, status);
+
+            // Executa o comando SQL no banco de dados
+            getPstm().execute();
+
+            // Copia o avatar para a pasta do projeto
+            resize(avatarPath, avatarName, "avatar", 100, 100);
+
+            // Exibe uma notificação ao usuário
+            PopUp.showNotefy("Sucesso!!! Avatar cadastrado.");
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\createAvatar\n" + error);
+
+        } finally {
+
+            // Finaliza toda a conexão com o banco de dados
+            closeDb();
+            sql = null;
+        }
+    }
+    
 //    public void editMusic(Music music) {
 //
 //        String sql = "UPDATE music SET  m_name = ?, m_duration = ?, m_banner = ?, m_music = ? WHERE id = ?";

@@ -7,7 +7,7 @@ use idealmusic;
 CREATE TABLE avatar (
     avid INT AUTO_INCREMENT PRIMARY KEY,
     avimg VARCHAR(255) NOT NULL,
-    avtype ENUM('user', 'adm', 'both') DEFAULT 'user'
+    avtype ENUM('both', 'user', 'adm') DEFAULT 'both'
 );
 
 CREATE TABLE users (
