@@ -30,13 +30,10 @@ public class DatabaseModel {
     private ResultSet res;
     public String sql;
 
-    // Não faço a mínima ideia
-    private File sourceFile;
-    private File destinationFile;
-    private FileInputStream fileInputStream;
-    private FileOutputStream fileOutputStream;
-
-    public void conectDb() {
+    /**
+     * Método responsável por realizar a conexão com o banco de dados
+     */
+    public void setConnection() {
         try {
             // Inicializa a conexão se ocorrer nenhum error
             setConn(DriverManager.getConnection(URL));
@@ -46,7 +43,10 @@ public class DatabaseModel {
         }
     }
 
-    public void closeDb() {
+    /**
+     * Método responsável por finalizar a conexão com o banco de dados
+     */
+    public void setClose() {
         // Zera as variáveis referentes ao banco de dados
         if (getRes() != null) try {
             getRes().close();
@@ -64,13 +64,31 @@ public class DatabaseModel {
         }
     }
 
-    // @author Kaik d' Andrade
+    /**
+     * Método responsável por retornar todo o caminho(path) até a pasta
+     * `resources` do projeto no computador do usuário
+     *
+     * @param folder é o diretório que fica dentro de `resources`, se quiser
+     * referenciar `resources` deixe como ""
+     * @return String
+     * @author Kaik D' Andrade
+     */
     public static String retPath(String folder) {
         Path parentPath = Paths.get("").toAbsolutePath();
         return parentPath.toString() + "/src/resources/" + folder;
     }
 
-    // @author Kaik D' Andrade
+    /**
+     * Método responsável por redimensionar uma imagem
+     *
+     * @param path é o caminho(path) da imagem no computador
+     * @param fileName é o nome do arquivo da imagem
+     * @param folder é a pasta na qual deve ser salva essa imagem (pasta dentro
+     * de `resources`)
+     * @param width é a largura de resize da imagem
+     * @param height é a altura de resize da imagem
+     * @author Kaik D' Andrade
+     */
     public static void resize(String path, String fileName, String folder, int width, int height) {
         try {
             // Pega a extensão da imagem
@@ -97,7 +115,15 @@ public class DatabaseModel {
         }
     }
 
-    // @author Gabriel Souza
+    /**
+     * Método responsável por criar um novo usuário no banco de dados
+     *
+     * @param userName é o nome do usuário
+     * @param userEmail é o email do usuário
+     * @param userPass é a senha do usuário
+     * @param userType é o tipo do usuário (user or adm)
+     * @author Gabriel Souza
+     */
     public void createUser(String userName, String userEmail, String userPass, String userType) {
 
         // Comando SQL
@@ -105,7 +131,7 @@ public class DatabaseModel {
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            conectDb();
+            setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
@@ -126,12 +152,19 @@ public class DatabaseModel {
 
         } finally {
             // Finaliza toda a conexão com o banco de dados
-            closeDb();
+            setClose();
             sql = null;
         }
     }
 
-    // @author Kaik D' Andrade
+    /**
+     * Método responsável por realizar o login do usuário no banco de dados
+     *
+     * @param userEmail é o email do usuário
+     * @param userPassword é a senha do usuário
+     * @return int (0 => erro; >0 => idUser)
+     * @author Kaik D' Andrade
+     */
     public int login(String userEmail, String userPassword) {
 
         // Comando SQL
@@ -139,7 +172,7 @@ public class DatabaseModel {
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
-            conectDb();
+            setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Altera os "?" pelos valores corretos
@@ -165,16 +198,25 @@ public class DatabaseModel {
             // Caso gere um erro
             PopUp.showWarning("DatabaseModel\\login\n" + error);
 
+            // Retorna 0
+            return 0;
+
         } finally {
             // Finaliza toda a conexão com o banco de dados
-            closeDb();
+            setClose();
             sql = null;
         }
-
-        return 0;
     }
 
-    // @author Gabriel Souza
+    /**
+     * Método responsável por alterar os dados de nome e email do usuário
+     *
+     * @param userId é o id do usuário
+     * @param userName é o nome do usuário
+     * @param userEmail é o email do usuário
+     * @return (false => erro; true => sucesso)
+     * @author Gabriel Souza
+     */
     public boolean updateUser(int userId, String userName, String userEmail) {
 
         // Comando SQL
@@ -182,7 +224,7 @@ public class DatabaseModel {
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            conectDb();
+            setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
@@ -208,12 +250,19 @@ public class DatabaseModel {
 
         } finally {
             // Finaliza a toda a conexão com o banco de dados
-            closeDb();
+            setClose();
             sql = null;
         }
     }
 
-    // @author Kaik D' Andrade
+    /**
+     *
+     * @param userId
+     * @param oldPass
+     * @param newPass
+     * @return
+     * @author Kaik D' Andrade
+     */
     public boolean setPassword(int userId, String oldPass, String newPass) {
 
         // Comando SQL
@@ -221,7 +270,7 @@ public class DatabaseModel {
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
-            conectDb();
+            setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Altera os "?" pelos valores corretos
@@ -258,17 +307,19 @@ public class DatabaseModel {
                 // Retorna false
                 return false;
             }
+
         } catch (SQLException error) {
             // Caso gere um erro
             PopUp.showWarning("DatabaseModel\\setPassword\n" + error);
 
+            // Retorna false
+            return false;
+
         } finally {
             // Finaliza toda a conexão com o banco de dados
-            closeDb();
+            setClose();
             sql = null;
         }
-
-        return false;
     }
 
     // @author Kaik D' Andrade
@@ -276,7 +327,12 @@ public class DatabaseModel {
         // Depois...
     }
 
-    // @author Gabriel Souza
+    /**
+     * Método responsável por "deletar" o usuário do banco de dados
+     *
+     * @param userId é o id do usuário
+     * @author Gabriel Souza
+     */
     public void deleteUser(int userId) {
 
         // Verifica se o usuário confirmou a "exclusão" dos dados
@@ -288,7 +344,7 @@ public class DatabaseModel {
 
                 try {
                     // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-                    conectDb();
+                    setConnection();
                     setPstm(getConn().prepareStatement(sql));
 
                     // Altera os "?" pelos valores corretos
@@ -303,14 +359,19 @@ public class DatabaseModel {
 
                 } finally {
                     // Finaliza toda a conexão com o banco de dados
-                    closeDb();
+                    setClose();
                     sql = null;
                 }
             }
         }
     }
 
-    // @author Kaik D' Andrade
+    /**
+     * Método responsável por criar um novo usuário no banco de dados
+     *
+     * @param artistName é o nome do artista
+     * @author Kaik D' Andrade
+     */
     public void createArtist(String artistName) {
 
         // Comando SQL
@@ -318,7 +379,7 @@ public class DatabaseModel {
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            conectDb();
+            setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
@@ -336,12 +397,18 @@ public class DatabaseModel {
 
         } finally {
             // Finaliza toda a conexão com o banco de dados
-            closeDb();
+            setClose();
             sql = null;
         }
     }
 
-    // @author Gabriel Souza
+    /**
+     * Método responsável por alterar os dados de nome do artista
+     *
+     * @param artId é o id do artista
+     * @param artName é o "novo" nome do artista
+     * @author Gabriel Souza
+     */
     public void updateArtist(int artId, String artName) {
 
         // Comando SQL
@@ -349,7 +416,7 @@ public class DatabaseModel {
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            conectDb();
+            setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
@@ -367,9 +434,8 @@ public class DatabaseModel {
             PopUp.showWarning("DatabaseModel\\updateArtist\n" + error);
 
         } finally {
-
             // Finaliza toda a conexão com o banco de dados
-            closeDb();
+            setClose();
             sql = null;
         }
     }
@@ -385,6 +451,7 @@ public class DatabaseModel {
      * usuário
      * @param ctg é o índice da categoria da música
      * @param artist é o artista da música
+     * @author Kaik D' Andrade
      */
     public void createMusic(String musicName, String bannerName, String bannerPath, String soundName, String soundPath, int ctg, String artist) {
 
@@ -393,7 +460,7 @@ public class DatabaseModel {
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            conectDb();
+            setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
@@ -421,19 +488,19 @@ public class DatabaseModel {
             PopUp.showWarning("DatabaseModel\\createMusic\n" + error);
 
         } finally {
-
             // Finaliza toda a conexão com o banco de dados
-            closeDb();
+            setClose();
             sql = null;
         }
     }
 
     /**
-     * Método resposável por cadastrar uma nova música no banco de dados
+     * Método resposável por cadastrar um novo avatar no banco de dados
      *
      * @param avatarName é o nome do arquivo do avatar
      * @param avatarPath é o caminho(path) do avatar no computador do usuário
      * @param status é o status do avatar
+     * @author Kaik D' Andrade
      */
     public void createAvatar(String avatarName, String avatarPath, String status) {
 
@@ -442,7 +509,7 @@ public class DatabaseModel {
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            conectDb();
+            setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
@@ -463,61 +530,66 @@ public class DatabaseModel {
             PopUp.showWarning("DatabaseModel\\createAvatar\n" + error);
 
         } finally {
-
             // Finaliza toda a conexão com o banco de dados
-            closeDb();
+            setClose();
             sql = null;
         }
     }
 
-//    public void editMusic(Music music) {
-//
-//        String sql = "UPDATE music SET  m_name = ?, m_duration = ?, m_banner = ?, m_music = ? WHERE id = ?";
-//
-//        try {
-//
-//            PreparedStatement stmt = this.conn.prepareStatement(sql);
-//            stmt.setString(1, music.getName());
-//            stmt.setInt(2, music.getDuration());
-//            File image = new File("imagem.jpg");
-//            fis = new FileInputStream(image);
-//            stmt.setBinaryStream(3, fis, (int) image.length());
-//            File audio = new File("musica.mp3");
-//            fis = new FileInputStream(audio);
-//            stmt.setBinaryStream(3, fis, (int) audio.length());
-//            stmt.execute();
-//
-//        } catch (SQLException | FileNotFoundException erro) {
-//
-//            System.out.println("ERROR : " + erro.getMessage());
-//
-//        } finally {
-//
-//            dbClose(conn, null, null);
-//
-//        }
-//
-//    }
-//
-//
-//
-//    public void deleteMusic(int m_id) {
-//
-//        String sql = "DELETE FROM music WHERE m_id = ?";
-//
-//        try {
-//
-//            PreparedStatement stmt = this.conn.prepareStatement(sql);
-//            stmt.setInt(1, m_id);
-//            stmt.execute();
-//
-//        } catch (SQLException erro) {
-//
-//            System.out.println("ERROR : " + erro.getMessage());
-//
-//        }
-//
-//    }
+    /**
+     * Método responsável por excluir música
+     *
+     * @param mid é id da música
+     * @author Kaik D' Andrade
+     * 
+     * 
+     * Método não terminado e ainda não testado...
+     */
+    public void deleteMusic(int mid) {
+        
+        // Comando SQL
+        sql = "DELETE FROM music WHERE mid = ?";
+        sql = "SELECT * FROM music WHERE mid = ?";
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Alterando os "?" pelos valores corretos
+            getPstm().setInt(1, mid);
+
+            // Executa o comando SQL no banco de dados
+            setRes(getPstm().executeQuery());
+
+            while (getRes().next()) {
+                String bannerName = getRes().getString("banner");
+                File fileBanner = new File(retPath("banners") + bannerName);
+                fileBanner.delete();
+
+                String soundName = getRes().getString("sound");
+                File fileSound = new File(retPath("sounds") + soundName);
+                fileSound.delete();
+            }
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\deleteMusic\n" + error);
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
+    }
+
+    /**
+     * Método responsável por ler e retornar todas os registro de uma coluna de alguma tabela do banco de dados
+     * @param table é a tabela do banco de dados
+     * @param limit é o limit da quantidade de retornos dos registros do banco de dados (pode ser null)
+     * @param field é nome da coluna
+     * @return
+     */
     public ArrayList<String> readAll(String table, String limit, String field) {
 
         // Inicializando as varíaveis
@@ -529,7 +601,7 @@ public class DatabaseModel {
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            conectDb();
+            setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Executa o comando SQL no banco de dados
@@ -545,21 +617,15 @@ public class DatabaseModel {
         } catch (SQLException error) {
             // Caso gere um erro
             PopUp.showWarning("DatabaseModel\\readAll\n" + error);
+            
+            // Retorna null
+            return null;
 
         } finally {
             // Finaliza toda a conexão com o banco de dados
-            closeDb();
+            setClose();
             sql = null;
             data = null;
-        }
-
-        return null;
-    }
-
-    public static void main(String[] args) {
-        ArrayList<String> list = new DatabaseModel().readAll("artist", null, "aname");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
         }
     }
 
@@ -603,61 +669,5 @@ public class DatabaseModel {
      */
     public void setRes(ResultSet res) {
         this.res = res;
-    }
-
-    /**
-     * @return the sourceFile
-     */
-    public File getSourceFile() {
-        return sourceFile;
-    }
-
-    /**
-     * @param sourceFile the sourceFile to set
-     */
-    public void setSourceFile(File sourceFile) {
-        this.sourceFile = sourceFile;
-    }
-
-    /**
-     * @return the destinationFile
-     */
-    public File getDestinationFile() {
-        return destinationFile;
-    }
-
-    /**
-     * @param destinationFile the destinationFile to set
-     */
-    public void setDestinationFile(File destinationFile) {
-        this.destinationFile = destinationFile;
-    }
-
-    /**
-     * @return the fileInputStream
-     */
-    public FileInputStream getFileInputStream() {
-        return fileInputStream;
-    }
-
-    /**
-     * @param fileInputStream the fileInputStream to set
-     */
-    public void setFileInputStream(FileInputStream fileInputStream) {
-        this.fileInputStream = fileInputStream;
-    }
-
-    /**
-     * @return the fileOutputStream
-     */
-    public FileOutputStream getFileOutputStream() {
-        return fileOutputStream;
-    }
-
-    /**
-     * @param fileOutputStream the fileOutputStream to set
-     */
-    public void setFileOutputStream(FileOutputStream fileOutputStream) {
-        this.fileOutputStream = fileOutputStream;
     }
 }

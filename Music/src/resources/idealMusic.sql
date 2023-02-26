@@ -55,6 +55,6 @@ CREATE TABLE allocated (
     FOREIGN KEY (allo_music) REFERENCES music(mid)
 );
 
-INSERT INTO avatar(avimg, avtype) VALUES ('default.png', 'both');
+INSERT INTO avatar(avimg) VALUES ('default.png');
 
 INSERT INTO category(cname) VALUES ('Nacional'), ('Internacional');

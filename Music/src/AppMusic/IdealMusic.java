@@ -7,6 +7,7 @@ import java.io.File;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -22,6 +23,12 @@ public class IdealMusic extends javax.swing.JFrame {
         initComponents();
         logUser.setVisible(true);
         logUser.setLocationRelativeTo(null);
+        logUser.setTitle("Login:");
+        
+        
+        // ...
+        DefaultListModel<String> defaultListModel = new DefaultListModel<>();
+        listSelectUpdate.setModel(defaultListModel);
     }
 
     /**
@@ -56,7 +63,7 @@ public class IdealMusic extends javax.swing.JFrame {
         txtSignupPassword = new javax.swing.JPasswordField();
         frameUtiliti = new javax.swing.JFrame();
         panelUtilitiMain = new javax.swing.JPanel();
-        panelUserPassword = new javax.swing.JPanel();
+        panelUpdatePassword = new javax.swing.JPanel();
         labelUserPassword1 = new javax.swing.JLabel();
         labelUserPassword2 = new javax.swing.JLabel();
         labelUserPassword3 = new javax.swing.JLabel();
@@ -156,8 +163,8 @@ public class IdealMusic extends javax.swing.JFrame {
         btnUpdateAvatarEnter = new javax.swing.JButton();
         btnUpdateAvatarCancel = new javax.swing.JButton();
         labelUpdateAvatarPrev = new javax.swing.JLabel();
-        panelUpdate = new javax.swing.JPanel();
-        panelSelectUpdate = new javax.swing.JPanel();
+        panelUpdates = new javax.swing.JPanel();
+        panelSelectUpdates = new javax.swing.JPanel();
         checkboxSelectMusic = new javax.swing.JCheckBox();
         checkboxSelectAvatar = new javax.swing.JCheckBox();
         checkboxSelectArtist = new javax.swing.JCheckBox();
@@ -167,8 +174,8 @@ public class IdealMusic extends javax.swing.JFrame {
         btnSelectUpdateCancel = new javax.swing.JButton();
         labelSelectUpdate1 = new javax.swing.JLabel();
         labelSelectUpdate2 = new javax.swing.JLabel();
-        panelViewUpdate = new javax.swing.JPanel();
-        panelViewUpdateMusic = new javax.swing.JPanel();
+        panelViewUpdates = new javax.swing.JPanel();
+        panelViewUpdatesMusic = new javax.swing.JPanel();
         txtViewMusicBanner = new javax.swing.JTextField();
         txtViewMusicSound = new javax.swing.JTextField();
         boxViewMusicCategory = new javax.swing.JComboBox<>();
@@ -184,7 +191,7 @@ public class IdealMusic extends javax.swing.JFrame {
         btnViewMusicSelectSound = new javax.swing.JButton();
         btnViewMusicRefresh = new javax.swing.JButton();
         btnViewMusicSelectBanner = new javax.swing.JButton();
-        panelViewUpdateAvatar = new javax.swing.JPanel();
+        panelViewUpdatesAvatar = new javax.swing.JPanel();
         lavelViewAvatar = new javax.swing.JLabel();
         labelViewAvatar1 = new javax.swing.JLabel();
         txtViewAvatarIcon = new javax.swing.JTextField();
@@ -195,7 +202,7 @@ public class IdealMusic extends javax.swing.JFrame {
         btnViewAvatarSelectIcon = new javax.swing.JButton();
         btnViewAvatarEdit = new javax.swing.JButton();
         btnViewAvatarDelete = new javax.swing.JButton();
-        panelViewUpdateArtist = new javax.swing.JPanel();
+        panelViewUpdatesArtist = new javax.swing.JPanel();
         txtViewArtistName = new javax.swing.JTextField();
         labelViewArtist1 = new javax.swing.JLabel();
         btnViewArtistEdit = new javax.swing.JButton();
@@ -493,12 +500,12 @@ public class IdealMusic extends javax.swing.JFrame {
         panelUtilitiMain.setMaximumSize(new java.awt.Dimension(500, 300));
         panelUtilitiMain.setLayout(new java.awt.CardLayout());
 
-        panelUserPassword.setBackground(new java.awt.Color(179, 7, 83));
-        panelUserPassword.setAlignmentX(0.0F);
-        panelUserPassword.setAlignmentY(0.0F);
-        panelUserPassword.setMaximumSize(new java.awt.Dimension(500, 300));
-        panelUserPassword.setMinimumSize(new java.awt.Dimension(500, 300));
-        panelUserPassword.setPreferredSize(new java.awt.Dimension(500, 300));
+        panelUpdatePassword.setBackground(new java.awt.Color(179, 7, 83));
+        panelUpdatePassword.setAlignmentX(0.0F);
+        panelUpdatePassword.setAlignmentY(0.0F);
+        panelUpdatePassword.setMaximumSize(new java.awt.Dimension(500, 300));
+        panelUpdatePassword.setMinimumSize(new java.awt.Dimension(500, 300));
+        panelUpdatePassword.setPreferredSize(new java.awt.Dimension(500, 300));
 
         labelUserPassword1.setFont(new java.awt.Font("Cambria", 0, 26)); // NOI18N
         labelUserPassword1.setForeground(new java.awt.Color(255, 255, 255));
@@ -564,52 +571,52 @@ public class IdealMusic extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelUserPasswordLayout = new javax.swing.GroupLayout(panelUserPassword);
-        panelUserPassword.setLayout(panelUserPasswordLayout);
-        panelUserPasswordLayout.setHorizontalGroup(
-            panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelUserPasswordLayout.createSequentialGroup()
-                .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelUserPasswordLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelUpdatePasswordLayout = new javax.swing.GroupLayout(panelUpdatePassword);
+        panelUpdatePassword.setLayout(panelUpdatePasswordLayout);
+        panelUpdatePasswordLayout.setHorizontalGroup(
+            panelUpdatePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelUpdatePasswordLayout.createSequentialGroup()
+                .addGroup(panelUpdatePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelUpdatePasswordLayout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelUpdatePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelUserPassword3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelUserPassword2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(panelUserPasswordLayout.createSequentialGroup()
+                        .addGroup(panelUpdatePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(panelUpdatePasswordLayout.createSequentialGroup()
                                 .addComponent(btnUserPasswordCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnUserPasswordEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelUpdatePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtUserPasswordNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtUserPasswordOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelUserPasswordLayout.createSequentialGroup()
+                    .addGroup(panelUpdatePasswordLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(labelUserPassword1)))
                 .addGap(90, 90, 90))
         );
-        panelUserPasswordLayout.setVerticalGroup(
-            panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelUserPasswordLayout.createSequentialGroup()
+        panelUpdatePasswordLayout.setVerticalGroup(
+            panelUpdatePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelUpdatePasswordLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(labelUserPassword1)
                 .addGap(30, 30, 30)
-                .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelUpdatePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelUserPassword2)
                     .addComponent(txtUserPasswordOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelUpdatePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelUserPassword3)
                     .addComponent(txtUserPasswordNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelUserPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelUpdatePasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUserPasswordCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUserPasswordEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(94, 94, 94))
         );
 
-        panelUtilitiMain.add(panelUserPassword, "card3");
+        panelUtilitiMain.add(panelUpdatePassword, "card3");
 
         panelCreateUserAdm.setBackground(new java.awt.Color(179, 7, 83));
         panelCreateUserAdm.setAlignmentX(0.0F);
@@ -898,7 +905,7 @@ public class IdealMusic extends javax.swing.JFrame {
         labelCreateAvatar4.setText("Categoria:");
 
         boxCreateAvatarStatus.setMaximumRowCount(3);
-        boxCreateAvatarStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ambos", "Usuário Comum", "Usuário adiministrador" }));
+        boxCreateAvatarStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ambos", "Usuário Comum", "Usuário Adiministrador" }));
         boxCreateAvatarStatus.setAlignmentX(0.0F);
         boxCreateAvatarStatus.setAlignmentY(0.0F);
         boxCreateAvatarStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1178,6 +1185,11 @@ public class IdealMusic extends javax.swing.JFrame {
         btnAdmEdit.setText("Abrir painel");
         btnAdmEdit.setAlignmentY(0.0F);
         btnAdmEdit.setFocusable(false);
+        btnAdmEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdmEditActionPerformed(evt);
+            }
+        });
 
         btnAdmCreateArtist.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         btnAdmCreateArtist.setText("Cadastrar Artista");
@@ -1258,6 +1270,11 @@ public class IdealMusic extends javax.swing.JFrame {
         btnUserUpdatePassword.setMaximumSize(new java.awt.Dimension(200, 30));
         btnUserUpdatePassword.setMinimumSize(new java.awt.Dimension(200, 30));
         btnUserUpdatePassword.setPreferredSize(new java.awt.Dimension(200, 30));
+        btnUserUpdatePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserUpdatePasswordActionPerformed(evt);
+            }
+        });
 
         btnUserEdit.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         btnUserEdit.setText("Editar");
@@ -1842,16 +1859,18 @@ public class IdealMusic extends javax.swing.JFrame {
 
         panelMain.add(panelUpdateAvatar, "panelcreateAvatar");
 
-        panelUpdate.setAlignmentX(0.0F);
-        panelUpdate.setAlignmentY(0.0F);
+        panelUpdates.setAlignmentX(0.0F);
+        panelUpdates.setAlignmentY(0.0F);
 
-        panelSelectUpdate.setBackground(new java.awt.Color(0, 71, 171));
+        panelSelectUpdates.setBackground(new java.awt.Color(0, 71, 171));
 
         checkboxSelectMusic.setBackground(new java.awt.Color(0, 71, 171));
         checkboxGroupUpdate.add(checkboxSelectMusic);
         checkboxSelectMusic.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         checkboxSelectMusic.setForeground(new java.awt.Color(255, 255, 255));
         checkboxSelectMusic.setText("Música");
+        checkboxSelectMusic.setAlignmentY(0.0F);
+        checkboxSelectMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkboxSelectMusic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkboxSelectMusicActionPerformed(evt);
@@ -1863,14 +1882,36 @@ public class IdealMusic extends javax.swing.JFrame {
         checkboxSelectAvatar.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         checkboxSelectAvatar.setForeground(new java.awt.Color(255, 255, 255));
         checkboxSelectAvatar.setText("Avatar");
+        checkboxSelectAvatar.setAlignmentY(0.0F);
+        checkboxSelectAvatar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkboxSelectAvatar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxSelectAvatarActionPerformed(evt);
+            }
+        });
 
         checkboxSelectArtist.setBackground(new java.awt.Color(0, 71, 171));
         checkboxGroupUpdate.add(checkboxSelectArtist);
         checkboxSelectArtist.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         checkboxSelectArtist.setForeground(new java.awt.Color(255, 255, 255));
         checkboxSelectArtist.setText("Artista");
+        checkboxSelectArtist.setAlignmentY(0.0F);
+        checkboxSelectArtist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkboxSelectArtist.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                checkboxSelectArtistStateChanged(evt);
+            }
+        });
+        checkboxSelectArtist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxSelectArtistActionPerformed(evt);
+            }
+        });
 
+        listSelectUpdate.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         listSelectUpdate.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listSelectUpdate.setAlignmentX(0.0F);
+        listSelectUpdate.setAlignmentY(0.0F);
         listSelectUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         scrollSelectUpdate.setViewportView(listSelectUpdate);
 
@@ -1902,58 +1943,58 @@ public class IdealMusic extends javax.swing.JFrame {
         labelSelectUpdate2.setText("<html>Selecione o tipo do dados e logo depois<br/>selecione-o na lista abeixo e clique em editar.</html>");
         labelSelectUpdate2.setAlignmentY(0.0F);
 
-        javax.swing.GroupLayout panelSelectUpdateLayout = new javax.swing.GroupLayout(panelSelectUpdate);
-        panelSelectUpdate.setLayout(panelSelectUpdateLayout);
-        panelSelectUpdateLayout.setHorizontalGroup(
-            panelSelectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSelectUpdateLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(panelSelectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSelectUpdateLayout.createSequentialGroup()
-                        .addGroup(panelSelectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelSelectUpdate1)
-                            .addComponent(labelSelectUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 157, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSelectUpdateLayout.createSequentialGroup()
-                        .addComponent(checkboxSelectMusic)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(checkboxSelectArtist)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(checkboxSelectAvatar))
+        javax.swing.GroupLayout panelSelectUpdatesLayout = new javax.swing.GroupLayout(panelSelectUpdates);
+        panelSelectUpdates.setLayout(panelSelectUpdatesLayout);
+        panelSelectUpdatesLayout.setHorizontalGroup(
+            panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSelectUpdatesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollSelectUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSelectUpdateLayout.createSequentialGroup()
+                    .addGroup(panelSelectUpdatesLayout.createSequentialGroup()
                         .addComponent(btnSelectUpdateCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSelectUpdateEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSelectUpdateEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSelectUpdatesLayout.createSequentialGroup()
+                        .addComponent(checkboxSelectMusic)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                        .addComponent(checkboxSelectArtist)
+                        .addGap(137, 137, 137)
+                        .addComponent(checkboxSelectAvatar))
+                    .addGroup(panelSelectUpdatesLayout.createSequentialGroup()
+                        .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelSelectUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelSelectUpdate1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        panelSelectUpdateLayout.setVerticalGroup(
-            panelSelectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSelectUpdateLayout.createSequentialGroup()
+        panelSelectUpdatesLayout.setVerticalGroup(
+            panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSelectUpdatesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelSelectUpdate1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelSelectUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(panelSelectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkboxSelectArtist)
                     .addComponent(checkboxSelectMusic)
                     .addComponent(checkboxSelectAvatar))
                 .addGap(27, 27, 27)
                 .addComponent(scrollSelectUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(panelSelectUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSelectUpdateCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSelectUpdateEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelViewUpdate.setLayout(new java.awt.CardLayout());
+        panelViewUpdates.setLayout(new java.awt.CardLayout());
 
-        panelViewUpdateMusic.setBackground(new java.awt.Color(0, 71, 171));
-        panelViewUpdateMusic.setAlignmentX(0.0F);
-        panelViewUpdateMusic.setAlignmentY(0.0F);
-        panelViewUpdateMusic.setPreferredSize(new java.awt.Dimension(480, 490));
+        panelViewUpdatesMusic.setBackground(new java.awt.Color(0, 71, 171));
+        panelViewUpdatesMusic.setAlignmentX(0.0F);
+        panelViewUpdatesMusic.setAlignmentY(0.0F);
+        panelViewUpdatesMusic.setPreferredSize(new java.awt.Dimension(480, 490));
 
         txtViewMusicBanner.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         txtViewMusicBanner.setAlignmentX(0.0F);
@@ -2065,81 +2106,81 @@ public class IdealMusic extends javax.swing.JFrame {
         btnViewMusicSelectBanner.setMinimumSize(new java.awt.Dimension(75, 25));
         btnViewMusicSelectBanner.setPreferredSize(new java.awt.Dimension(75, 25));
 
-        javax.swing.GroupLayout panelViewUpdateMusicLayout = new javax.swing.GroupLayout(panelViewUpdateMusic);
-        panelViewUpdateMusic.setLayout(panelViewUpdateMusicLayout);
-        panelViewUpdateMusicLayout.setHorizontalGroup(
-            panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelViewUpdateMusicLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelViewUpdatesMusicLayout = new javax.swing.GroupLayout(panelViewUpdatesMusic);
+        panelViewUpdatesMusic.setLayout(panelViewUpdatesMusicLayout);
+        panelViewUpdatesMusicLayout.setHorizontalGroup(
+            panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelViewUpdatesMusicLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdateMusicLayout.createSequentialGroup()
+                .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesMusicLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelViewMusic6)
-                            .addGroup(panelViewUpdateMusicLayout.createSequentialGroup()
+                            .addGroup(panelViewUpdatesMusicLayout.createSequentialGroup()
                                 .addComponent(labelViewMusic1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnViewMusicRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(84, 84, 84))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdateMusicLayout.createSequentialGroup()
-                        .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesMusicLayout.createSequentialGroup()
+                        .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelViewMusic5)
                             .addComponent(labelViewMusic4)
                             .addComponent(labelViewMusic3)
                             .addComponent(labelViewMusic2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtViewMusicName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtViewMusicBanner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtViewMusicSound, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panelViewUpdateMusicLayout.createSequentialGroup()
+                            .addGroup(panelViewUpdatesMusicLayout.createSequentialGroup()
                                 .addComponent(btnViewMusicDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnViewMusicEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(boxViewMusicCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnViewMusicSelectSound, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnViewMusicSelectBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(55, 55, 55))
         );
-        panelViewUpdateMusicLayout.setVerticalGroup(
-            panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelViewUpdateMusicLayout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        panelViewUpdatesMusicLayout.setVerticalGroup(
+            panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelViewUpdatesMusicLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelViewMusic1)
                     .addComponent(btnViewMusicRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelViewMusic6)
                 .addGap(18, 18, 18)
-                .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtViewMusicName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelViewMusic2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtViewMusicBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelViewMusic3)
                     .addComponent(btnViewMusicSelectBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtViewMusicSound, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelViewMusic4)
                     .addComponent(btnViewMusicSelectSound, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelViewMusic5)
                     .addComponent(boxViewMusicCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelViewUpdateMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnViewMusicDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnViewMusicEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(115, 115, 115))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelViewUpdate.add(panelViewUpdateMusic, "card2");
+        panelViewUpdates.add(panelViewUpdatesMusic, "panelViewUpdatesMusic");
 
-        panelViewUpdateAvatar.setBackground(new java.awt.Color(0, 71, 171));
+        panelViewUpdatesAvatar.setBackground(new java.awt.Color(0, 71, 171));
 
         lavelViewAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/avatar/default.png"))); // NOI18N
 
@@ -2214,32 +2255,32 @@ public class IdealMusic extends javax.swing.JFrame {
         btnViewAvatarDelete.setMinimumSize(new java.awt.Dimension(90, 30));
         btnViewAvatarDelete.setPreferredSize(new java.awt.Dimension(90, 30));
 
-        javax.swing.GroupLayout panelViewUpdateAvatarLayout = new javax.swing.GroupLayout(panelViewUpdateAvatar);
-        panelViewUpdateAvatar.setLayout(panelViewUpdateAvatarLayout);
-        panelViewUpdateAvatarLayout.setHorizontalGroup(
-            panelViewUpdateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdateAvatarLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(panelViewUpdateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelViewUpdateAvatarLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelViewUpdatesAvatarLayout = new javax.swing.GroupLayout(panelViewUpdatesAvatar);
+        panelViewUpdatesAvatar.setLayout(panelViewUpdatesAvatarLayout);
+        panelViewUpdatesAvatarLayout.setHorizontalGroup(
+            panelViewUpdatesAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesAvatarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelViewUpdatesAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelViewUpdatesAvatarLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(labelViewAvatar1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnViewAvatarRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelViewUpdateAvatarLayout.createSequentialGroup()
+                    .addGroup(panelViewUpdatesAvatarLayout.createSequentialGroup()
                         .addGap(126, 126, 126)
                         .addComponent(lavelViewAvatar))
-                    .addGroup(panelViewUpdateAvatarLayout.createSequentialGroup()
-                        .addGroup(panelViewUpdateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelViewUpdateAvatarLayout.createSequentialGroup()
+                    .addGroup(panelViewUpdatesAvatarLayout.createSequentialGroup()
+                        .addGroup(panelViewUpdatesAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelViewUpdatesAvatarLayout.createSequentialGroup()
                                 .addComponent(labelViewAvatar2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtViewAvatarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelViewUpdateAvatarLayout.createSequentialGroup()
+                            .addGroup(panelViewUpdatesAvatarLayout.createSequentialGroup()
                                 .addComponent(labelViewAvatar3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(panelViewUpdateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelViewUpdateAvatarLayout.createSequentialGroup()
+                                .addGroup(panelViewUpdatesAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelViewUpdatesAvatarLayout.createSequentialGroup()
                                         .addComponent(btnViewAvatarDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btnViewAvatarEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2248,34 +2289,34 @@ public class IdealMusic extends javax.swing.JFrame {
                         .addComponent(btnViewAvatarSelectIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(76, 76, 76))
         );
-        panelViewUpdateAvatarLayout.setVerticalGroup(
-            panelViewUpdateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelViewUpdateAvatarLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(panelViewUpdateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        panelViewUpdatesAvatarLayout.setVerticalGroup(
+            panelViewUpdatesAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelViewUpdatesAvatarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelViewUpdatesAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelViewAvatar1)
                     .addComponent(btnViewAvatarRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lavelViewAvatar)
                 .addGap(29, 29, 29)
-                .addGroup(panelViewUpdateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelViewUpdatesAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtViewAvatarIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelViewAvatar2)
                     .addComponent(btnViewAvatarSelectIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelViewUpdateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelViewUpdatesAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxViewAvatarStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelViewAvatar3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelViewUpdateAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelViewUpdatesAvatarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnViewAvatarEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnViewAvatarDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(113, 113, 113))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelViewUpdate.add(panelViewUpdateAvatar, "card4");
+        panelViewUpdates.add(panelViewUpdatesAvatar, "panelViewUpdatesAvatar");
 
-        panelViewUpdateArtist.setBackground(new java.awt.Color(0, 71, 171));
+        panelViewUpdatesArtist.setBackground(new java.awt.Color(0, 71, 171));
 
         txtViewArtistName.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         txtViewArtistName.setAlignmentX(0.0F);
@@ -2317,63 +2358,63 @@ public class IdealMusic extends javax.swing.JFrame {
         btnViewArtistRefresh.setMinimumSize(new java.awt.Dimension(75, 25));
         btnViewArtistRefresh.setPreferredSize(new java.awt.Dimension(75, 25));
 
-        javax.swing.GroupLayout panelViewUpdateArtistLayout = new javax.swing.GroupLayout(panelViewUpdateArtist);
-        panelViewUpdateArtist.setLayout(panelViewUpdateArtistLayout);
-        panelViewUpdateArtistLayout.setHorizontalGroup(
-            panelViewUpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdateArtistLayout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
-                .addGroup(panelViewUpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelViewUpdatesArtistLayout = new javax.swing.GroupLayout(panelViewUpdatesArtist);
+        panelViewUpdatesArtist.setLayout(panelViewUpdatesArtistLayout);
+        panelViewUpdatesArtistLayout.setHorizontalGroup(
+            panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesArtistLayout.createSequentialGroup()
+                .addContainerGap(138, Short.MAX_VALUE)
+                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(labelViewArtist3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelViewUpdateArtistLayout.createSequentialGroup()
+                        .addGroup(panelViewUpdatesArtistLayout.createSequentialGroup()
                             .addComponent(labelViewArtist1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnViewArtistRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdateArtistLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesArtistLayout.createSequentialGroup()
                         .addComponent(labelViewArtist2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelViewUpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnViewArtistEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtViewArtistName, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(134, 134, 134))
         );
-        panelViewUpdateArtistLayout.setVerticalGroup(
-            panelViewUpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelViewUpdateArtistLayout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addGroup(panelViewUpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        panelViewUpdatesArtistLayout.setVerticalGroup(
+            panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelViewUpdatesArtistLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelViewArtist1)
                     .addComponent(btnViewArtistRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelViewArtist3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(panelViewUpdateArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelViewArtist2)
                     .addComponent(txtViewArtistName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnViewArtistEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelViewUpdate.add(panelViewUpdateArtist, "card3");
+        panelViewUpdates.add(panelViewUpdatesArtist, "panelViewUpdatesArtist");
 
-        javax.swing.GroupLayout panelUpdateLayout = new javax.swing.GroupLayout(panelUpdate);
-        panelUpdate.setLayout(panelUpdateLayout);
-        panelUpdateLayout.setHorizontalGroup(
-            panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelUpdateLayout.createSequentialGroup()
-                .addComponent(panelSelectUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout panelUpdatesLayout = new javax.swing.GroupLayout(panelUpdates);
+        panelUpdates.setLayout(panelUpdatesLayout);
+        panelUpdatesLayout.setHorizontalGroup(
+            panelUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelUpdatesLayout.createSequentialGroup()
+                .addComponent(panelSelectUpdates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(panelViewUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelViewUpdates, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelUpdateLayout.setVerticalGroup(
-            panelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelSelectUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelViewUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        panelUpdatesLayout.setVerticalGroup(
+            panelUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelSelectUpdates, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelViewUpdates, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        panelMain.add(panelUpdate, "card9");
+        panelMain.add(panelUpdates, "panelUpdates");
 
         panelPlayer.setBackground(new java.awt.Color(179, 7, 83));
         panelPlayer.setMaximumSize(new java.awt.Dimension(32767, 250));
@@ -2722,14 +2763,17 @@ public class IdealMusic extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuUserActionPerformed
+        // Abre o apinel correspodente a ação
         openCard(panelMain, "panelUsers");
     }//GEN-LAST:event_btnMenuUserActionPerformed
 
     private void btnMenuFavoriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuFavoriteActionPerformed
+        // Abre o apinel correspodente a ação
         openCard(panelMain, "panelFavorite");
     }//GEN-LAST:event_btnMenuFavoriteActionPerformed
 
     private void btnAdmCreateAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmCreateAdmActionPerformed
+        // "Abilita" o frame e o coloca ao meio da tela do usuário, põe um título no frame e abre o card corresponte a ação
         frameUtiliti.setVisible(true);
         frameUtiliti.setLocationRelativeTo(null);
         frameUtiliti.setTitle("Cadastrar Adiministrador:");
@@ -2737,16 +2781,19 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdmCreateAdmActionPerformed
 
     private void btnMenuMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMusicActionPerformed
+        // Abre o painel correspodente a ação
         openCard(panelMain, "panelMusic");
     }//GEN-LAST:event_btnMenuMusicActionPerformed
 
     private void btnPlayerVolumeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayerVolumeActionPerformed
+        // Resumindo deixa a música no mudo ou restaura o som
         muted = !muted;
         if (muted) {
             btnPlayerVolume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/mute.png")));
             sliderPlayerVolume.setVisible(false);
             som = sliderPlayerVolume.getValue();
             sliderPlayerVolume.setValue(-80);
+
         } else {
             btnPlayerVolume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/som.png")));
             sliderPlayerVolume.setVisible(true);
@@ -2756,6 +2803,7 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPlayerVolumeActionPerformed
 
     private void btnPlayerLike1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayerLike1ActionPerformed
+        // Resumindo minimiza a tela e maximiza
         panelMain.setVisible(minimize);
         panelMenu.setVisible(minimize);
         if (!minimize) {
@@ -2763,6 +2811,7 @@ public class IdealMusic extends javax.swing.JFrame {
             setPreferredSize(new java.awt.Dimension(991, 189));
             setMaximumSize(new java.awt.Dimension(991, 189));
             setSize(new java.awt.Dimension(991, 189));
+
         } else {
             setMinimumSize(new java.awt.Dimension(1300, 700));
             setPreferredSize(new java.awt.Dimension(1300, 700));
@@ -2777,22 +2826,24 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSignupEmailActionPerformed
 
     private void labelLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLoginMouseClicked
+        // Limpa os campos e abre o painel correspondente a ação
         clearTextFields(txtLoginEmail, txtLoginPassword);
         openCard(panelLogMain, "panelSignup");
     }//GEN-LAST:event_labelLoginMouseClicked
 
     private void btnSignupEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupEnterActionPerformed
-        clearTextFields(txtSignupName, txtSignupEmail);
-        clearTextFields(txtSignupPassword);
+        // Limpa os campos e abre o painel correspondente a ação
+        clearTextFields(txtSignupName, txtSignupEmail, txtSignupPassword);
         openCard(panelLogMain, "panelLogin");
     }//GEN-LAST:event_btnSignupEnterActionPerformed
 
     private void btnSignupClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupClearActionPerformed
-        clearTextFields(txtSignupName, txtSignupEmail);
-        clearTextFields(txtSignupPassword);
+        // Limpa os campos
+        clearTextFields(txtSignupName, txtSignupEmail, txtSignupPassword);
     }//GEN-LAST:event_btnSignupClearActionPerformed
 
     private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
+        // Limpa os campos, "desativa" o frame e "abilita" o JFrame da aplicação e coloca o frame no meio da tela
         clearTextFields(txtLoginEmail, txtSignupName, txtSignupEmail, txtLoginPassword, txtSignupPassword);
         logUser.setVisible(false);
         setVisible(true);
@@ -2800,6 +2851,7 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginEnterActionPerformed
 
     private void btnUserLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLogoutActionPerformed
+        // Faz um verificação usando PopUp se clicar em "sim" o aplicativo é imediatamente encerrado
         if (PopUp.showConfirm("Logout", "Deseja realmentre fechar o aplicativo?\nAviso: ao fechar o aplicativo a música será descontinuada!")) {
             System.exit(0);
         }
@@ -2814,49 +2866,86 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCreateArtistNameActionPerformed
 
     private void checkboxSelectMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxSelectMusicActionPerformed
-        // TODO add your handling code here:
+        // Abre o card correspondente a ação
+        openCard(panelViewUpdates, "panelViewUpdatesMusic");
+        
+        // captura o model da JList
+        DefaultListModel<String> updatesListModel = (DefaultListModel<String>) listSelectUpdate.getModel();
+        
+        // remove todos os dados que estão na JList (apenas por segurança, para evitar colisão de dados)
+        updatesListModel.removeAllElements();
+
+        // Lê as músicas que estão no banco de dados e imprime-as na JList
+        ArrayList<String> updatesList = dbModel.readAll("music", null, "mname");
+        for (int i = 0; i < updatesList.size(); i++) {
+            if(updatesList.get(i).contains("default.png")) {
+                break;
+            }
+            updatesListModel.addElement(updatesList.get(i));
+        }
     }//GEN-LAST:event_checkboxSelectMusicActionPerformed
 
     private void btnCreateMusicClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicClearActionPerformed
+        // Limpa os campos
         clearTextFields(txtCreateMusicName, txtCreateMusicBanner, txtCreateMusicSound);
     }//GEN-LAST:event_btnCreateMusicClearActionPerformed
 
     private void btnAdmCreateMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmCreateMusicActionPerformed
+        // Abre o card correspodente a ação
         openCard(panelMain, "panelCreateMusic");
-    }//GEN-LAST:event_btnAdmCreateMusicActionPerformed
 
-    private void btnCreateMusicSelectBannerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicSelectBannerActionPerformed
-        fileChooser("Selecionar banner:", txtCreateMusicBanner, "Banner", "png", "jpg", "jpeg");
-    }//GEN-LAST:event_btnCreateMusicSelectBannerActionPerformed
-
-    private void btnCreateMusicSelectSoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicSelectSoundActionPerformed
-        fileChooser("Selecionar música:", txtCreateMusicSound, "Música", "wav");
-    }//GEN-LAST:event_btnCreateMusicSelectSoundActionPerformed
-
-    private void btnCreateMusicCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicCancelActionPerformed
-        clearTextFields(txtCreateMusicBanner, txtCreateMusicName, txtCreateMusicSound);
-        openCard(panelMain, "panelUsers");
+        // Remove todos os itens do JComboBox apenas para evitar conlisão dos dados
         boxCreateMusicArtist.removeAllItems();
+
+        // Coloca a opção "None" no JComboBox
         boxCreateMusicArtist.addItem("None");
 
+        // Lê todos os artistas cadastrados no banco de dados e adiciona-os no JComboBox
         ArrayList<String> artists = dbModel.readAll("artist", null, "aname");
         for (int i = 0; i < artists.size(); i++) {
             boxCreateMusicArtist.addItem(artists.get(i));
         }
+    }//GEN-LAST:event_btnAdmCreateMusicActionPerformed
+
+    private void btnCreateMusicSelectBannerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicSelectBannerActionPerformed
+        // Abre o frame para selecionar arquivo
+        fileChooser("Selecionar banner:", txtCreateMusicBanner, "Banner", "png", "jpg", "jpeg");
+    }//GEN-LAST:event_btnCreateMusicSelectBannerActionPerformed
+
+    private void btnCreateMusicSelectSoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicSelectSoundActionPerformed
+        // Abre o frame para selecionar arquivo
+        fileChooser("Selecionar música:", txtCreateMusicSound, "Música", "wav");
+    }//GEN-LAST:event_btnCreateMusicSelectSoundActionPerformed
+
+    private void btnCreateMusicCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicCancelActionPerformed
+        // Limpa os campos e abre o painel correspondem a ação
+        clearTextFields(txtCreateMusicBanner, txtCreateMusicName, txtCreateMusicSound);
+        openCard(panelMain, "panelUsers");
     }//GEN-LAST:event_btnCreateMusicCancelActionPerformed
 
     private void btnCreateMusicEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicEnterActionPerformed
-        if (verifyTextFields(txtCreateMusicName, txtCreateMusicBanner, txtCreateMusicSound)) {
-            String musicName = txtCreateMusicName.getText().trim();
-
+        // Verifica se todos os campos necessários estão devidamente preenchidos
+        if (verifyTextFields(txtCreateMusicName, txtCreateMusicBanner, txtCreateMusicSound) && !boxCreateMusicArtist.getSelectedItem().toString().contains("None")) {
+            // pega a hora(hh), minuto(mm) e o segundo(ss) atual
             String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss"));
 
-            String bannerName = musicName + time;
-            String soundName = musicName + time + ".wav";
+            // Nome da música
+            String musicName = txtCreateMusicName.getText().trim();
+
+            // Gera o nome do arquivo do banner
+            String bannerName = musicName.replace(" ", "_") + time;
+
+            // Gera o nome do arquivo da música
+            String soundName = musicName.replace(" ", "_") + time + ".wav";
+
+            // captura o índice da categoria da música
             int ctg = boxCreateMusicCategory.getSelectedIndex();
             ctg++;
 
+            // Registra a música no banco de dados
             dbModel.createMusic(musicName, bannerName, txtCreateMusicBanner.getText(), soundName, txtCreateMusicSound.getText(), ctg, null);
+
+            // Limpa os campos, abre o painel correspondente a ação e dá um reset na varíaveis por segurança
             clearTextFields(txtCreateMusicName, txtCreateMusicBanner, txtCreateMusicSound);
             openCard(panelMain, "panelUsers");
             musicName = null;
@@ -2866,13 +2955,17 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateMusicEnterActionPerformed
 
     private void btnAdmCreateArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmCreateArtistActionPerformed
+        // "Abilita" o frame, põe um título e o coloca ao meio da tela do usuário
         frameUtiliti.setVisible(true);
         frameUtiliti.setTitle("Cadastrar Artista:");
         frameUtiliti.setLocationRelativeTo(null);
+
+        // Abre o painel correspondente a ação
         openCard(panelUtilitiMain, "panelCreateArtist");
     }//GEN-LAST:event_btnAdmCreateArtistActionPerformed
 
     private void btnCreateArtistEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateArtistEnterActionPerformed
+        // Verifica se todos os campos necessários estão devidamente preenchidos
         if (verifyTextFields(txtCreateArtistName)) {
             dbModel.createArtist(txtCreateArtistName.getText().trim());
             clearTextFields(txtCreateArtistName);
@@ -2880,11 +2973,13 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateArtistEnterActionPerformed
 
     private void btnCreateArtistCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateArtistCancelActionPerformed
+        // Limpa os campos e "desativa" o JFrame
         clearTextFields(txtCreateArtistName);
         frameUtiliti.setVisible(false);
     }//GEN-LAST:event_btnCreateArtistCancelActionPerformed
 
     private void btnCreateUserAdmCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserAdmCancelActionPerformed
+        // Limpa os campos e "desativa" o JFrame
         clearTextFields(txtCreateUserAdmName, txtCreateUserAdmEmail, txtCreateUserAdmPassword);
         frameUtiliti.setVisible(false);
     }//GEN-LAST:event_btnCreateUserAdmCancelActionPerformed
@@ -2901,7 +2996,7 @@ public class IdealMusic extends javax.swing.JFrame {
 
             } else {
                 // Caso o e-mail e/ou senha estejam incorreto(s)
-                PopUp.showAlert("E-mail e/ou senha incorreto(s)...\nLembre-se a senha deve conter(2 letras minúsculas, 2 letras maiúsculas e 4 números).\n*Opcionalmente `#`.", "Dados Invalidos:");
+                PopUp.showAlert("E-mail e/ou senha não passaram na validação...\nLembre-se a senha deve conter no mínimo(2 letras minúsculas, 2 letras maiúsculas e 4 números).\nNo mínimo 8 caracteres e no máximo 20 caracteres\n*Opcionalmente `#`.", "Invalidos:");
                 clearTextFields(txtCreateUserAdmEmail, txtCreateUserAdmPassword);
                 userName = null;
                 email = null;
@@ -2911,16 +3006,26 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateUserAdmEnterActionPerformed
 
     private void btnUserPasswordEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserPasswordEnterActionPerformed
+        // Verifica se todos os campos necessários estão devidamente preenchidos
         if (verifyTextFields(txtUserPasswordNew, txtUserPasswordOld)) {
+            // Captura a nova senha
             String passNew = new String(txtUserPasswordNew.getPassword()).trim();
+
+            // Captura a senha anterior
             String passOld = new String(txtUserPasswordOld.getPassword()).trim();
+
+            // Verifica se ambas as senhas passam no Validator
             if (Validator.isPassword(passNew) && Validator.isPassword(passOld)) {
+                // Se passar... Registra a troca de senha no banco de dados
                 dbModel.setPassword(userId, passOld, passOld);
+
+                // Limpa os campos e "desativa" o JFrame
                 clearTextFields(txtUserPasswordNew, txtUserPasswordOld);
                 frameUtiliti.setVisible(false);
 
             } else {
-                PopUp.showAlert("senha(s) incorreta(s)...\nLembre-se a senha deve conter(2 letras minúsculas, 2 letras maiúsculas e 4 números).\n*Opcionalmente `#`.", "Dados Invalidos:");
+                // Senão passar... Exibe uma mensagem ao usuário, limpa os campos e dá um reset nas varíaveis por segurança
+                PopUp.showAlert("senha(s) incorreta(s)...\nLembre-se a senha deve conter no mínimo(2 letras minúsculas, 2 letras maiúsculas e 4 números).\nNo mínimo 8 caracteres e no máximo 20 caracteres\n*Opcionalmente `#`.", "Senha(s) Invalida(s):");
                 clearTextFields(txtUserPasswordNew, txtUserPasswordOld);
                 passNew = null;
                 passOld = null;
@@ -2929,72 +3034,144 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUserPasswordEnterActionPerformed
 
     private void btnUserPasswordCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserPasswordCancelActionPerformed
+        // Limpa os campos e "desativa" o frame
         clearTextFields(txtUserPasswordNew, txtUserPasswordOld);
         frameUtiliti.setVisible(false);
     }//GEN-LAST:event_btnUserPasswordCancelActionPerformed
 
     private void btnCreateAvatarSelectImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAvatarSelectImgActionPerformed
+        // Abre o frame para selecionar arquivo
         fileChooser("Selecionar Avatar:", txtCreateAvatarImg, "Avatar", "png");
     }//GEN-LAST:event_btnCreateAvatarSelectImgActionPerformed
 
     private void btnCreateAvatarEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAvatarEnterActionPerformed
+        // Verifica se todos os campos necessários estão devidamente preenchidos
         if (verifyTextFields(txtCreateAvatarImg)) {
+            // pega a hora(hh), minuto(mm) e o segundo(ss) atual
             String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HHmmss"));
+
+            // Caminho(path) da imagem do avatar no computador do usuário
             String avatarImg = txtCreateAvatarImg.getText().trim();
-            String extension = txtCreateAvatarImg.getText().substring(txtCreateAvatarImg.getText().lastIndexOf("."));
+
+            // Gerando o nome da imagem...
             String avatarName = txtCreateAvatarImg.getText().substring(txtCreateAvatarImg.getText().lastIndexOf("/") + 1);
-            avatarName = avatarName.substring(0, avatarName.lastIndexOf(".")) + time + extension;
+            String extension = avatarName.substring(avatarName.lastIndexOf("."));
+            avatarName = avatarName + time + extension;
+
+            // Pega o índice o conteúdo do JComboBox e transforma nas opções do banco de dados
             String status = boxCreateAvatarStatus.getSelectedItem().toString();
-            if(status.contains("Ambos")) status = "both";
-            if(status.contains("Usuário Comum")) status = "user";
-            if(status.contains("Usuário adiministrador")) status = "adm";
-            // dbModel.createAvatar(avatarName, avatarImg, status);
+            if (status.contains("Ambos")) {
+                status = "both";
+            } else if (status.contains("Usuário Comum")) {
+                status = "user";
+            } else if (status.contains("Usuário Adiministrador")) {
+                status = "adm";
+            }
+
+            // Cria o avatar no banco de dados
+            dbModel.createAvatar(avatarName, avatarImg, status);
+
+            // Limpa os campos 
             clearTextFields(txtCreateAvatarImg);
+
+            // "Desativa" o JFrame
             frameUtiliti.setVisible(false);
+
+            // Dá um reset nas varíaveis (apenas por segurança dos dados)
             avatarName = null;
             avatarImg = null;
         }
     }//GEN-LAST:event_btnCreateAvatarEnterActionPerformed
 
     private void btnCreateAvatarCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAvatarCancelActionPerformed
+        // Limpa os campos
         clearTextFields(txtCreateAvatarImg);
     }//GEN-LAST:event_btnCreateAvatarCancelActionPerformed
 
     private void btnAdmCreateAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmCreateAvatarActionPerformed
+        // "Abilita" o JFrame e o deixa no meio da tela do usuário
         frameUtiliti.setVisible(true);
         frameUtiliti.setLocationRelativeTo(null);
+
+        // Título do JFrame
         frameUtiliti.setTitle("Cadastrar Avatar?");
+
+        // Abre o painel no JFrame correspondem a ação
         openCard(panelUtilitiMain, "panelCreateAvatar");
     }//GEN-LAST:event_btnAdmCreateAvatarActionPerformed
+
+    private void btnUserUpdatePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserUpdatePasswordActionPerformed
+        // "Abilita" o frame, põe um título e o coloca ao meio da tela do usuário
+        frameUtiliti.setVisible(true);
+        frameUtiliti.setTitle("Alterar Senha:");
+        frameUtiliti.setLocationRelativeTo(null);
+
+        // Abre o painel correspondente a ação
+        openCard(panelUtilitiMain, "panelUpdatePassword");
+    }//GEN-LAST:event_btnUserUpdatePasswordActionPerformed
+
+    private void btnAdmEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmEditActionPerformed
+        // Marca a checkbox de música
+        checkboxSelectMusic.setSelected(true);
+
+        // captura o model da JList
+        DefaultListModel<String> updatesListModel = (DefaultListModel<String>) listSelectUpdate.getModel();
+        
+        // remove todos os dados que estão na JList (apenas por segurança, para evitar colisão de dados)
+        updatesListModel.removeAllElements();
+
+        // Lê as músicas que estão no banco de dados e imprime-as na JList
+        ArrayList<String> updatesList = dbModel.readAll("music", null, "mname");
+        for (int i = 0; i < updatesList.size(); i++) {
+            updatesListModel.addElement(updatesList.get(i));
+        }
+
+        // Abre o card correspondente a ação
+        openCard(panelMain, "panelUpdates");
+    }//GEN-LAST:event_btnAdmEditActionPerformed
+
+    private void checkboxSelectArtistStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkboxSelectArtistStateChanged
+ 
+    }//GEN-LAST:event_checkboxSelectArtistStateChanged
+
+    private void checkboxSelectArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxSelectArtistActionPerformed
+        // Abre o card correspondente a ação
+        openCard(panelViewUpdates, "panelViewUpdatesArtist");
+
+        // captura o model da JList
+        DefaultListModel<String> updatesListModel = (DefaultListModel<String>) listSelectUpdate.getModel();
+        
+        // remove todos os dados que estão na JList (apenas por segurança, para evitar colisão de dados)
+        updatesListModel.removeAllElements();
+
+        // Lê os artistas que estão no banco de dados e imprime-os na JList
+        ArrayList<String> updatesList = dbModel.readAll("artist", null, "aname");
+        for (int i = 0; i < updatesList.size(); i++) {
+            updatesListModel.addElement(updatesList.get(i));
+        }
+    }//GEN-LAST:event_checkboxSelectArtistActionPerformed
+
+    private void checkboxSelectAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxSelectAvatarActionPerformed
+        // Abre o card correspondente a ação
+        openCard(panelViewUpdates, "panelViewUpdatesAvatar");
+
+        // captura o model da JList
+        DefaultListModel<String> updatesListModel = (DefaultListModel<String>) listSelectUpdate.getModel();
+        
+        // remove todos os dados que estão na JList (apenas por segurança, para evitar colisão de dados)
+        updatesListModel.removeAllElements();
+
+        // Lê os avatares que estão no banco de dados e imprime-os na JList
+        ArrayList<String> updatesList = dbModel.readAll("avatar", null, "avimg");
+        for (int i = 0; i < updatesList.size(); i++) {
+            updatesListModel.addElement(updatesList.get(i));
+        }
+    }//GEN-LAST:event_checkboxSelectAvatarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Metal".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IdealMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IdealMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IdealMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IdealMusic.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IdealMusic();
@@ -3152,18 +3329,18 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JPanel panelPlayer;
     private javax.swing.JPanel panelPlayer1;
     private javax.swing.JPanel panelPlayer2;
-    private javax.swing.JPanel panelSelectUpdate;
+    private javax.swing.JPanel panelSelectUpdates;
     private javax.swing.JPanel panelSignup;
-    private javax.swing.JPanel panelUpdate;
     private javax.swing.JPanel panelUpdateAvatar;
+    private javax.swing.JPanel panelUpdatePassword;
+    private javax.swing.JPanel panelUpdates;
     private javax.swing.JPanel panelUserMain;
-    private javax.swing.JPanel panelUserPassword;
     private javax.swing.JPanel panelUsers;
     private javax.swing.JPanel panelUtilitiMain;
-    private javax.swing.JPanel panelViewUpdate;
-    private javax.swing.JPanel panelViewUpdateArtist;
-    private javax.swing.JPanel panelViewUpdateAvatar;
-    private javax.swing.JPanel panelViewUpdateMusic;
+    private javax.swing.JPanel panelViewUpdates;
+    private javax.swing.JPanel panelViewUpdatesArtist;
+    private javax.swing.JPanel panelViewUpdatesAvatar;
+    private javax.swing.JPanel panelViewUpdatesMusic;
     private javax.swing.JScrollPane scrollAvatar;
     private javax.swing.JScrollPane scrollFavorite;
     private javax.swing.JScrollPane scrollListMusic;
