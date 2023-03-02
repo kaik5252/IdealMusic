@@ -3,29 +3,38 @@ package AppMusic;
 import Control.PopUp;
 import Control.Validator;
 import Model.DatabaseModel;
+import java.awt.Dimension;
 import java.io.File;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 
-public class IdealMusic extends javax.swing.JFrame {
+public class MusicInterface_Employee extends javax.swing.JFrame {
 
     private DatabaseModel dbModel = new DatabaseModel();
     private int userId = 0;
-    boolean minimize = false;
     boolean muted = false;
     int som = 0;
 
-    public IdealMusic() {
+    public MusicInterface_Employee() {
         initComponents();
-        logUser.setVisible(true);
-        logUser.setLocationRelativeTo(null);
-        logUser.setTitle("Login:");
-        
-        
+        setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
+
+        tableMusic.getTableHeader().setPreferredSize(new Dimension(100, 0));
+
+        DefaultTableCellRenderer tableHeader = (DefaultTableCellRenderer) tableMusic.getTableHeader().getDefaultRenderer();
+        tableHeader.setHorizontalAlignment(SwingConstants.CENTER);
+//        DefaultTableCellRenderer tableCell = new DefaultTableCellRenderer();
+//        tableCell.setHorizontalAlignment(SwingConstants.CENTER);
+//        for (int colInit = 0; colInit < tableRead.getColumnModel().getColumnCount(); colInit++) {
+//            tableRead.getColumnModel().getColumn(colInit).setCellRenderer(tableCell);
+//        }
+
         // ...
         DefaultListModel<String> defaultListModel = new DefaultListModel<>();
         listSelectUpdate.setModel(defaultListModel);
@@ -40,27 +49,6 @@ public class IdealMusic extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        logUser = new javax.swing.JFrame();
-        panelLogMain = new javax.swing.JPanel();
-        panelLogin = new javax.swing.JPanel();
-        txtLoginEmail = new javax.swing.JTextField();
-        labelLogin1 = new javax.swing.JLabel();
-        btnLoginEnter = new javax.swing.JButton();
-        labelLogin2 = new javax.swing.JLabel();
-        labelLogin3 = new javax.swing.JLabel();
-        labelLogin4 = new javax.swing.JLabel();
-        labelLogin = new javax.swing.JLabel();
-        txtLoginPassword = new javax.swing.JPasswordField();
-        panelSignup = new javax.swing.JPanel();
-        txtSignupName = new javax.swing.JTextField();
-        txtSignupEmail = new javax.swing.JTextField();
-        btnSignupClear = new javax.swing.JButton();
-        btnSignupEnter = new javax.swing.JButton();
-        labelSignup1 = new javax.swing.JLabel();
-        labelSignup2 = new javax.swing.JLabel();
-        labelSignup3 = new javax.swing.JLabel();
-        labelSignup4 = new javax.swing.JLabel();
-        txtSignupPassword = new javax.swing.JPasswordField();
         frameUtiliti = new javax.swing.JFrame();
         panelUtilitiMain = new javax.swing.JPanel();
         panelUpdatePassword = new javax.swing.JPanel();
@@ -99,16 +87,11 @@ public class IdealMusic extends javax.swing.JFrame {
         btnCreateAvatarCancel = new javax.swing.JButton();
         btnCreateAvatarEnter = new javax.swing.JButton();
         checkboxGroupUpdate = new javax.swing.ButtonGroup();
+        frameChooser = new javax.swing.JFrame();
         panelMain = new javax.swing.JPanel();
         panelMusic = new javax.swing.JPanel();
-        scrollListMusic = new javax.swing.JScrollPane();
-        listMusic = new javax.swing.JList<>();
-        labelMusic1 = new javax.swing.JLabel();
-        labelMusic2 = new javax.swing.JLabel();
-        boxMusicArtist = new javax.swing.JComboBox<>();
-        boxMusicCategory = new javax.swing.JComboBox<>();
-        labelMusic3 = new javax.swing.JLabel();
-        txtMusicSearch = new javax.swing.JTextField();
+        scrollMusic = new javax.swing.JScrollPane();
+        tableMusic = new javax.swing.JTable();
         panelUsers = new javax.swing.JPanel();
         panelAdmMain = new javax.swing.JPanel();
         labelAdm1 = new javax.swing.JLabel();
@@ -210,9 +193,7 @@ public class IdealMusic extends javax.swing.JFrame {
         labelViewArtist3 = new javax.swing.JLabel();
         btnViewArtistRefresh = new javax.swing.JButton();
         panelPlayer = new javax.swing.JPanel();
-        labelPlayerImage = new javax.swing.JLabel();
         labelPLayerMusic = new javax.swing.JLabel();
-        labelPlayerArtist = new javax.swing.JLabel();
         panelPlayer1 = new javax.swing.JPanel();
         labelPlayerTimeDuraction = new javax.swing.JLabel();
         labelPlayerTime = new javax.swing.JLabel();
@@ -221,8 +202,6 @@ public class IdealMusic extends javax.swing.JFrame {
         btnPlayerNext = new javax.swing.JButton();
         btnPlayerControl = new javax.swing.JButton();
         btnPlayerBack = new javax.swing.JButton();
-        btnPlayerLike = new javax.swing.JButton();
-        btnPlayerLike1 = new javax.swing.JButton();
         panelPlayer2 = new javax.swing.JPanel();
         sliderPlayerVolume = new javax.swing.JSlider();
         panelMenu = new javax.swing.JPanel();
@@ -231,267 +210,6 @@ public class IdealMusic extends javax.swing.JFrame {
         btnMenuUser = new javax.swing.JButton();
         panelMenu1 = new javax.swing.JPanel();
         labelMenuLogo = new javax.swing.JLabel();
-
-        logUser.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        logUser.setMinimumSize(new java.awt.Dimension(500, 300));
-        logUser.setName("logUser"); // NOI18N
-        logUser.setResizable(false);
-        logUser.getContentPane().setLayout(new java.awt.CardLayout());
-
-        panelLogMain.setLayout(new java.awt.CardLayout());
-
-        panelLogin.setBackground(new java.awt.Color(179, 7, 83));
-        panelLogin.setAlignmentX(0.0F);
-        panelLogin.setAlignmentY(0.0F);
-        panelLogin.setMaximumSize(new java.awt.Dimension(450, 250));
-        panelLogin.setMinimumSize(new java.awt.Dimension(450, 250));
-        panelLogin.setPreferredSize(new java.awt.Dimension(450, 250));
-
-        txtLoginEmail.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        txtLoginEmail.setAlignmentX(0.0F);
-        txtLoginEmail.setAlignmentY(0.0F);
-        txtLoginEmail.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtLoginEmail.setMaximumSize(new java.awt.Dimension(260, 30));
-        txtLoginEmail.setMinimumSize(new java.awt.Dimension(260, 30));
-        txtLoginEmail.setPreferredSize(new java.awt.Dimension(260, 30));
-
-        labelLogin1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        labelLogin1.setForeground(new java.awt.Color(255, 255, 255));
-        labelLogin1.setText("Olá, seja bem vindo(a) ao Ideal Music");
-
-        btnLoginEnter.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        btnLoginEnter.setText("Entrar");
-        btnLoginEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLoginEnter.setFocusable(false);
-        btnLoginEnter.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnLoginEnter.setMaximumSize(new java.awt.Dimension(260, 30));
-        btnLoginEnter.setMinimumSize(new java.awt.Dimension(260, 30));
-        btnLoginEnter.setPreferredSize(new java.awt.Dimension(260, 30));
-        btnLoginEnter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginEnterActionPerformed(evt);
-            }
-        });
-
-        labelLogin2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        labelLogin2.setForeground(new java.awt.Color(255, 255, 255));
-        labelLogin2.setText("Senha:");
-        labelLogin2.setAlignmentY(0.0F);
-
-        labelLogin3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        labelLogin3.setForeground(new java.awt.Color(255, 255, 255));
-        labelLogin3.setText("E-mail:");
-        labelLogin3.setAlignmentY(0.0F);
-
-        labelLogin4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        labelLogin4.setForeground(new java.awt.Color(255, 255, 255));
-        labelLogin4.setText("Novo por aqui? Cadastre-se clicando");
-
-        labelLogin.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        labelLogin.setForeground(new java.awt.Color(0, 0, 255));
-        labelLogin.setText("<html><u>aqui</u></html>");
-        labelLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        labelLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelLoginMouseClicked(evt);
-            }
-        });
-
-        txtLoginPassword.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        txtLoginPassword.setAlignmentX(0.0F);
-        txtLoginPassword.setAlignmentY(0.0F);
-        txtLoginPassword.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtLoginPassword.setMaximumSize(new java.awt.Dimension(260, 30));
-        txtLoginPassword.setMinimumSize(new java.awt.Dimension(260, 30));
-        txtLoginPassword.setPreferredSize(new java.awt.Dimension(260, 30));
-
-        javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
-        panelLogin.setLayout(panelLoginLayout);
-        panelLoginLayout.setHorizontalGroup(
-            panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelLoginLayout.createSequentialGroup()
-                            .addComponent(labelLogin3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtLoginEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(labelLogin1))
-                    .addGroup(panelLoginLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(labelLogin2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelLoginLayout.createSequentialGroup()
-                                .addComponent(labelLogin4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnLoginEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLoginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
-        panelLoginLayout.setVerticalGroup(
-            panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLoginLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(labelLogin1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLoginEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelLogin3))
-                .addGap(18, 18, 18)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLogin2)
-                    .addComponent(txtLoginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnLoginEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLogin4)
-                    .addComponent(labelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35))
-        );
-
-        panelLogMain.add(panelLogin, "panelLogin");
-
-        panelSignup.setBackground(new java.awt.Color(179, 7, 83));
-
-        txtSignupName.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        txtSignupName.setAlignmentX(0.0F);
-        txtSignupName.setAlignmentY(0.0F);
-        txtSignupName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtSignupName.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtSignupName.setMaximumSize(new java.awt.Dimension(260, 30));
-        txtSignupName.setMinimumSize(new java.awt.Dimension(260, 30));
-        txtSignupName.setPreferredSize(new java.awt.Dimension(260, 30));
-
-        txtSignupEmail.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        txtSignupEmail.setAlignmentX(0.0F);
-        txtSignupEmail.setAlignmentY(0.0F);
-        txtSignupEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtSignupEmail.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtSignupEmail.setMaximumSize(new java.awt.Dimension(260, 30));
-        txtSignupEmail.setMinimumSize(new java.awt.Dimension(260, 30));
-        txtSignupEmail.setPreferredSize(new java.awt.Dimension(260, 30));
-        txtSignupEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSignupEmailActionPerformed(evt);
-            }
-        });
-
-        btnSignupClear.setText("Limpar");
-        btnSignupClear.setAlignmentY(0.0F);
-        btnSignupClear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSignupClear.setFocusable(false);
-        btnSignupClear.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnSignupClear.setMaximumSize(new java.awt.Dimension(60, 25));
-        btnSignupClear.setMinimumSize(new java.awt.Dimension(60, 25));
-        btnSignupClear.setPreferredSize(new java.awt.Dimension(90, 26));
-        btnSignupClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignupClearActionPerformed(evt);
-            }
-        });
-
-        btnSignupEnter.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        btnSignupEnter.setText("Casdastrar-se");
-        btnSignupEnter.setAlignmentY(0.0F);
-        btnSignupEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSignupEnter.setFocusable(false);
-        btnSignupEnter.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnSignupEnter.setMaximumSize(new java.awt.Dimension(260, 30));
-        btnSignupEnter.setMinimumSize(new java.awt.Dimension(260, 30));
-        btnSignupEnter.setPreferredSize(new java.awt.Dimension(260, 30));
-        btnSignupEnter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignupEnterActionPerformed(evt);
-            }
-        });
-
-        labelSignup1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        labelSignup1.setForeground(new java.awt.Color(255, 255, 255));
-        labelSignup1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelSignup1.setText("Tela de cadastro:");
-        labelSignup1.setAlignmentY(0.0F);
-
-        labelSignup2.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        labelSignup2.setForeground(new java.awt.Color(255, 255, 255));
-        labelSignup2.setText("Nome:");
-        labelSignup2.setAlignmentY(0.0F);
-
-        labelSignup3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        labelSignup3.setForeground(new java.awt.Color(255, 255, 255));
-        labelSignup3.setText("E-mail:");
-        labelSignup3.setAlignmentY(0.0F);
-
-        labelSignup4.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        labelSignup4.setForeground(new java.awt.Color(255, 255, 255));
-        labelSignup4.setText("Senha:");
-        labelSignup4.setAlignmentY(0.0F);
-
-        txtSignupPassword.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        txtSignupPassword.setAlignmentX(0.0F);
-        txtSignupPassword.setAlignmentY(0.0F);
-        txtSignupPassword.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtSignupPassword.setMaximumSize(new java.awt.Dimension(260, 30));
-        txtSignupPassword.setMinimumSize(new java.awt.Dimension(260, 30));
-        txtSignupPassword.setPreferredSize(new java.awt.Dimension(260, 30));
-
-        javax.swing.GroupLayout panelSignupLayout = new javax.swing.GroupLayout(panelSignup);
-        panelSignup.setLayout(panelSignupLayout);
-        panelSignupLayout.setHorizontalGroup(
-            panelSignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSignupLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(panelSignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelSignupLayout.createSequentialGroup()
-                        .addComponent(labelSignup2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSignupName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelSignupLayout.createSequentialGroup()
-                        .addComponent(labelSignup3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSignupEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelSignupLayout.createSequentialGroup()
-                        .addComponent(labelSignup4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelSignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSignupEnter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtSignupPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelSignupLayout.createSequentialGroup()
-                        .addComponent(labelSignup1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSignupClear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(90, 90, 90))
-        );
-        panelSignupLayout.setVerticalGroup(
-            panelSignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSignupLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(panelSignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSignup1)
-                    .addComponent(btnSignupClear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelSignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSignupName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSignup2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelSignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSignupEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSignup3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelSignupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSignup4)
-                    .addComponent(txtSignupPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSignupEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
-        );
-
-        panelLogMain.add(panelSignup, "panelSignup");
-
-        logUser.getContentPane().add(panelLogMain, "card4");
 
         frameUtiliti.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         frameUtiliti.setMinimumSize(new java.awt.Dimension(500, 338));
@@ -1014,6 +732,17 @@ public class IdealMusic extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        javax.swing.GroupLayout frameChooserLayout = new javax.swing.GroupLayout(frameChooser.getContentPane());
+        frameChooser.getContentPane().setLayout(frameChooserLayout);
+        frameChooserLayout.setHorizontalGroup(
+            frameChooserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        frameChooserLayout.setVerticalGroup(
+            frameChooserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ideal Music");
         setMinimumSize(new java.awt.Dimension(1280, 640));
@@ -1026,54 +755,46 @@ public class IdealMusic extends javax.swing.JFrame {
         panelMusic.setMinimumSize(new java.awt.Dimension(980, 489));
         panelMusic.setPreferredSize(new java.awt.Dimension(980, 489));
 
-        listMusic.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        listMusic.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listMusic.setAlignmentX(0.0F);
-        listMusic.setAlignmentY(0.0F);
-        listMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        scrollListMusic.setViewportView(listMusic);
+        tableMusic.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "", ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        labelMusic1.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
-        labelMusic1.setForeground(new java.awt.Color(255, 255, 255));
-        labelMusic1.setText("Pesquisar por categoria:");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-        labelMusic2.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
-        labelMusic2.setForeground(new java.awt.Color(255, 255, 255));
-        labelMusic2.setText("Filtrar por artistas:");
-
-        boxMusicArtist.setEditable(true);
-        boxMusicArtist.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        boxMusicArtist.setMaximumRowCount(30);
-        boxMusicArtist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None" }));
-        boxMusicArtist.setAlignmentX(0.0F);
-        boxMusicArtist.setAlignmentY(0.0F);
-        boxMusicArtist.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        boxMusicArtist.setFocusable(false);
-        boxMusicArtist.setMaximumSize(new java.awt.Dimension(200, 30));
-        boxMusicArtist.setMinimumSize(new java.awt.Dimension(150, 30));
-        boxMusicArtist.setPreferredSize(new java.awt.Dimension(150, 30));
-
-        boxMusicCategory.setEditable(true);
-        boxMusicCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Nacional", "Internacional" }));
-        boxMusicCategory.setAlignmentX(0.0F);
-        boxMusicCategory.setAlignmentY(0.0F);
-        boxMusicCategory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        boxMusicCategory.setFocusable(false);
-        boxMusicCategory.setMaximumSize(new java.awt.Dimension(200, 30));
-        boxMusicCategory.setMinimumSize(new java.awt.Dimension(150, 30));
-        boxMusicCategory.setPreferredSize(new java.awt.Dimension(150, 30));
-
-        labelMusic3.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
-        labelMusic3.setForeground(new java.awt.Color(255, 255, 255));
-        labelMusic3.setText("Pesquisar músicas");
-        labelMusic3.setAlignmentY(0.0F);
-
-        txtMusicSearch.setAlignmentX(0.0F);
-        txtMusicSearch.setAlignmentY(0.0F);
-        txtMusicSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        txtMusicSearch.setMaximumSize(new java.awt.Dimension(200, 30));
-        txtMusicSearch.setMinimumSize(new java.awt.Dimension(150, 30));
-        txtMusicSearch.setPreferredSize(new java.awt.Dimension(150, 30));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableMusic.setAlignmentX(0.0F);
+        tableMusic.setAlignmentY(0.0F);
+        tableMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tableMusic.setRowHeight(26);
+        tableMusic.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableMusic.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableMusic.getTableHeader().setResizingAllowed(false);
+        tableMusic.getTableHeader().setReorderingAllowed(false);
+        scrollMusic.setViewportView(tableMusic);
+        if (tableMusic.getColumnModel().getColumnCount() > 0) {
+            tableMusic.getColumnModel().getColumn(0).setMinWidth(0);
+            tableMusic.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableMusic.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         javax.swing.GroupLayout panelMusicLayout = new javax.swing.GroupLayout(panelMusic);
         panelMusic.setLayout(panelMusicLayout);
@@ -1081,35 +802,14 @@ public class IdealMusic extends javax.swing.JFrame {
             panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMusicLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollListMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 1002, Short.MAX_VALUE)
-                    .addGroup(panelMusicLayout.createSequentialGroup()
-                        .addComponent(labelMusic3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMusicSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelMusic2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boxMusicArtist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelMusic1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boxMusicCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(scrollMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 1002, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelMusicLayout.setVerticalGroup(
             panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMusicLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(panelMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelMusic2)
-                    .addComponent(boxMusicArtist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelMusic1)
-                    .addComponent(boxMusicCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelMusic3)
-                    .addComponent(txtMusicSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(scrollListMusic, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addComponent(scrollMusic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1427,8 +1127,8 @@ public class IdealMusic extends javax.swing.JFrame {
         );
         panelUsersLayout.setVerticalGroup(
             panelUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-            .addComponent(panelUserMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAdmMain, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(panelUserMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
 
         panelMain.add(panelUsers, "panelUsers");
@@ -1983,9 +1683,9 @@ public class IdealMusic extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(scrollSelectUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSelectUpdateCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSelectUpdateEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSelectUpdateEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelectUpdateCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2421,21 +2121,9 @@ public class IdealMusic extends javax.swing.JFrame {
         panelPlayer.setMinimumSize(new java.awt.Dimension(900, 150));
         panelPlayer.setPreferredSize(new java.awt.Dimension(991, 150));
 
-        labelPlayerImage.setBackground(new java.awt.Color(255, 255, 255));
-        labelPlayerImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelPlayerImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/default.png"))); // NOI18N
-        labelPlayerImage.setAlignmentY(0.0F);
-        labelPlayerImage.setMaximumSize(new java.awt.Dimension(250, 250));
-        labelPlayerImage.setMinimumSize(new java.awt.Dimension(150, 150));
-        labelPlayerImage.setPreferredSize(new java.awt.Dimension(150, 150));
-
         labelPLayerMusic.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         labelPLayerMusic.setForeground(new java.awt.Color(255, 255, 255));
         labelPLayerMusic.setText("Nome da música");
-
-        labelPlayerArtist.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        labelPlayerArtist.setForeground(new java.awt.Color(255, 255, 255));
-        labelPlayerArtist.setText("Artista/Banda");
 
         panelPlayer1.setBackground(new java.awt.Color(179, 7, 83));
 
@@ -2491,47 +2179,21 @@ public class IdealMusic extends javax.swing.JFrame {
         btnPlayerBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPlayerBack.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        btnPlayerLike.setBackground(new java.awt.Color(179, 7, 83));
-        btnPlayerLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/like.png"))); // NOI18N
-        btnPlayerLike.setAlignmentY(0.0F);
-        btnPlayerLike.setBorder(null);
-        btnPlayerLike.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPlayerLike.setMargin(new java.awt.Insets(0, 0, 0, 0));
-
-        btnPlayerLike1.setBackground(new java.awt.Color(179, 7, 83));
-        btnPlayerLike1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/resize1.png"))); // NOI18N
-        btnPlayerLike1.setAlignmentY(0.0F);
-        btnPlayerLike1.setBorder(null);
-        btnPlayerLike1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPlayerLike1.setFocusable(false);
-        btnPlayerLike1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnPlayerLike1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPlayerLike1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelPlayer1Layout = new javax.swing.GroupLayout(panelPlayer1);
         panelPlayer1.setLayout(panelPlayer1Layout);
         panelPlayer1Layout.setHorizontalGroup(
             panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPlayer1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelPlayerTimeDuraction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelPlayer1Layout.createSequentialGroup()
-                        .addComponent(btnPlayerLike)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPlayer1Layout.createSequentialGroup()
-                        .addComponent(sliderPlayerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(labelPlayerTimeDuraction)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sliderPlayerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
                         .addComponent(labelPlayerTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelPlayer1Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(btnPlayerLike1)
-                        .addGap(116, 116, 116)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPlayerBack)
                         .addGap(18, 18, 18)
                         .addComponent(btnPlayerControl)
@@ -2549,23 +2211,27 @@ public class IdealMusic extends javax.swing.JFrame {
                     .addComponent(sliderPlayerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPlayerTimeDuraction, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPlayerTime, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPlayer1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPlayerVolume)
-                            .addComponent(btnPlayerLike, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnPlayerControl)
-                            .addComponent(btnPlayerNext)
-                            .addComponent(btnPlayerBack))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlayer1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPlayerLike1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                    .addComponent(btnPlayerControl)
+                    .addComponent(btnPlayerNext)
+                    .addComponent(btnPlayerBack)
+                    .addComponent(btnPlayerVolume))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         panelPlayer2.setBackground(new java.awt.Color(179, 7, 83));
+
+        javax.swing.GroupLayout panelPlayer2Layout = new javax.swing.GroupLayout(panelPlayer2);
+        panelPlayer2.setLayout(panelPlayer2Layout);
+        panelPlayer2Layout.setHorizontalGroup(
+            panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+        panelPlayer2Layout.setVerticalGroup(
+            panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 142, Short.MAX_VALUE)
+        );
 
         sliderPlayerVolume.setBackground(new java.awt.Color(179, 7, 83));
         sliderPlayerVolume.setForeground(new java.awt.Color(179, 7, 83));
@@ -2578,57 +2244,35 @@ public class IdealMusic extends javax.swing.JFrame {
         sliderPlayerVolume.setMinimumSize(new java.awt.Dimension(20, 130));
         sliderPlayerVolume.setPreferredSize(new java.awt.Dimension(20, 130));
 
-        javax.swing.GroupLayout panelPlayer2Layout = new javax.swing.GroupLayout(panelPlayer2);
-        panelPlayer2.setLayout(panelPlayer2Layout);
-        panelPlayer2Layout.setHorizontalGroup(
-            panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-            .addGroup(panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelPlayer2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        panelPlayer2Layout.setVerticalGroup(
-            panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 134, Short.MAX_VALUE)
-            .addGroup(panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelPlayer2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
         javax.swing.GroupLayout panelPlayerLayout = new javax.swing.GroupLayout(panelPlayer);
         panelPlayer.setLayout(panelPlayerLayout);
         panelPlayerLayout.setHorizontalGroup(
             panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPlayerLayout.createSequentialGroup()
-                .addComponent(labelPlayerImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelPLayerMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelPlayerArtist, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(labelPLayerMusic)
+                .addGap(18, 18, 18)
                 .addComponent(panelPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPlayerLayout.setVerticalGroup(
             panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPlayerImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelPlayerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelPlayerLayout.createSequentialGroup()
-                        .addComponent(labelPLayerMusic)
-                        .addGap(0, 0, 0)
-                        .addComponent(labelPlayerArtist)))
+                    .addComponent(labelPLayerMusic))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelPlayerLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
+                .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelPlayerLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(panelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -2802,54 +2446,6 @@ public class IdealMusic extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPlayerVolumeActionPerformed
 
-    private void btnPlayerLike1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayerLike1ActionPerformed
-        // Resumindo minimiza a tela e maximiza
-        panelMain.setVisible(minimize);
-        panelMenu.setVisible(minimize);
-        if (!minimize) {
-            setMinimumSize(new java.awt.Dimension(991, 189));
-            setPreferredSize(new java.awt.Dimension(991, 189));
-            setMaximumSize(new java.awt.Dimension(991, 189));
-            setSize(new java.awt.Dimension(991, 189));
-
-        } else {
-            setMinimumSize(new java.awt.Dimension(1300, 700));
-            setPreferredSize(new java.awt.Dimension(1300, 700));
-            setMaximumSize(new java.awt.Dimension(1000000, 100000));
-            setSize(new java.awt.Dimension(1300, 700));
-        }
-        minimize = !minimize;
-    }//GEN-LAST:event_btnPlayerLike1ActionPerformed
-
-    private void txtSignupEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSignupEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSignupEmailActionPerformed
-
-    private void labelLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLoginMouseClicked
-        // Limpa os campos e abre o painel correspondente a ação
-        clearTextFields(txtLoginEmail, txtLoginPassword);
-        openCard(panelLogMain, "panelSignup");
-    }//GEN-LAST:event_labelLoginMouseClicked
-
-    private void btnSignupEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupEnterActionPerformed
-        // Limpa os campos e abre o painel correspondente a ação
-        clearTextFields(txtSignupName, txtSignupEmail, txtSignupPassword);
-        openCard(panelLogMain, "panelLogin");
-    }//GEN-LAST:event_btnSignupEnterActionPerformed
-
-    private void btnSignupClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupClearActionPerformed
-        // Limpa os campos
-        clearTextFields(txtSignupName, txtSignupEmail, txtSignupPassword);
-    }//GEN-LAST:event_btnSignupClearActionPerformed
-
-    private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
-        // Limpa os campos, "desativa" o frame e "abilita" o JFrame da aplicação e coloca o frame no meio da tela
-        clearTextFields(txtLoginEmail, txtSignupName, txtSignupEmail, txtLoginPassword, txtSignupPassword);
-        logUser.setVisible(false);
-        setVisible(true);
-        setLocationRelativeTo(null);
-    }//GEN-LAST:event_btnLoginEnterActionPerformed
-
     private void btnUserLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLogoutActionPerformed
         // Faz um verificação usando PopUp se clicar em "sim" o aplicativo é imediatamente encerrado
         if (PopUp.showConfirm("Logout", "Deseja realmentre fechar o aplicativo?\nAviso: ao fechar o aplicativo a música será descontinuada!")) {
@@ -2868,17 +2464,17 @@ public class IdealMusic extends javax.swing.JFrame {
     private void checkboxSelectMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxSelectMusicActionPerformed
         // Abre o card correspondente a ação
         openCard(panelViewUpdates, "panelViewUpdatesMusic");
-        
+
         // captura o model da JList
         DefaultListModel<String> updatesListModel = (DefaultListModel<String>) listSelectUpdate.getModel();
-        
+
         // remove todos os dados que estão na JList (apenas por segurança, para evitar colisão de dados)
         updatesListModel.removeAllElements();
 
         // Lê as músicas que estão no banco de dados e imprime-as na JList
         ArrayList<String> updatesList = dbModel.readAll("music", null, "mname");
         for (int i = 0; i < updatesList.size(); i++) {
-            if(updatesList.get(i).contains("default.png")) {
+            if (updatesList.get(i).contains("default.png")) {
                 break;
             }
             updatesListModel.addElement(updatesList.get(i));
@@ -3116,7 +2712,7 @@ public class IdealMusic extends javax.swing.JFrame {
 
         // captura o model da JList
         DefaultListModel<String> updatesListModel = (DefaultListModel<String>) listSelectUpdate.getModel();
-        
+
         // remove todos os dados que estão na JList (apenas por segurança, para evitar colisão de dados)
         updatesListModel.removeAllElements();
 
@@ -3131,7 +2727,7 @@ public class IdealMusic extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdmEditActionPerformed
 
     private void checkboxSelectArtistStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkboxSelectArtistStateChanged
- 
+
     }//GEN-LAST:event_checkboxSelectArtistStateChanged
 
     private void checkboxSelectArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxSelectArtistActionPerformed
@@ -3140,7 +2736,7 @@ public class IdealMusic extends javax.swing.JFrame {
 
         // captura o model da JList
         DefaultListModel<String> updatesListModel = (DefaultListModel<String>) listSelectUpdate.getModel();
-        
+
         // remove todos os dados que estão na JList (apenas por segurança, para evitar colisão de dados)
         updatesListModel.removeAllElements();
 
@@ -3157,7 +2753,7 @@ public class IdealMusic extends javax.swing.JFrame {
 
         // captura o model da JList
         DefaultListModel<String> updatesListModel = (DefaultListModel<String>) listSelectUpdate.getModel();
-        
+
         // remove todos os dados que estão na JList (apenas por segurança, para evitar colisão de dados)
         updatesListModel.removeAllElements();
 
@@ -3168,23 +2764,10 @@ public class IdealMusic extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkboxSelectAvatarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IdealMusic();
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxCreateAvatarStatus;
     private javax.swing.JComboBox<String> boxCreateMusicArtist;
     private javax.swing.JComboBox<String> boxCreateMusicCategory;
-    private javax.swing.JComboBox<String> boxMusicArtist;
-    private javax.swing.JComboBox<String> boxMusicCategory;
     private javax.swing.JComboBox<String> boxViewAvatarStatus;
     private javax.swing.JComboBox<String> boxViewMusicCategory;
     private javax.swing.JButton btnAdmCreateAdm;
@@ -3205,20 +2788,15 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JButton btnCreateUserAdmCancel;
     private javax.swing.JButton btnCreateUserAdmEnter;
     private javax.swing.JButton btnFavoriteRemove;
-    private javax.swing.JButton btnLoginEnter;
     private javax.swing.JButton btnMenuFavorite;
     private javax.swing.JButton btnMenuMusic;
     private javax.swing.JButton btnMenuUser;
     private javax.swing.JButton btnPlayerBack;
     private javax.swing.JButton btnPlayerControl;
-    private javax.swing.JButton btnPlayerLike;
-    private javax.swing.JButton btnPlayerLike1;
     private javax.swing.JButton btnPlayerNext;
     private javax.swing.JButton btnPlayerVolume;
     private javax.swing.JButton btnSelectUpdateCancel;
     private javax.swing.JButton btnSelectUpdateEnter;
-    private javax.swing.JButton btnSignupClear;
-    private javax.swing.JButton btnSignupEnter;
     private javax.swing.JButton btnUpdateAvatarCancel;
     private javax.swing.JButton btnUpdateAvatarEnter;
     private javax.swing.JButton btnUserEdit;
@@ -3244,6 +2822,7 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkboxSelectArtist;
     private javax.swing.JCheckBox checkboxSelectAvatar;
     private javax.swing.JCheckBox checkboxSelectMusic;
+    private javax.swing.JFrame frameChooser;
     private javax.swing.JFrame frameUtiliti;
     private javax.swing.JLabel labelAdm1;
     private javax.swing.JLabel labelAdm4;
@@ -3265,26 +2844,12 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JLabel labelCreateUserAdm3;
     private javax.swing.JLabel labelCreateUserAdm4;
     private javax.swing.JLabel labelFavorite1;
-    private javax.swing.JLabel labelLogin;
-    private javax.swing.JLabel labelLogin1;
-    private javax.swing.JLabel labelLogin2;
-    private javax.swing.JLabel labelLogin3;
-    private javax.swing.JLabel labelLogin4;
     private javax.swing.JLabel labelMenuLogo;
-    private javax.swing.JLabel labelMusic1;
-    private javax.swing.JLabel labelMusic2;
-    private javax.swing.JLabel labelMusic3;
     private javax.swing.JLabel labelPLayerMusic;
-    private javax.swing.JLabel labelPlayerArtist;
-    private javax.swing.JLabel labelPlayerImage;
     private javax.swing.JLabel labelPlayerTime;
     private javax.swing.JLabel labelPlayerTimeDuraction;
     private javax.swing.JLabel labelSelectUpdate1;
     private javax.swing.JLabel labelSelectUpdate2;
-    private javax.swing.JLabel labelSignup1;
-    private javax.swing.JLabel labelSignup2;
-    private javax.swing.JLabel labelSignup3;
-    private javax.swing.JLabel labelSignup4;
     private javax.swing.JLabel labelUpdateAvatar1;
     private javax.swing.JLabel labelUpdateAvatar2;
     private javax.swing.JLabel labelUpdateAvatar3;
@@ -3311,17 +2876,13 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JLabel labelViewMusic6;
     private javax.swing.JLabel lavelViewAvatar;
     private javax.swing.JList<String> listFavorite;
-    private javax.swing.JList<String> listMusic;
     private javax.swing.JList<String> listSelectUpdate;
-    private javax.swing.JFrame logUser;
     private javax.swing.JPanel panelAdmMain;
     private javax.swing.JPanel panelCreateArtist;
     private javax.swing.JPanel panelCreateAvatar;
     private javax.swing.JPanel panelCreateMusic;
     private javax.swing.JPanel panelCreateUserAdm;
     private javax.swing.JPanel panelFavorite;
-    private javax.swing.JPanel panelLogMain;
-    private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelMenu1;
@@ -3330,7 +2891,6 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JPanel panelPlayer1;
     private javax.swing.JPanel panelPlayer2;
     private javax.swing.JPanel panelSelectUpdates;
-    private javax.swing.JPanel panelSignup;
     private javax.swing.JPanel panelUpdateAvatar;
     private javax.swing.JPanel panelUpdatePassword;
     private javax.swing.JPanel panelUpdates;
@@ -3343,10 +2903,11 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JPanel panelViewUpdatesMusic;
     private javax.swing.JScrollPane scrollAvatar;
     private javax.swing.JScrollPane scrollFavorite;
-    private javax.swing.JScrollPane scrollListMusic;
+    private javax.swing.JScrollPane scrollMusic;
     private javax.swing.JScrollPane scrollSelectUpdate;
     private javax.swing.JSlider sliderPlayerMusic;
     private javax.swing.JSlider sliderPlayerVolume;
+    private javax.swing.JTable tableMusic;
     private javax.swing.JTree treeAvatar;
     private javax.swing.JTextField txtCreateArtistName;
     private javax.swing.JTextField txtCreateAvatarImg;
@@ -3356,12 +2917,6 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JTextField txtCreateUserAdmEmail;
     private javax.swing.JTextField txtCreateUserAdmName;
     private javax.swing.JPasswordField txtCreateUserAdmPassword;
-    private javax.swing.JTextField txtLoginEmail;
-    private javax.swing.JPasswordField txtLoginPassword;
-    private javax.swing.JTextField txtMusicSearch;
-    private javax.swing.JTextField txtSignupEmail;
-    private javax.swing.JTextField txtSignupName;
-    private javax.swing.JPasswordField txtSignupPassword;
     private javax.swing.JTextField txtUserEmail;
     private javax.swing.JTextField txtUserName;
     private javax.swing.JPasswordField txtUserPasswordNew;
@@ -3373,28 +2928,63 @@ public class IdealMusic extends javax.swing.JFrame {
     private javax.swing.JTextField txtViewMusicSound;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Método resposável por abrir um card de um deteminado painel
+     *
+     * @param panel é o painel que contém o card que deverá ser aberto
+     * @param cardName o nome do card que deve ser aberto
+     */
     public void openCard(javax.swing.JPanel panel, String cardName) {
         java.awt.CardLayout card = (java.awt.CardLayout) panel.getLayout();
         card.show(panel, cardName);
     }
 
+    /**
+     * Método responsável por verificar se os jTextField tem conteúdo(caracter)
+     *
+     * @param fields é/são o(s) JTextField
+     * @return
+     */
     public boolean verifyTextFields(javax.swing.JTextField... fields) {
+        // Lopping correndo todos os JTextField
         for (javax.swing.JTextField field : fields) {
+            // Aqui verifica se tem caracteres dentro do JTextField
             if (field.getText().trim().isEmpty()) {
+                // Se não tiver, interrompe o método e retorna false
                 return false;
             }
         }
+
+        // Caso todos os inputs tenham passado no teste, isso é tem conteúdo digitado neles, retorna true
         return true;
     }
 
+    /**
+     * Método responsável por limpar os campos
+     *
+     * @param fields é/são o(s) JTextField
+     */
     public void clearTextFields(javax.swing.JTextField... fields) {
+        // Looping correndo todos os JTextField
         for (javax.swing.JTextField field : fields) {
+            // Se o conteúdo é diferente de vazio...
             if (!field.getText().equals("")) {
+                // Deixe-o vazio
                 field.setText("");
             }
         }
     }
 
+    /**
+     * Método responsável por abrir um JFileChooser
+     *
+     * @param title é o título do JFileChooser
+     * @param campo é campo que terá retornado o caminho do arquivo
+     * @param description é descrição que aparecerá no canto inferior do
+     * JFileChooser
+     * @param types é/são o(s) tipo de extensão de arquivos que podem ser lidos
+     * pelo JFileChooser
+     */
     public void fileChooser(String title, javax.swing.JTextField campo, String description, String... types) {
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle(title);
@@ -3402,10 +2992,12 @@ public class IdealMusic extends javax.swing.JFrame {
         fc.setCurrentDirectory(new File(System.getProperty("user.home") + "/desktop"));
         description = description + " (*." + String.join(";*.", types) + ")";
         FileNameExtensionFilter filter = new FileNameExtensionFilter(description, types);
+        fc.setFileHidingEnabled(true);
+        fc.setMultiSelectionEnabled(false);
         fc.setFileFilter(filter);
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
-        int ret = fc.showOpenDialog(this);
+        int ret = fc.showOpenDialog(frameChooser);
 
         if (ret == JFileChooser.APPROVE_OPTION) {
             campo.setText(fc.getSelectedFile().getPath());

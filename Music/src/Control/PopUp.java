@@ -3,7 +3,6 @@ package Control;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author Kaik D' Andrade
  */
 public class PopUp {
