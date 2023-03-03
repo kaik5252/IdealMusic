@@ -5,7 +5,7 @@ public class APP extends javax.swing.JFrame {
     public APP() {
         initComponents();
         setLocationRelativeTo(null);
-        setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
+        setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("resources/icons/logo_icon.png"));
     }
 
     @SuppressWarnings("unchecked")
@@ -159,7 +159,7 @@ public class APP extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginEmailActionPerformed
 
     private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
-        // TODO add your handling code here:
+        MusicInterface_Employee musicInterface_Employee = new MusicInterface_Employee();
     }//GEN-LAST:event_btnLoginEnterActionPerformed
 
     /**
