@@ -56,6 +56,7 @@ public class Config {
      * Método resposável por retornar se o login é válido
      *
      * @author Kaik D' Andrade
+     * @param campoLogin
      * @return
      */
     public static boolean isLogin(javax.swing.JTextField campoLogin) {
