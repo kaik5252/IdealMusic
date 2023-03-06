@@ -13,7 +13,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * 
  * @author Kaik D' Andrade
  */
-public class ConfigMusic {
+public final class ConfigMusic {
 
     private Clip clip = null;
     boolean play = false;

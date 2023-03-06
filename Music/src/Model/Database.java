@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
  * @author Kaik D' Andrade
  * @author Gabriel Souza
  */
-public class DatabaseModel {
+public class Database {
 
     private static final String URL = "jdbc:mysql://localhost:3306/idealmusic?user=root&password=";
     private Connection conn;

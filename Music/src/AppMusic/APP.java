@@ -1,11 +1,16 @@
 package AppMusic;
 
+import Control.Config;
+import Model.Database;
+
 public class APP extends javax.swing.JFrame {
+
+    private static final Database DB = new Database();
 
     public APP() {
         initComponents();
         setLocationRelativeTo(null);
-        setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("resources/icons/logo_icon.png"));
+        setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
     }
 
     @SuppressWarnings("unchecked")
@@ -13,13 +18,13 @@ public class APP extends javax.swing.JFrame {
     private void initComponents() {
 
         panelLogin = new javax.swing.JPanel();
-        txtLoginEmail = new javax.swing.JTextField();
+        txtLoginLogin = new javax.swing.JTextField();
         labelLogin1 = new javax.swing.JLabel();
         btnLoginEnter = new javax.swing.JButton();
         labelLogin2 = new javax.swing.JLabel();
         labelLogin3 = new javax.swing.JLabel();
         txtLoginPassword = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
+        labelLoginLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login:");
@@ -34,16 +39,16 @@ public class APP extends javax.swing.JFrame {
         panelLogin.setMaximumSize(new java.awt.Dimension(450, 250));
         panelLogin.setMinimumSize(new java.awt.Dimension(450, 250));
 
-        txtLoginEmail.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        txtLoginEmail.setAlignmentX(0.0F);
-        txtLoginEmail.setAlignmentY(0.0F);
-        txtLoginEmail.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtLoginEmail.setMaximumSize(new java.awt.Dimension(260, 30));
-        txtLoginEmail.setMinimumSize(new java.awt.Dimension(260, 30));
-        txtLoginEmail.setPreferredSize(new java.awt.Dimension(260, 30));
-        txtLoginEmail.addActionListener(new java.awt.event.ActionListener() {
+        txtLoginLogin.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txtLoginLogin.setAlignmentX(0.0F);
+        txtLoginLogin.setAlignmentY(0.0F);
+        txtLoginLogin.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        txtLoginLogin.setMaximumSize(new java.awt.Dimension(260, 30));
+        txtLoginLogin.setMinimumSize(new java.awt.Dimension(260, 30));
+        txtLoginLogin.setPreferredSize(new java.awt.Dimension(260, 30));
+        txtLoginLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLoginEmailActionPerformed(evt);
+                txtLoginLoginActionPerformed(evt);
             }
         });
 
@@ -72,7 +77,7 @@ public class APP extends javax.swing.JFrame {
 
         labelLogin3.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         labelLogin3.setForeground(new java.awt.Color(255, 255, 255));
-        labelLogin3.setText("Nome:");
+        labelLogin3.setText("Login:");
         labelLogin3.setAlignmentY(0.0F);
 
         txtLoginPassword.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
@@ -83,7 +88,7 @@ public class APP extends javax.swing.JFrame {
         txtLoginPassword.setMinimumSize(new java.awt.Dimension(260, 30));
         txtLoginPassword.setPreferredSize(new java.awt.Dimension(260, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/logo_menor.png"))); // NOI18N
+        labelLoginLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
@@ -93,7 +98,7 @@ public class APP extends javax.swing.JFrame {
                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLoginLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2))
+                        .addComponent(labelLoginLogo))
                     .addGroup(panelLoginLayout.createSequentialGroup()
                         .addContainerGap(89, Short.MAX_VALUE)
                         .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -107,7 +112,7 @@ public class APP extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelLogin1)
-                                    .addComponent(txtLoginEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(txtLoginLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         panelLoginLayout.setVerticalGroup(
@@ -117,7 +122,7 @@ public class APP extends javax.swing.JFrame {
                 .addComponent(labelLogin1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLoginEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLoginLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelLogin3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -126,7 +131,7 @@ public class APP extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnLoginEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(jLabel2)
+                .addComponent(labelLoginLogo)
                 .addContainerGap())
         );
 
@@ -136,75 +141,74 @@ public class APP extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(panelLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(panelLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtLoginEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginEmailActionPerformed
+    private void txtLoginLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLoginEmailActionPerformed
+    }//GEN-LAST:event_txtLoginLoginActionPerformed
 
     private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
-        MusicInterface_Employee musicInterface_Employee = new MusicInterface_Employee();
+        if (Config.verifyTextFields(txtLoginLogin, txtLoginPassword)) {
+            //if (Config.isCorrect(txtLoginLogin, "login") && Config.isCorrect(txtLoginPassword, "password")) {
+                openInterface("employee");
+            //}
+        }
+
+        Config.clearTextFields(txtLoginLogin, txtLoginPassword);
     }//GEN-LAST:event_btnLoginEnterActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(APP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(APP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(APP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(APP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new APP().setVisible(true);
-            }
-        });
+        APP app = new APP();
+        app.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoginEnter;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelLogin1;
     private javax.swing.JLabel labelLogin2;
     private javax.swing.JLabel labelLogin3;
+    private javax.swing.JLabel labelLoginLogo;
     private javax.swing.JPanel panelLogin;
-    private javax.swing.JTextField txtLoginEmail;
+    private javax.swing.JTextField txtLoginLogin;
     private javax.swing.JPasswordField txtLoginPassword;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Método responsável por pégar o tipo do usuário e abrir a interface correspondente
+     * 
+     * @author Kaik D' Andrade
+     * @param type
+     */
+    private void openInterface(String type) {
+
+        switch (type) {
+            case "employee" -> {
+                MusicInterface_Employee interfaceEmployee = new MusicInterface_Employee();
+                interfaceEmployee.setVisible(true);
+                interfaceEmployee.setLocationRelativeTo(null);
+                setVisible(false);
+            }
+
+            case "artist" -> {
+                MusicInterface_Artist interfaceArtist = new MusicInterface_Artist();
+                interfaceArtist.setVisible(true);
+                interfaceArtist.setLocationRelativeTo(null);
+                setVisible(false);
+            }
+
+            default -> {
+                break;
+            }
+        }
+    }
 }

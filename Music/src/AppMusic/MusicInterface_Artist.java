@@ -1,8 +1,8 @@
 package AppMusic;
 
 import Control.PopUp;
-import Control.Validator;
-import Model.DatabaseModel;
+import Control.Config;
+import Model.Database;
 import java.awt.Dimension;
 import java.io.File;
 import java.time.LocalTime;
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class MusicInterface_Artist extends javax.swing.JFrame {
 
-    private DatabaseModel dbModel = new DatabaseModel();
+    private Database dbModel = new Database();
     private int userId = 0;
     boolean muted = false;
     int som = 0;
@@ -207,9 +207,9 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
         panelMenu = new javax.swing.JPanel();
         btnMenuMusic = new javax.swing.JButton();
         btnMenuFavorite = new javax.swing.JButton();
-        btnMenuUser = new javax.swing.JButton();
         panelMenu1 = new javax.swing.JPanel();
         labelMenuLogo = new javax.swing.JLabel();
+        btnMenuFavorite1 = new javax.swing.JButton();
 
         frameUtiliti.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         frameUtiliti.setMinimumSize(new java.awt.Dimension(500, 338));
@@ -2184,16 +2184,16 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
         panelPlayer1Layout.setHorizontalGroup(
             panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPlayer1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPlayer1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(labelPlayerTimeDuraction)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sliderPlayerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(labelPlayerTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelPlayer1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnPlayerBack)
                         .addGap(18, 18, 18)
                         .addComponent(btnPlayerControl)
@@ -2284,7 +2284,7 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
         panelMenu.setPreferredSize(new java.awt.Dimension(300, 640));
 
         btnMenuMusic.setBackground(new java.awt.Color(0, 0, 0));
-        btnMenuMusic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/textMusic.png"))); // NOI18N
+        btnMenuMusic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/textAlbuns.png"))); // NOI18N
         btnMenuMusic.setAlignmentY(0.0F);
         btnMenuMusic.setBorder(null);
         btnMenuMusic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -2300,7 +2300,7 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
         });
 
         btnMenuFavorite.setBackground(new java.awt.Color(0, 0, 0));
-        btnMenuFavorite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/textFavorite.png"))); // NOI18N
+        btnMenuFavorite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/textMusica.png"))); // NOI18N
         btnMenuFavorite.setAlignmentY(0.0F);
         btnMenuFavorite.setBorder(null);
         btnMenuFavorite.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -2315,25 +2315,9 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
             }
         });
 
-        btnMenuUser.setBackground(new java.awt.Color(0, 0, 0));
-        btnMenuUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/textUser.png"))); // NOI18N
-        btnMenuUser.setAlignmentY(0.0F);
-        btnMenuUser.setBorder(null);
-        btnMenuUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMenuUser.setFocusable(false);
-        btnMenuUser.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        btnMenuUser.setMaximumSize(new java.awt.Dimension(300, 100));
-        btnMenuUser.setMinimumSize(new java.awt.Dimension(300, 100));
-        btnMenuUser.setPreferredSize(new java.awt.Dimension(300, 100));
-        btnMenuUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuUserActionPerformed(evt);
-            }
-        });
-
         panelMenu1.setBackground(new java.awt.Color(179, 7, 83));
 
-        labelMenuLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/logo.png"))); // NOI18N
+        labelMenuLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/logo_grande.png"))); // NOI18N
         labelMenuLogo.setAlignmentY(0.0F);
         labelMenuLogo.setMaximumSize(new java.awt.Dimension(300, 240));
         labelMenuLogo.setMinimumSize(new java.awt.Dimension(300, 180));
@@ -2360,16 +2344,33 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        btnMenuFavorite1.setBackground(new java.awt.Color(0, 0, 0));
+        btnMenuFavorite1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/textArtista.png"))); // NOI18N
+        btnMenuFavorite1.setAlignmentY(0.0F);
+        btnMenuFavorite1.setBorder(null);
+        btnMenuFavorite1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenuFavorite1.setFocusable(false);
+        btnMenuFavorite1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnMenuFavorite1.setMaximumSize(new java.awt.Dimension(300, 100));
+        btnMenuFavorite1.setMinimumSize(new java.awt.Dimension(300, 100));
+        btnMenuFavorite1.setPreferredSize(new java.awt.Dimension(300, 100));
+        btnMenuFavorite1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuFavorite1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);
         panelMenuLayout.setHorizontalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
-                .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panelMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMenuMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMenuFavorite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMenuUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(panelMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMenuMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMenuFavorite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnMenuFavorite1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelMenuLayout.setVerticalGroup(
@@ -2380,8 +2381,9 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
                 .addComponent(btnMenuMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnMenuFavorite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnMenuUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(btnMenuFavorite1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -2405,11 +2407,6 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMenuUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuUserActionPerformed
-        // Abre o apinel correspodente a ação
-        openCard(panelMain, "panelUsers");
-    }//GEN-LAST:event_btnMenuUserActionPerformed
 
     private void btnMenuFavoriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuFavoriteActionPerformed
         // Abre o apinel correspodente a ação
@@ -2585,7 +2582,7 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
             String userName = txtCreateUserAdmName.getText().trim();
             String email = txtCreateUserAdmEmail.getText().trim();
             String pass = new String(txtCreateUserAdmPassword.getPassword()).trim();
-            if (Validator.isEmail(email) && Validator.isPassword(pass)) {
+            if (Config.isLogin(email) && Config.isPassword(pass)) {
                 dbModel.createUser(userName, email, pass, "adm");
                 clearTextFields(txtCreateUserAdmName, txtCreateUserAdmEmail, txtCreateUserAdmPassword);
                 frameUtiliti.setVisible(false);
@@ -2611,7 +2608,7 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
             String passOld = new String(txtUserPasswordOld.getPassword()).trim();
 
             // Verifica se ambas as senhas passam no Validator
-            if (Validator.isPassword(passNew) && Validator.isPassword(passOld)) {
+            if (Config.isPassword(passNew) && Config.isPassword(passOld)) {
                 // Se passar... Registra a troca de senha no banco de dados
                 dbModel.setPassword(userId, passOld, passOld);
 
@@ -2764,6 +2761,10 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkboxSelectAvatarActionPerformed
 
+    private void btnMenuFavorite1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuFavorite1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMenuFavorite1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxCreateAvatarStatus;
     private javax.swing.JComboBox<String> boxCreateMusicArtist;
@@ -2789,8 +2790,8 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
     private javax.swing.JButton btnCreateUserAdmEnter;
     private javax.swing.JButton btnFavoriteRemove;
     private javax.swing.JButton btnMenuFavorite;
+    private javax.swing.JButton btnMenuFavorite1;
     private javax.swing.JButton btnMenuMusic;
-    private javax.swing.JButton btnMenuUser;
     private javax.swing.JButton btnPlayerBack;
     private javax.swing.JButton btnPlayerControl;
     private javax.swing.JButton btnPlayerNext;
