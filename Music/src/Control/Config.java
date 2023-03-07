@@ -1,7 +1,11 @@
 package Control;
 
+import java.io.File;
 import javax.swing.JTextField;
 import java.util.regex.Pattern;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * @author Kaik D' Andrade
@@ -9,7 +13,7 @@ import java.util.regex.Pattern;
 public class Config {
 
     private static final String PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,20}$";
-    private static final String LOGIN_PATTERN = "^[a-zA-Z0-9#_.]{6,30}$";
+    private static final String LOGIN_PATTERN = "^[a-zA-Z0-9#-_.]{6,30}$";
 
     /**
      * Método que retorna se o (treco) é correto
@@ -118,5 +122,37 @@ public class Config {
     public static void openCard(javax.swing.JPanel panel, String cardName) {
         java.awt.CardLayout card = (java.awt.CardLayout) panel.getLayout();
         card.show(panel, cardName);
+    }
+    
+        /**
+     * Método responsável por abrir um JFileChooser
+     *
+     * @param title é o título do JFileChooser
+     * @param campo é campo que terá retornado o caminho do arquivo
+     * @param description é descrição que aparecerá no canto inferior do
+     * JFileChooser
+     * @param types é/são o(s) tipo de extensão de arquivos que podem ser lidos
+     * pelo JFileChooser
+     */
+    public void fileChooser(String title, javax.swing.JTextField campo, String description, String... types) {
+        JFrame frameChooser = new JFrame();
+        frameChooser.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
+        
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle(title);
+        fc.setAcceptAllFileFilterUsed(false);
+        fc.setCurrentDirectory(new File(System.getProperty("user.home") + "/desktop"));
+        description = description + " (*." + String.join(";*.", types) + ")";
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(description, types);
+        fc.setFileHidingEnabled(true);
+        fc.setMultiSelectionEnabled(false);
+        fc.setFileFilter(filter);
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        int ret = fc.showOpenDialog(frameChooser);
+
+        if (ret == JFileChooser.APPROVE_OPTION) {
+            campo.setText(fc.getSelectedFile().getPath());
+        }
     }
 }

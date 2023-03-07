@@ -1,6 +1,7 @@
 package AppMusic;
 
 import Control.Config;
+import Control.PopUp;
 import Model.Database;
 
 public class APP extends javax.swing.JFrame {
@@ -160,7 +161,7 @@ public class APP extends javax.swing.JFrame {
     private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
         if (Config.verifyTextFields(txtLoginLogin, txtLoginPassword)) {
             //if (Config.isCorrect(txtLoginLogin, "login") && Config.isCorrect(txtLoginPassword, "password")) {
-                openInterface("employee");
+            openInterface();
             //}
         }
 
@@ -184,14 +185,20 @@ public class APP extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * Método responsável por pégar o tipo do usuário e abrir a interface correspondente
-     * 
+     * Método responsável por pegar o tipo do usuário e abrir a interface
+     * correspondente
+     *
      * @author Kaik D' Andrade
      * @param type
      */
-    private void openInterface(String type) {
+    private void openInterface() {
 
-        switch (type) {
+        //String log = DB.login(txtLoginLogin.getText(), new String(txtLoginPassword.getPassword()));
+        
+        // --Dev↓↓↓↓
+        String log = "employee";
+        
+        switch (log) {
             case "employee" -> {
                 MusicInterface_Employee interfaceEmployee = new MusicInterface_Employee();
                 interfaceEmployee.setVisible(true);
@@ -207,6 +214,7 @@ public class APP extends javax.swing.JFrame {
             }
 
             default -> {
+                PopUp.showNotefy("Usuário inexistente...\nVerifique os dados e tente novamente.");
                 break;
             }
         }

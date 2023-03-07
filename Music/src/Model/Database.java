@@ -163,10 +163,10 @@ public class Database {
      * @return int (0 => erro; >0 => idUser)
      * @author Kaik D' Andrade
      */
-    public int login(String userEmail, String userPassword) {
+    public String login(String userEmail, String userPassword) {
 
         // Comando SQL
-        sql = "SELECT uid FROM users WHERE uemail = ? AND upassword = sha2(?, 512)";
+        sql = "SELECT utype FROM users WHERE ulogin = ? AND upassword = sha2(?, 512)";
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
@@ -181,15 +181,12 @@ public class Database {
             setRes(pstm.executeQuery());
 
             if (getRes().next()) {
-                // Retorna o id do usuário se o email e a senha estiverem corretos
-                return getRes().getInt("uid");
+                // Retorna o tipo do usuário se o login e a senha estiverem corretos
+                return getRes().getString("utype");
 
             } else {
-                // Exibe uma mensagem de alerta ao usuário
-                PopUp.showAlert("Email e/ou senha incorreto(s).\nVerifique os dados e tente novamente...");
-
-                // Retorna 0 se tiver algum dos dados errados
-                return 0;
+                // Retorna nulo se tiver algum dado errado
+                return null;
             }
 
         } catch (SQLException error) {
@@ -197,7 +194,7 @@ public class Database {
             PopUp.showWarning("DatabaseModel\\login\n" + error);
 
             // Retorna 0
-            return 0;
+            return null;
 
         } finally {
             // Finaliza toda a conexão com o banco de dados
