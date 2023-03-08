@@ -17,11 +17,11 @@ public class Config {
 
     /**
      * Método que retorna se o (treco) é correto
-     * 
+     *
      * @author Kaik D' Andrade
      * @param textField
      * @param type
-     * @return 
+     * @return
      */
     public static boolean isCorrect(JTextField textField, String type) {
 
@@ -43,43 +43,13 @@ public class Config {
             }
         }
     }
-
+    
     /**
-     * Método resposável por retornar se o login é válido
-     *
-     * @author Kaik D' Andrade
-     * @param login
-     * @return
+     * Método responsável por adicionar uma tabela ao banco de dados
+     * 
+     * @param tabela 
      */
-    public static boolean isLogin(String login) {
-        Pattern pattern = Pattern.compile(LOGIN_PATTERN);
-        return pattern.matcher(login).matches();
-    }
-
-    /**
-     * Método resposável por retornar se o login é válido
-     *
-     * @author Kaik D' Andrade
-     * @param campoLogin
-     * @return
-     */
-    public static boolean isLogin(javax.swing.JTextField campoLogin) {
-        String login = campoLogin.getText();
-        Pattern pattern = Pattern.compile(LOGIN_PATTERN);
-        return pattern.matcher(login).matches();
-    }
-
-    /**
-     * Método responsável por retornar se a senha é válida
-     *
-     * @author Kaik D' Andrade
-     * @param password
-     * @return
-     */
-    public static boolean isPassword(String password) {
-        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-        return pattern.matcher(password).matches();
-    }
+    public static void addColumn(javax.swing.JTable tabela) {}
 
     /**
      * Método responsável por retornare se todos os campos de texto tem conteúdo
@@ -123,36 +93,81 @@ public class Config {
         java.awt.CardLayout card = (java.awt.CardLayout) panel.getLayout();
         card.show(panel, cardName);
     }
-    
-        /**
+
+    /**
+     * @author Kaik d' Andrade
+     * @param frame
+     * @param title
+     * @param panel
+     * @param card
+     */
+    public static void openFrame(JFrame frame, String title, javax.swing.JPanel panel, String card) {
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+        frame.setTitle(title);
+        frame.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
+        openCard(panel, card);
+    }
+
+    /**
+     *
+     * @param closeFrame
+     * @param openFrame
+     */
+    public static void closeFrame(JFrame closeFrame, JFrame openFrame) {
+        closeFrame.setVisible(false);
+        openFrame.setVisible(true);
+        openFrame.setLocationRelativeTo(null);
+    }
+
+    /**
      * Método responsável por abrir um JFileChooser
      *
-     * @param title é o título do JFileChooser
-     * @param campo é campo que terá retornado o caminho do arquivo
-     * @param description é descrição que aparecerá no canto inferior do
-     * JFileChooser
-     * @param types é/são o(s) tipo de extensão de arquivos que podem ser lidos
-     * pelo JFileChooser
+     * @param title
+     * @param description
+     * @param types
+     * @return
+     * @author Kaik D' Andrade
      */
-    public void fileChooser(String title, javax.swing.JTextField campo, String description, String... types) {
+    public static String fileChooser(String title, String description, String... types) {
+        // Cria um frame para comportar o JFileChooser
         JFrame frameChooser = new JFrame();
         frameChooser.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
-        
+
+        // Cria o JFileChooser e coloca um título
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle(title);
+
+        // Desativa a opção de `AllFiles`
         fc.setAcceptAllFileFilterUsed(false);
+
+        // Faz com que o JFileChooser abra no diretório referente ao desktop
         fc.setCurrentDirectory(new File(System.getProperty("user.home") + "/desktop"));
+
+        // Descrição do JFileChooser
         description = description + " (*." + String.join(";*.", types) + ")";
         FileNameExtensionFilter filter = new FileNameExtensionFilter(description, types);
+
+        // Deixa oculto os arquivos e diretórios ocultos 
         fc.setFileHidingEnabled(true);
+
+        // Desativa seleção multipla
         fc.setMultiSelectionEnabled(false);
+
+        // Põe um filtro no JFileChooser
         fc.setFileFilter(filter);
+
+        // Manda o JFileChooser enxergar
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
+        // Verifica se algum arquivo foi selecionado
         int ret = fc.showOpenDialog(frameChooser);
-
         if (ret == JFileChooser.APPROVE_OPTION) {
-            campo.setText(fc.getSelectedFile().getPath());
+            // Retorna o caminho do arquivo selecionado
+            return fc.getSelectedFile().getPath();
         }
+
+        // Caso não tenha selecionado um arquivo, retorna nulo
+        return null;
     }
 }

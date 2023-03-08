@@ -193,11 +193,11 @@ public class APP extends javax.swing.JFrame {
      */
     private void openInterface() {
 
-        //String log = DB.login(txtLoginLogin.getText(), new String(txtLoginPassword.getPassword()));
-        
+        //Users user = DB.login(txtLoginLogin.getText().trim(), new String(txtLoginPassword.getPassword()).trim());
+        // String log = user.getType();
         // --Dev↓↓↓↓
         String log = "employee";
-        
+
         switch (log) {
             case "employee" -> {
                 MusicInterface_Employee interfaceEmployee = new MusicInterface_Employee();

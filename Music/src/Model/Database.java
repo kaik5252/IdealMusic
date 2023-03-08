@@ -1,8 +1,6 @@
 package Model;
 
 import Control.PopUp;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
+import java.util.Arrays;
 
 /**
  * @author Kaik D' Andrade
@@ -35,6 +33,7 @@ public class Database {
         try {
             // Inicializa a conexão se ocorrer nenhum error
             setConn(DriverManager.getConnection(URL));
+
         } catch (SQLException error) {
             // Caso gere um erro
             PopUp.showWarning(error);
@@ -63,11 +62,10 @@ public class Database {
     }
 
     /**
-     * Método responsável por retornar todo o caminho(path) até a pasta
-     * `resources` do projeto no computador do usuário
+     * Método responsável por retornar o caminho absoluto do projeto, até a
+     * pasta `resources`
      *
-     * @param folder é o diretório que fica dentro de `resources`, se quiser
-     * referenciar `resources` deixe como ""
+     * @param folder
      * @return String
      * @author Kaik D' Andrade
      */
@@ -77,55 +75,18 @@ public class Database {
     }
 
     /**
-     * Método responsável por redimensionar uma imagem
+     * Método responsável por criar um novo usuário no banco de dados, seja ele
+     * funcionário ou artista
      *
-     * @param path é o caminho(path) da imagem no computador
-     * @param fileName é o nome do arquivo da imagem
-     * @param folder é a pasta na qual deve ser salva essa imagem (pasta dentro
-     * de `resources`)
-     * @param width é a largura de resize da imagem
-     * @param height é a altura de resize da imagem
+     * @param user
      * @author Kaik D' Andrade
      */
-    public static void resize(String path, String fileName, String folder, int width, int height) {
-        try {
-            // Pega a extensão da imagem
-            String extension = path.substring(path.lastIndexOf(".") + 1);
+    public void createUser(Users user) {
 
-            // Carrega o diretorio final
-            String finalPath = retPath(folder);
-
-            // Carrega a imagem original
-            BufferedImage originalImage = ImageIO.read(new File(path));
-
-            // Cria uma nova imagem redimensionada
-            Image newImage = originalImage.getScaledInstance(width, height, Image.SCALE_DEFAULT);
-            BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-            bufferedImage.getGraphics().drawImage(newImage, 0, 0, null);
-
-            // Salva a nova imagem na pasta do projeto
-            File output = new File(finalPath + "/" + fileName + "." + extension);
-            ImageIO.write(bufferedImage, extension, output);
-
-        } catch (IOException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\resize\n" + error);
-        }
-    }
-
-    /**
-     * Método responsável por criar um novo usuário no banco de dados
-     *
-     * @param userName é o nome do usuário
-     * @param userEmail é o email do usuário
-     * @param userPass é a senha do usuário
-     * @param userType é o tipo do usuário (user or adm)
-     * @author Gabriel Souza
-     */
-    public void createUser(String userName, String userEmail, String userPass, String userType) {
-
+        int id = 0;
+        String utype = null;
         // Comando SQL
-        sql = "INSERT INTO users(uname, uemail, upassword, uavatar, utype) VALUES (?, ?, sha2(?, 512), 1, ?)";
+        sql = "INSERT INTO users(uname, utel, ulogin, upassword, utype) VALUES (?, ?, ?, sha2(?, 512), ?)";
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
@@ -133,16 +94,43 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, userName);
-            getPstm().setString(2, userEmail);
-            getPstm().setString(3, userPass);
-            getPstm().setString(4, userType);
+            getPstm().setString(1, user.getName());
+            getPstm().setString(2, user.getTel());
+            getPstm().setString(3, user.getLogin());
+            getPstm().setString(4, user.getPassword());
+            getPstm().setString(5, user.getType());
 
             // Executa o comando SQL no banco de dados
             getPstm().execute();
 
-            // Exibe uma notificação ao usuário
-            PopUp.showNotefy("Sucesso!!! Usuário criado, seja bem vindo(a).");
+            setPstm(getConn().prepareStatement("SELECT * FROM users ORDER BY uid DESC LIMIT 1"));
+            setRes(getPstm().executeQuery());
+            if (getRes().next()) {
+                id = getRes().getInt("uid");
+                utype = getRes().getString("utype");
+            }
+
+            switch (utype) {
+                case "employee" -> {
+                    sql = "INSERT INTO employee(emuser) VALUES (?)";
+                    setPstm(getConn().prepareStatement(sql));
+                    getPstm().setInt(1, id);
+                    getPstm().execute();
+                    break;
+                }
+
+                case "artist" -> {
+                    sql = "INSERT INTO artist(artuser) VALUES (?)";
+                    setPstm(getConn().prepareStatement(sql));
+                    getPstm().setInt(1, id);
+                    getPstm().execute();
+                    break;
+                }
+
+                default -> {
+                    break;
+                }
+            }
 
         } catch (SQLException error) {
             // Caso gere um erro
@@ -158,12 +146,11 @@ public class Database {
     /**
      * Método responsável por realizar o login do usuário no banco de dados
      *
-     * @param userEmail é o email do usuário
-     * @param userPassword é a senha do usuário
-     * @return int (0 => erro; >0 => idUser)
+     * @param user
+     * @return
      * @author Kaik D' Andrade
      */
-    public String login(String userEmail, String userPassword) {
+    public int login(Users user) {
 
         // Comando SQL
         sql = "SELECT utype FROM users WHERE ulogin = ? AND upassword = sha2(?, 512)";
@@ -174,19 +161,18 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Altera os "?" pelos valores corretos
-            getPstm().setString(1, userEmail);
-            getPstm().setString(2, userPassword);
+            getPstm().setString(1, user.getLogin());
+            getPstm().setString(2, user.getPassword());
 
             // Executando o comando SQL no banco de dados
             setRes(pstm.executeQuery());
 
             if (getRes().next()) {
-                // Retorna o tipo do usuário se o login e a senha estiverem corretos
-                return getRes().getString("utype");
+                return getRes().getInt("uid");
 
             } else {
                 // Retorna nulo se tiver algum dado errado
-                return null;
+                return 0;
             }
 
         } catch (SQLException error) {
@@ -194,7 +180,7 @@ public class Database {
             PopUp.showWarning("DatabaseModel\\login\n" + error);
 
             // Retorna 0
-            return null;
+            return 0;
 
         } finally {
             // Finaliza toda a conexão com o banco de dados
@@ -206,16 +192,14 @@ public class Database {
     /**
      * Método responsável por alterar os dados de nome e email do usuário
      *
-     * @param userId é o id do usuário
-     * @param userName é o nome do usuário
-     * @param userEmail é o email do usuário
-     * @return (false => erro; true => sucesso)
+     * @param user
+     * @return
      * @author Gabriel Souza
      */
-    public boolean updateUser(int userId, String userName, String userEmail) {
+    public boolean updateUser(Users user) {
 
         // Comando SQL
-        sql = "UPDATE users SET uname = ?, uemail = ? WHERE uid = ?";
+        sql = "UPDATE users SET uname = ?, utel = ?, ulogin = ?, upassword = sha2(?, 512) WHERE uid = ?";
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
@@ -223,15 +207,14 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, userName);
-            getPstm().setString(2, userEmail);
-            getPstm().setInt(3, userId);
+            getPstm().setString(1, user.getName());
+            getPstm().setString(2, user.getTel());
+            getPstm().setString(3, user.getLogin());
+            getPstm().setString(4, user.getPassword());
+            getPstm().setInt(5, user.getId());
 
             // Executa o comando SQL no banco de dados
             getPstm().execute();
-
-            // Exibe uma notificação ao usuário
-            PopUp.showNotefy("Sucesso!!! Dados do usuário alterados.");
 
             // Retorna true
             return true;
@@ -251,64 +234,76 @@ public class Database {
     }
 
     /**
+     * Método resposável por cadastrar uma nova música no banco de dados
      *
-     * @param userId
-     * @param oldPass
-     * @param newPass
-     * @return
+     * @param music
      * @author Kaik D' Andrade
      */
-    public boolean setPassword(int userId, String oldPass, String newPass) {
+    public void createMusic(Music music) {
 
-        // Comando SQL
-        sql = "SELECT * FROM users WHERE uid = ? AND upassword = sha2(?, 512)";
+        int idCategory = 0;
+        int idMusic = 0;
 
         try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
+            // Comando SQL
+            sql = "SELECT cid FROM category WHERE cname = ?";
+
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
             setConnection();
             setPstm(getConn().prepareStatement(sql));
 
-            // Altera os "?" pelos valores corretos
-            getPstm().setInt(1, userId);
-            getPstm().setString(2, oldPass);
-
-            // Executando o comando SQL no banco de dados
-            setRes(pstm.executeQuery());
+            // Alterando os "?" pelos valores corretos
+            getPstm().setString(1, music.getCategory());
+            setRes(getPstm().executeQuery());
 
             if (getRes().next()) {
-                // Comando SQL
-                sql = "UPDATE users SET upassword = sha2(?, 512) WHERE uid = ?";
-
-                // Prepara, filtra e sanitiza o sql
-                setPstm(getConn().prepareStatement(sql));
-
-                // Altera os "?" pelos valores corretos
-                getPstm().setString(1, newPass);
-                getPstm().setInt(2, userId);
-
-                // executa o comando no banco de dados
-                getPstm().execute();
-
-                // Exibe uma notificação ao usuário
-                PopUp.showNotefy("Sucesso!!! Sua senha foi alterada.");
-
-                // retorna true
-                return true;
-
-            } else {
-                // Exibe uma mensagem de alerta ao usuário
-                PopUp.showAlert("Senha incorreta, tente novamente...");
-
-                // Retorna false
-                return false;
+                idCategory = getRes().getInt("cid");
             }
 
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\setPassword\n" + error);
+            // Comando SQL
+            sql = "INSERT INTO music(mname, msound, mcategory) VALUES (?, ?, ?)";
 
-            // Retorna false
-            return false;
+            setPstm(getConn().prepareStatement(sql));
+
+            // Alterando os "?" pelos valores corretos
+            getPstm().setString(1, music.getName());
+            getPstm().setString(2, music.getSound().substring(music.getSound().lastIndexOf("/") + 1));
+            getPstm().setInt(3, idCategory);
+
+            // Executa o comando SQL no banco de dados
+            getPstm().execute();
+
+            // Comando SQL
+            sql = "SELECT * FROM music ORDER BY mid DESC LIMIT 1";
+
+            setPstm(getConn().prepareStatement(sql));
+
+            setRes(getPstm().executeQuery());
+
+            if (getRes().next()) {
+                idMusic = getRes().getInt("mid");
+            }
+
+            sql = "SELECT alid FROM album WHERE alname = ?";
+            setPstm(getConn().prepareStatement(sql));
+            getPstm().setString(1, music.getAlbum());
+            setRes(getPstm().executeQuery());
+
+            if (getRes().next()) {
+                sql = "INSERT INTO enclose(enalbum, enmusic) VALUES (?, ?)";
+                setPstm(getConn().prepareStatement(sql));
+                getPstm().setInt(1, getRes().getInt("alid"));
+                getPstm().setInt(2, idMusic);
+            }
+
+            // Copia a música para a pasta do projeto
+            Path source = Paths.get(music.getSound());
+            Path destination = Paths.get(retPath("sounds") + "/" + music.getSound().substring(music.getSound().lastIndexOf("/") + 1));
+            Files.copy(source, destination);
+
+        } catch (IOException | SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\createMusic\n" + error);
 
         } finally {
             // Finaliza toda a conexão com o banco de dados
@@ -317,25 +312,202 @@ public class Database {
         }
     }
 
-    // @author Kaik D' Andrade
-    public void setAvatar() {
-        // Depois...
+    /**
+     * Método responsável por criar um novo albúm no banco de dados
+     *
+     * @param abm
+     */
+    public void createAlbums(Albums abm) {
+
+        int idArtist = 0;
+
+        try {
+            // Comando SQL
+            sql = "SELECT uid FROM users WHERE cname = ?";
+
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Alterando os "?" pelos valores corretos
+            getPstm().setString(1, abm.getArtist());
+            setRes(getPstm().executeQuery());
+
+            if (getRes().next()) {
+                idArtist = getRes().getInt("uid");
+            }
+
+            // Comando SQL
+            sql = "INSERT INTO album(alname, alartist) VALUES (?, ?)";
+
+            setPstm(getConn().prepareStatement(sql));
+
+            // Alterando os "?" pelos valores corretos
+            getPstm().setString(1, abm.getName());
+            getPstm().setInt(3, idArtist);
+
+            // Executa o comando SQL no banco de dados
+            getPstm().execute();
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\createAlbum\n" + error);
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
     }
 
     /**
-     * Método responsável por "deletar" o usuário do banco de dados
+     * Método responsável por cadastrar uma nova categoria no banco de dados
      *
-     * @param userId é o id do usuário
-     * @author Gabriel Souza
+     * @param name
+     * @author Kaik D' Andrade
      */
-    public void deleteUser(int userId) {
+    public void createCategory(String name) {
+
+        // Comando SQL
+        sql = "INSERT INTO category(cname) VALUES (?)";
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Alterando os "?" pelos valores corretos
+            getPstm().setString(1, name);
+
+            // Executa o comando SQL no banco de dados
+            getPstm().execute();
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\createCategory\n" + error);
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
+    }
+
+    /**
+     * Método responsável por ler e retornar todas os registro de uma coluna de
+     * alguma tabela do banco de dados
+     *
+     * @param table
+     * @param field
+     * @return
+     */
+    public ArrayList<String> readAll(String table, String... field) {
+
+        // Inicializando a varíavel que armazena os dados vindo do banco de dados
+        ArrayList<String> data = new ArrayList<>();
+
+        // Varíavel...
+        String newLine = "";
+
+        // Comando SQL
+        sql = "SELECT * FROM " + table;
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Executa o comando SQL no banco de dados
+            setRes(getPstm().executeQuery());
+
+            // Se for true, salva o dado do campo `field` dentro de `data`
+            while (getRes().next()) {
+                for (int i = 0; i < field.length; i++) {
+                    newLine += getRes().getString(field[i]) + ";";
+                }
+
+                newLine = newLine.substring(0, newLine.lastIndexOf(";"));
+                data.add(newLine);
+                newLine = "";
+            }
+
+            return data;
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\readAll\n" + error);
+
+            // Retorna null
+            return null;
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
+    }
+
+    /**
+     * Método responsável por excluir música
+     *
+     * @param id
+     * @author Kaik D' Andrade
+     */
+    public void deleteMusic(int id) {
+
+        // Comando SQL
+        sql = "SELECT * FROM music WHERE mid = ?";
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            // Alterando os "?" pelos valores corretos
+            getPstm().setInt(1, id);
+
+            // Executa o comando SQL no banco de dados
+            setRes(getPstm().executeQuery());
+
+            if (getRes().next()) {
+                String soundName = getRes().getString("msound");
+                File fileSound = new File(retPath("sounds") + soundName);
+                fileSound.delete();
+            }
+
+            sql = "DELETE FROM music WHERE mid = ?";
+            setPstm(getConn().prepareStatement(sql));
+            getPstm().setInt(1, id);
+            getPstm().execute();
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\deleteMusic\n" + error);
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
+    }
+
+    /**
+     * Método responsável por deletar um resgistro do banco de dados do banco de
+     * dados
+     *
+     * @param id
+     * @param campoId
+     * @param table
+     * @author Kaik D' Andrade
+     */
+    public void delete(int id, String campoId, String table) {
 
         // Verifica se o usuário confirmou a "exclusão" dos dados
         if (PopUp.showConfirm("Aviso:", "Deseja realmente excluir este usuário?")) {
             if (PopUp.showConfirmAlert("Realmente Deseja excluir esse registro.\nIsso Será permanente! Isto é sem volta!\\nAo clicar em proseguir automaticamente você assina o termo de responsabilidade...\nIsto é qualquer problema gerado por conta da exclusão desse dado cabe apenas a você!")) {
 
                 // Comando SQL
-                sql = "UPDATE users SET ustatus = 'del' WHERE uid = ?";
+                sql = "DELETE FROM ? WHERE ? = ?";
 
                 try {
                     // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
@@ -343,7 +515,9 @@ public class Database {
                     setPstm(getConn().prepareStatement(sql));
 
                     // Altera os "?" pelos valores corretos
-                    getPstm().setInt(1, userId);
+                    getPstm().setString(1, table);
+                    getPstm().setString(2, campoId);
+                    getPstm().setInt(3, id);
 
                     // Executa o comando SQL no banco de dados
                     getPstm().execute();
@@ -358,269 +532,6 @@ public class Database {
                     sql = null;
                 }
             }
-        }
-    }
-
-    /**
-     * Método responsável por criar um novo usuário no banco de dados
-     *
-     * @param artistName é o nome do artista
-     * @author Kaik D' Andrade
-     */
-    public void createArtist(String artistName) {
-
-        // Comando SQL
-        sql = "INSERT INTO artist(aname) VALUES (?)";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, artistName);
-
-            // Executa o comando SQL no banco de dados
-            getPstm().execute();
-
-            // Exibe uma notificação ao usuário
-            PopUp.showNotefy("Sucesso!!! Novo artista cadastrado.");
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\createArtist\n" + error);
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por alterar os dados de nome do artista
-     *
-     * @param artId é o id do artista
-     * @param artName é o "novo" nome do artista
-     * @author Gabriel Souza
-     */
-    public void updateArtist(int artId, String artName) {
-
-        // Comando SQL
-        sql = "UPDATE artist SET aname = ? WHERE aid = ?";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, artName);
-            getPstm().setInt(2, artId);
-
-            // Executa o comando SQL no banco de dados
-            getPstm().execute();
-
-            // Exibe uma notificação ao usuário
-            PopUp.showNotefy("Sucesso!!! Dados do artista alterados.");
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\updateArtist\n" + error);
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método resposável por cadastrar uma nova música no banco de dados
-     *
-     * @param musicName é o nome da música
-     * @param bannerName é o nome do banner da música
-     * @param bannerPath é o caminho(path) do banner no computador do usuário
-     * @param soundName é o nome do arquivo da música
-     * @param soundPath é o caminho do arquivo da música no computador do
-     * usuário
-     * @param ctg é o índice da categoria da música
-     * @param artist é o artista da música
-     * @author Kaik D' Andrade
-     */
-    public void createMusic(String musicName, String bannerName, String bannerPath, String soundName, String soundPath, int ctg, String artist) {
-
-        // Comando SQL
-        sql = "INSERT INTO music(mname, mbanner, msound, mctg) VALUES (?, ?, ?, ?)";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, musicName);
-            getPstm().setString(2, bannerName);
-            getPstm().setString(3, soundName);
-            getPstm().setInt(4, ctg);
-
-            // Executa o comando SQL no banco de dados
-            getPstm().execute();
-
-            // Copia o banner para a pasta do projeto
-            resize(bannerPath, bannerName, "banners", 150, 150);
-
-            // Copia a música para a pasta do projeto
-            Path source = Paths.get(soundPath);
-            Path destination = Paths.get(retPath("sounds") + "/" + soundName);
-            Files.copy(source, destination);
-
-            // Exibe uma notificação ao usuário
-            PopUp.showNotefy("Sucesso!!! Música cadastrada.");
-
-        } catch (IOException | SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\createMusic\n" + error);
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método resposável por cadastrar um novo avatar no banco de dados
-     *
-     * @param avatarName é o nome do arquivo do avatar
-     * @param avatarPath é o caminho(path) do avatar no computador do usuário
-     * @param status é o status do avatar
-     * @author Kaik D' Andrade
-     */
-    public void createAvatar(String avatarName, String avatarPath, String status) {
-
-        // Comando SQL
-        sql = "INSERT INTO avatar(avimg, avstatus) VALUES (?, ?)";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, avatarName);
-            getPstm().setString(2, status);
-
-            // Executa o comando SQL no banco de dados
-            getPstm().execute();
-
-            // Copia o avatar para a pasta do projeto
-            resize(avatarPath, avatarName, "avatar", 100, 100);
-
-            // Exibe uma notificação ao usuário
-            PopUp.showNotefy("Sucesso!!! Avatar cadastrado.");
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\createAvatar\n" + error);
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por excluir música
-     *
-     * @param mid é id da música
-     * @author Kaik D' Andrade
-     * 
-     * 
-     * Método não terminado e ainda não testado...
-     */
-    public void deleteMusic(int mid) {
-        
-        // Comando SQL
-        sql = "DELETE FROM music WHERE mid = ?";
-        sql = "SELECT * FROM music WHERE mid = ?";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setInt(1, mid);
-
-            // Executa o comando SQL no banco de dados
-            setRes(getPstm().executeQuery());
-
-            while (getRes().next()) {
-                String bannerName = getRes().getString("banner");
-                File fileBanner = new File(retPath("banners") + bannerName);
-                fileBanner.delete();
-
-                String soundName = getRes().getString("sound");
-                File fileSound = new File(retPath("sounds") + soundName);
-                fileSound.delete();
-            }
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\deleteMusic\n" + error);
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por ler e retornar todas os registro de uma coluna de alguma tabela do banco de dados
-     * @param table é a tabela do banco de dados
-     * @param limit é o limit da quantidade de retornos dos registros do banco de dados (pode ser null)
-     * @param field é nome da coluna
-     * @return
-     */
-    public ArrayList<String> readAll(String table, String limit, String field) {
-
-        // Inicializando as varíaveis
-        ArrayList<String> data = new ArrayList<>();
-        limit = (limit == null) ? "" : " LIMIT " + limit;
-
-        // Comando SQL
-        sql = "SELECT * FROM " + table + "" + limit;
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Executa o comando SQL no banco de dados
-            setRes(getPstm().executeQuery());
-
-            // Se for true, salva o dado do campo `field` dentro de `data`
-            while (getRes().next()) {
-                data.add(getRes().getString(field));
-            }
-
-            return data;
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\readAll\n" + error);
-            
-            // Retorna null
-            return null;
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-            data = null;
         }
     }
 

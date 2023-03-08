@@ -1,20 +1,30 @@
 package Model;
 
-import Control.Config;
-
 /**
  * @author Kaik D' Andrade
  */
-public class Users {
+public final class Users {
 
     private int id;
     private String name;
+    private String tel;
     private String login;
     private String password;
     private String type;
-    private int avatar;
-    private String status;
 
+    public Users(int id, String name, String tel, String login, String password, String type) {
+        setId(id);
+        setName(name);
+        setTel(tel);
+        setLogin(login);
+        setPassword(password);
+        setType(type);
+    }
+
+    public void createUser() {
+        new Database().createUser(this);
+    }
+    
     /**
      * @return the id
      */
@@ -49,6 +59,25 @@ public class Users {
     }
 
     /**
+     * @return the tel
+     */
+    public String getTel() {
+        return tel;
+    }
+
+    /**
+     * @param tel the tel to set
+     */
+    public void setTel(String tel) {
+        if (tel.trim().equals("")) {
+            this.tel = null;
+
+        } else {
+            this.tel = tel.trim();
+        }
+    }
+
+    /**
      * @return the login
      */
     public String getLogin() {
@@ -63,11 +92,6 @@ public class Users {
             this.login = null;
 
         } else {
-
-            if (!Config.isLogin(login)) {
-                this.login = null;
-            }
-
             this.login = login.trim();
         }
     }
@@ -83,7 +107,7 @@ public class Users {
      * @param password the password to set
      */
     public void setPassword(String password) {
-        if (!Config.isPassword(password.trim())) {
+        if (password.trim().equals("")) {
             this.password = null;
 
         } else {
@@ -107,39 +131,6 @@ public class Users {
 
         } else {
             this.type = null;
-        }
-    }
-
-    /**
-     * @return the avatar
-     */
-    public int getAvatar() {
-        return avatar;
-    }
-
-    /**
-     * @param avatar the avatar to set
-     */
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
-    }
-
-    /**
-     * @return the status
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(String status) {
-        if(status.trim().contains("on") || status.trim().contains("del")) {
-            this.status = status.trim();
-            
-        } else {
-            this.status = null;
         }
     }
 }
