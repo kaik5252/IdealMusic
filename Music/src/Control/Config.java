@@ -43,13 +43,6 @@ public class Config {
             }
         }
     }
-    
-    /**
-     * Método responsável por adicionar uma tabela ao banco de dados
-     * 
-     * @param tabela 
-     */
-    public static void addColumn(javax.swing.JTable tabela) {}
 
     /**
      * Método responsável por retornare se todos os campos de texto tem conteúdo
