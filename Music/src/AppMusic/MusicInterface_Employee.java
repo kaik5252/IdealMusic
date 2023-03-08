@@ -197,7 +197,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         txtViewEmployeePassword = new javax.swing.JPasswordField();
         panelPlayer = new javax.swing.JPanel();
         labelPLayerMusic = new javax.swing.JLabel();
-        panelPlayer1 = new javax.swing.JPanel();
+        panelPlayerController = new javax.swing.JPanel();
         labelPlayerTimeDuraction = new javax.swing.JLabel();
         labelPlayerTime = new javax.swing.JLabel();
         sliderPlayerMusic = new javax.swing.JSlider();
@@ -205,12 +205,12 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         btnPlayerNext = new javax.swing.JButton();
         btnPlayerControl = new javax.swing.JButton();
         btnPlayerBack = new javax.swing.JButton();
-        panelPlayer2 = new javax.swing.JPanel();
+        panelPlayerVolume = new javax.swing.JPanel();
         sliderPlayerVolume = new javax.swing.JSlider();
         panelMenu = new javax.swing.JPanel();
         btnMenuMusic = new javax.swing.JButton();
         btnMenuEmployee = new javax.swing.JButton();
-        panelMenu1 = new javax.swing.JPanel();
+        panelMenuLogo = new javax.swing.JPanel();
         labelMenuLogo = new javax.swing.JLabel();
 
         frameUtiliti.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1195,7 +1195,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                         .addComponent(labelEmployee2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnEmployeeCreateMusic, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(btnEmployeeCreateArtist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addGroup(panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEmployeeEditArtist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEmployeeEditEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1203,7 +1203,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                     .addComponent(btnEmployeeEditMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelEmployee1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEmployeeEditCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         panelEmployeeLayout.setVerticalGroup(
             panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2289,10 +2289,10 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         labelPLayerMusic.setForeground(new java.awt.Color(255, 255, 255));
         labelPLayerMusic.setText("Nome da música");
 
-        panelPlayer1.setBackground(new java.awt.Color(179, 7, 83));
-        panelPlayer1.setAlignmentX(0.0F);
-        panelPlayer1.setAlignmentY(0.0F);
-        panelPlayer1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelPlayerController.setBackground(new java.awt.Color(179, 7, 83));
+        panelPlayerController.setAlignmentX(0.0F);
+        panelPlayerController.setAlignmentY(0.0F);
+        panelPlayerController.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         labelPlayerTimeDuraction.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         labelPlayerTimeDuraction.setForeground(new java.awt.Color(255, 255, 255));
@@ -2346,20 +2346,20 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         btnPlayerBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPlayerBack.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        javax.swing.GroupLayout panelPlayer1Layout = new javax.swing.GroupLayout(panelPlayer1);
-        panelPlayer1.setLayout(panelPlayer1Layout);
-        panelPlayer1Layout.setHorizontalGroup(
-            panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlayer1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelPlayerControllerLayout = new javax.swing.GroupLayout(panelPlayerController);
+        panelPlayerController.setLayout(panelPlayerControllerLayout);
+        panelPlayerControllerLayout.setHorizontalGroup(
+            panelPlayerControllerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPlayerControllerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPlayer1Layout.createSequentialGroup()
+                .addGroup(panelPlayerControllerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPlayerControllerLayout.createSequentialGroup()
                         .addComponent(labelPlayerTimeDuraction)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sliderPlayerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(labelPlayerTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelPlayer1Layout.createSequentialGroup()
+                    .addGroup(panelPlayerControllerLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnPlayerBack)
                         .addGap(18, 18, 18)
@@ -2370,16 +2370,16 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                         .addComponent(btnPlayerVolume)))
                 .addContainerGap())
         );
-        panelPlayer1Layout.setVerticalGroup(
-            panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlayer1Layout.createSequentialGroup()
+        panelPlayerControllerLayout.setVerticalGroup(
+            panelPlayerControllerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPlayerControllerLayout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addGroup(panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(panelPlayerControllerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(sliderPlayerMusic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPlayerTimeDuraction, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPlayerTime, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelPlayer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPlayerControllerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnPlayerControl)
                     .addComponent(btnPlayerNext)
                     .addComponent(btnPlayerBack)
@@ -2387,7 +2387,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        panelPlayer2.setBackground(new java.awt.Color(179, 7, 83));
+        panelPlayerVolume.setBackground(new java.awt.Color(179, 7, 83));
 
         sliderPlayerVolume.setBackground(new java.awt.Color(179, 7, 83));
         sliderPlayerVolume.setForeground(new java.awt.Color(179, 7, 83));
@@ -2400,18 +2400,18 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         sliderPlayerVolume.setMinimumSize(new java.awt.Dimension(20, 130));
         sliderPlayerVolume.setPreferredSize(new java.awt.Dimension(20, 130));
 
-        javax.swing.GroupLayout panelPlayer2Layout = new javax.swing.GroupLayout(panelPlayer2);
-        panelPlayer2.setLayout(panelPlayer2Layout);
-        panelPlayer2Layout.setHorizontalGroup(
-            panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlayer2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelPlayerVolumeLayout = new javax.swing.GroupLayout(panelPlayerVolume);
+        panelPlayerVolume.setLayout(panelPlayerVolumeLayout);
+        panelPlayerVolumeLayout.setHorizontalGroup(
+            panelPlayerVolumeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPlayerVolumeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelPlayer2Layout.setVerticalGroup(
-            panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlayer2Layout.createSequentialGroup()
+        panelPlayerVolumeLayout.setVerticalGroup(
+            panelPlayerVolumeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPlayerVolumeLayout.createSequentialGroup()
                 .addComponent(sliderPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 12, Short.MAX_VALUE))
         );
@@ -2424,9 +2424,9 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(labelPLayerMusic)
                 .addGap(18, 18, 18)
-                .addComponent(panelPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelPlayerController, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(panelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         panelPlayerLayout.setVerticalGroup(
@@ -2434,12 +2434,12 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
             .addGroup(panelPlayerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelPlayerController, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPLayerMusic))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelPlayerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelPlayerVolume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2481,7 +2481,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
             }
         });
 
-        panelMenu1.setBackground(new java.awt.Color(179, 7, 83));
+        panelMenuLogo.setBackground(new java.awt.Color(179, 7, 83));
 
         labelMenuLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/logo_grande.png"))); // NOI18N
         labelMenuLogo.setAlignmentY(0.0F);
@@ -2489,22 +2489,22 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         labelMenuLogo.setMinimumSize(new java.awt.Dimension(300, 180));
         labelMenuLogo.setPreferredSize(new java.awt.Dimension(300, 180));
 
-        javax.swing.GroupLayout panelMenu1Layout = new javax.swing.GroupLayout(panelMenu1);
-        panelMenu1.setLayout(panelMenu1Layout);
-        panelMenu1Layout.setHorizontalGroup(
-            panelMenu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelMenuLogoLayout = new javax.swing.GroupLayout(panelMenuLogo);
+        panelMenuLogo.setLayout(panelMenuLogoLayout);
+        panelMenuLogoLayout.setHorizontalGroup(
+            panelMenuLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(panelMenu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelMenu1Layout.createSequentialGroup()
+            .addGroup(panelMenuLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMenuLogoLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(labelMenuLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        panelMenu1Layout.setVerticalGroup(
-            panelMenu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelMenuLogoLayout.setVerticalGroup(
+            panelMenuLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 180, Short.MAX_VALUE)
-            .addGroup(panelMenu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelMenu1Layout.createSequentialGroup()
+            .addGroup(panelMenuLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMenuLogoLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(labelMenuLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
@@ -2516,7 +2516,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panelMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelMenuLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMenuMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMenuEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2524,7 +2524,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
-                .addComponent(panelMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelMenuLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnMenuMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -2560,7 +2560,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuEmployeeActionPerformed
 
     private void btnMenuMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMusicActionPerformed
-        Config.openCard(panelMain, "panelCreateMusicjhjkuj");
+        Config.openCard(panelMain, "panelCreateMusic");
     }//GEN-LAST:event_btnMenuMusicActionPerformed
 
     private void btnEmployeeCreateEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeCreateEmployeeActionPerformed
@@ -3010,10 +3010,10 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     private javax.swing.JPanel panelEmployee;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelMenu;
-    private javax.swing.JPanel panelMenu1;
+    private javax.swing.JPanel panelMenuLogo;
     private javax.swing.JPanel panelPlayer;
-    private javax.swing.JPanel panelPlayer1;
-    private javax.swing.JPanel panelPlayer2;
+    private javax.swing.JPanel panelPlayerController;
+    private javax.swing.JPanel panelPlayerVolume;
     private javax.swing.JPanel panelSelectUpdates;
     private javax.swing.JPanel panelUpdates;
     private javax.swing.JPanel panelUtilitiMain;

@@ -3968,9 +3968,9 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="labelPLayerMusic" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="panelPlayer1" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelPlayerController" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="panelPlayer2" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelPlayerVolume" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -3980,14 +3980,14 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panelPlayer1" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelPlayerController" min="-2" max="-2" attributes="0"/>
                       <Component id="labelPLayerMusic" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="panelPlayer2" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelPlayerVolume" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -4005,7 +4005,7 @@
             <Property name="text" type="java.lang.String" value="Nome da m&#xfa;sica"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="panelPlayer1">
+        <Container class="javax.swing.JPanel" name="panelPlayerController">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="53" green="7" red="b3" type="rgb"/>
@@ -4200,7 +4200,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="panelPlayer2">
+        <Container class="javax.swing.JPanel" name="panelPlayerVolume">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="53" green="7" red="b3" type="rgb"/>
@@ -4275,7 +4275,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="panelMenu1" max="32767" attributes="0"/>
+                      <Component id="panelMenuLogo" max="32767" attributes="0"/>
                       <Component id="btnMenuMusic" alignment="1" max="32767" attributes="0"/>
                       <Component id="btnMenuEmployee" alignment="1" max="32767" attributes="0"/>
                   </Group>
@@ -4286,7 +4286,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="panelMenu1" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelMenuLogo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="btnMenuMusic" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -4363,7 +4363,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenuEmployeeActionPerformed"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JPanel" name="panelMenu1">
+        <Container class="javax.swing.JPanel" name="panelMenuLogo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="53" green="7" red="b3" type="rgb"/>

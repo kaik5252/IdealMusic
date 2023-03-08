@@ -42,6 +42,8 @@ CREATE TABLE music (
     mid INT AUTO_INCREMENT PRIMARY KEY,
     mname VARCHAR(255) NOT NULL,
     msound VARCHAR(255) NOT NULL,
+    mduration VARCHAR(5) NOT NULL,
+    mdate TIMESTAMP NOT NULL,
     mcategory INT NOT NULL,
     FOREIGN KEY (mcategory) REFERENCES category(cid)
 );

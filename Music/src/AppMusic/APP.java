@@ -196,7 +196,7 @@ public class APP extends javax.swing.JFrame {
         //Users user = DB.login(txtLoginLogin.getText().trim(), new String(txtLoginPassword.getPassword()).trim());
         // String log = user.getType();
         // --Dev↓↓↓↓
-        String log = "employee";
+        String log = "artist";
 
         switch (log) {
             case "employee" -> {
