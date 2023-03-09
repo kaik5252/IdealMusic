@@ -78,7 +78,7 @@ public final class MusicInterface_Artist extends javax.swing.JFrame {
         btnPlayerNext = new javax.swing.JButton();
         btnPlayerControl = new javax.swing.JButton();
         btnPlayerBack = new javax.swing.JButton();
-        panelPlayerVolume5 = new javax.swing.JPanel();
+        panelPlayer2 = new javax.swing.JPanel();
         sliderPlayerVolume5 = new javax.swing.JSlider();
         panelMenu = new javax.swing.JPanel();
         labelMenuArtist = new javax.swing.JLabel();
@@ -382,7 +382,7 @@ public final class MusicInterface_Artist extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        panelPlayerVolume5.setBackground(new java.awt.Color(179, 7, 83));
+        panelPlayer2.setBackground(new java.awt.Color(179, 7, 83));
 
         sliderPlayerVolume5.setBackground(new java.awt.Color(179, 7, 83));
         sliderPlayerVolume5.setForeground(new java.awt.Color(179, 7, 83));
@@ -395,18 +395,21 @@ public final class MusicInterface_Artist extends javax.swing.JFrame {
         sliderPlayerVolume5.setMinimumSize(new java.awt.Dimension(20, 130));
         sliderPlayerVolume5.setPreferredSize(new java.awt.Dimension(20, 130));
 
-        javax.swing.GroupLayout panelPlayerVolume5Layout = new javax.swing.GroupLayout(panelPlayerVolume5);
-        panelPlayerVolume5.setLayout(panelPlayerVolume5Layout);
-        panelPlayerVolume5Layout.setHorizontalGroup(
-            panelPlayerVolume5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPlayerVolume5Layout.createSequentialGroup()
-                .addContainerGap()
+        javax.swing.GroupLayout panelPlayer2Layout = new javax.swing.GroupLayout(panelPlayer2);
+        panelPlayer2.setLayout(panelPlayer2Layout);
+        panelPlayer2Layout.setHorizontalGroup(
+            panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlayer2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(sliderPlayerVolume5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        panelPlayerVolume5Layout.setVerticalGroup(
-            panelPlayerVolume5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sliderPlayerVolume5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, Short.MAX_VALUE)
+        panelPlayer2Layout.setVerticalGroup(
+            panelPlayer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlayer2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sliderPlayerVolume5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panelPlayerLayout = new javax.swing.GroupLayout(panelPlayer);
@@ -416,11 +419,11 @@ public final class MusicInterface_Artist extends javax.swing.JFrame {
             .addGroup(panelPlayerLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(labelPLayerMusic)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelPlayerController, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panelPlayerVolume5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(panelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPlayerLayout.setVerticalGroup(
             panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,9 +434,8 @@ public final class MusicInterface_Artist extends javax.swing.JFrame {
                     .addComponent(labelPLayerMusic))
                 .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlayerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelPlayerVolume5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelMenu.setBackground(new java.awt.Color(0, 0, 0));
@@ -625,13 +627,13 @@ public final class MusicInterface_Artist extends javax.swing.JFrame {
     private javax.swing.JPanel panelMusic;
     private javax.swing.JPanel panelMusicAlbum;
     private javax.swing.JPanel panelPlayer;
+    private javax.swing.JPanel panelPlayer2;
     private javax.swing.JPanel panelPlayerController;
     private javax.swing.JPanel panelPlayerVolume;
     private javax.swing.JPanel panelPlayerVolume1;
     private javax.swing.JPanel panelPlayerVolume2;
     private javax.swing.JPanel panelPlayerVolume3;
     private javax.swing.JPanel panelPlayerVolume4;
-    private javax.swing.JPanel panelPlayerVolume5;
     private javax.swing.JScrollPane scrollAlbum;
     private javax.swing.JScrollPane scrollMusic;
     private javax.swing.JScrollPane scrollMusicAlbum;

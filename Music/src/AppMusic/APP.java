@@ -57,7 +57,7 @@ public class APP extends javax.swing.JFrame {
 
         btnLoginEnter.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         btnLoginEnter.setText("Entrar");
-        btnLoginEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLoginEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLoginEnter.setFocusable(false);
         btnLoginEnter.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnLoginEnter.setMaximumSize(new java.awt.Dimension(260, 30));
@@ -159,14 +159,23 @@ public class APP extends javax.swing.JFrame {
     private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
         if (Config.verifyTextFields(txtLoginLogin, txtLoginPassword)) {
             String user = new Database().readUser(txtLoginLogin.getText().trim(), new String(txtLoginPassword.getPassword()).trim());
+
             if (user == null) {
                 PopUp.showNotefy("Usuário não encontrado...");
 
             } else if (user.equals("NOT")) {
                 openInterface("employee", null);
-                
+
             } else {
                 openInterface("artist", user);
+                System.out.println(user);
+
+                if (!user.contains(";")) {
+                    PopUp.showNotefy("Usuário não encontrado...");
+
+                } else {
+                    openInterface(user.substring(0, user.lastIndexOf(";")), user.substring(user.lastIndexOf(";") + 1));
+                }
             }
         }
 
