@@ -60,11 +60,15 @@ INSERT INTO category(cname) VALUES ('Pop');
 
 
 INSERT INTO users(uname, utel, ulogin, upassword, utype) VALUES 
-('Gabriel Souza', '(21) 90000-0000', 'gabriel souza', sha2('#GaGa1234', 512), 'employee'), 
-('Kaik D` Andrade', '(21) 90000-0000', 'kaik francisco', sha2('#KaKa1234', 512), 'employee');
+('Gabriel Souza', '(21) 90000-0000', 'gabriel souza', sha2('rootgabriel', 512), 'employee'), 
+('Kaik D` Andrade', '(21) 90000-0000', 'kaik francisco', sha2('rootkaik', 512), 'employee'),
+('Gloria Groove', '(21) 90000-0000', 'Gloria', sha2('gg2023', 512), 'artist'), 
+('Pitty', '(21) 90000-0000', 'pitty', sha2('pitty2023', 512), 'artist');
 
-/*
-INSERT INTO users(ulogin, uname, upassword, utype) VALUES 
-('gloria', 'Gloria', 'SenhA1234', 'artist'), 
-('pitty', 'Pitty', 'ConfiaveL1234', 'artist');
-*/
+INSERT INTO album(alname, alartist) VALUES ("Teste Albúm", 1);
+
+INSERT INTO music(mname, msound, mcategory) VALUES ("SOS A TODOS", "sound.wav", 1);
+INSERT INTO music(mname, msound, mcategory) VALUES ("SOS DEUS", "sound.wav", 1);
+
+INSERT INTO enclose(enalbum, enmusic) VALUES (1, 1);
+INSERT INTO enclose(enalbum, enmusic) VALUES (1, 2);

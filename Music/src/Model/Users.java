@@ -12,6 +12,15 @@ public final class Users {
     private String upassword;
     private String utype;
 
+    public Users(int uid, String uname, String utel, String ulogin, String password, String type) {
+        setUid(uid);
+        setUname(uname);
+        setUtel(utel);
+        setUlogin(ulogin);
+        setUpassword(upassword);
+        setUtype(utype);
+    }
+
     public void createUser() {
         new Database().createUser(this);
     }

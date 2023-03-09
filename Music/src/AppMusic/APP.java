@@ -3,7 +3,6 @@ package AppMusic;
 import Control.Config;
 import Control.PopUp;
 import Model.Database;
-import Model.Users;
 
 public class APP extends javax.swing.JFrame {
 
@@ -160,10 +159,14 @@ public class APP extends javax.swing.JFrame {
     private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
         if (Config.verifyTextFields(txtLoginLogin, txtLoginPassword)) {
             String user = new Database().readUser(txtLoginLogin.getText().trim(), new String(txtLoginPassword.getPassword()).trim());
-            if (user != null) {
-                openInterface(user.substring(0, user.lastIndexOf(";")), user.substring(user.lastIndexOf(";")+1));
-            } else {
+            if (user == null) {
                 PopUp.showNotefy("Usuário não encontrado...");
+
+            } else if (user.equals("NOT")) {
+                openInterface("employee", null);
+                
+            } else {
+                openInterface("artist", user);
             }
         }
 

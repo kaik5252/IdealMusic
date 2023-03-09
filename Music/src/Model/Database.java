@@ -142,7 +142,6 @@ public class Database {
         }
     }
 
-    
     /**
      * Método responsável por realizar o login do usuário no banco de dados
      *
@@ -168,14 +167,19 @@ public class Database {
 
             // Se for true, salva o dado do campo `field` dentro de `data`
             if (getRes().next()) {
-                return getRes().getString("ulogin") + ";" + getRes().getString("utype");
+                return switch (getRes().getString("utype")) {
+                    
+                    case "artist" -> getRes().getString("ulogin");
+                        
+                    default -> "NOT";
+                };
             }
 
             return null;
 
         } catch (SQLException error) {
             // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\readAll\n" + error);
+            PopUp.showWarning("DatabaseModel\\readUser\n" + error);
 
             // Retorna null
             return null;
@@ -389,6 +393,58 @@ public class Database {
             setClose();
             sql = null;
         }
+    }
+
+    /**
+     * Método responsável por retornar todas as músicas que há em um albúm
+     *
+     * @param idAlbum
+     * @return
+     * @author Gabriel Souza
+     */
+    public ArrayList<Object[]> readMusicForAlbum(int idAlbum) {
+
+        // Vareavel que armazenará os dados que vierem do banco de dados
+        ArrayList<Object[]> data = new ArrayList<>();
+
+        try {
+            // Comando SQL
+            sql = "SELECT * FROM enclose WHERE enalbum = ?";
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+            getPstm().setInt(1, idAlbum);
+            setRes(getPstm().executeQuery());
+
+            while (getRes().next()) {
+                // Comando SQL
+                sql = "SELECT * FROM music WHERE mid = ?";
+                setPstm(getConn().prepareStatement(sql));
+                getPstm().setInt(1, getRes().getInt("enmusic"));
+                ResultSet musicResult = getPstm().executeQuery();
+
+                while (musicResult.next()) {
+                    Object[] abacate = {
+                        musicResult.getInt("mid"),
+                        musicResult.getString("mname")
+                    };
+
+                    data.add(abacate);
+                }
+            }
+
+            return data;
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\readMusicForAlbum\n" + error);
+
+        } finally {
+            // Finaliza a toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
+
+        return null;
     }
 
     /**
