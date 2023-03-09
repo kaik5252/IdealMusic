@@ -2,7 +2,6 @@ package AppMusic;
 
 import Control.Config;
 import Model.Database;
-import Model.Users;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -13,7 +12,7 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
     boolean muted = false;
     int som = 0;
 
-    public MusicInterface_Artist(Users user) {
+    public MusicInterface_Artist(String nameArtist) {
         initComponents();
         setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
 
@@ -35,7 +34,7 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
             tableAlbum.getColumnModel().getColumn(colInit).setCellRenderer(tableCell);
         }
         
-        labelMenuArtist.setText(user.getUlogin());
+        labelMenuArtist.setText(nameArtist);
     }
 
     /**

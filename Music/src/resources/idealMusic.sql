@@ -60,8 +60,8 @@ INSERT INTO category(cname) VALUES ('Pop');
 
 
 INSERT INTO users(uname, utel, ulogin, upassword, utype) VALUES 
-('Gabriel Souza', '(21) 90000-0000', 'gabriel souza', '#GaGa1234', 'employee'), 
-('Kaik D` Andrade', '(21) 90000-0000', 'kaik francisco', '#KaKa1234', 'employee');
+('Gabriel Souza', '(21) 90000-0000', 'gabriel souza', sha2('#GaGa1234', 512), 'employee'), 
+('Kaik D` Andrade', '(21) 90000-0000', 'kaik francisco', sha2('#KaKa1234', 512), 'employee');
 
 /*
 INSERT INTO users(ulogin, uname, upassword, utype) VALUES 

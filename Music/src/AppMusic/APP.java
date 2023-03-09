@@ -7,8 +7,6 @@ import Model.Users;
 
 public class APP extends javax.swing.JFrame {
 
-    private Users user;
-
     public APP() {
         initComponents();
         setLocationRelativeTo(null);
@@ -161,10 +159,9 @@ public class APP extends javax.swing.JFrame {
 
     private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
         if (Config.verifyTextFields(txtLoginLogin, txtLoginPassword)) {
-            user = new Users(0, null, null, txtLoginLogin.getText().trim(), new String(txtLoginPassword.getPassword()).trim(), null);
-            user.readUser();
-            if (user.getUlogin().equals("") || user.getUlogin() == null) {
-                openInterface();
+            String user = new Database().readUser(txtLoginLogin.getText().trim(), new String(txtLoginPassword.getPassword()).trim());
+            if (user != null) {
+                openInterface(user.substring(0, user.lastIndexOf(";")), user.substring(user.lastIndexOf(";")+1));
             } else {
                 PopUp.showNotefy("Usuário não encontrado...");
             }
@@ -196,14 +193,9 @@ public class APP extends javax.swing.JFrame {
      * @author Kaik D' Andrade
      * @param type
      */
-    private void openInterface() {
+    private void openInterface(String type, String name) {
 
-        //Users user = DB.login(txtLoginLogin.getText().trim(), new String(txtLoginPassword.getPassword()).trim());
-        // String log = user.getType();
-        // --Dev↓↓↓↓
-        String log = "employee";
-
-        switch (log) {
+        switch (type) {
             case "employee" -> {
                 MusicInterface_Employee interfaceEmployee = new MusicInterface_Employee();
                 interfaceEmployee.setVisible(true);
@@ -212,7 +204,7 @@ public class APP extends javax.swing.JFrame {
             }
 
             case "artist" -> {
-                MusicInterface_Artist interfaceArtist = new MusicInterface_Artist(user);
+                MusicInterface_Artist interfaceArtist = new MusicInterface_Artist(name);
                 interfaceArtist.setVisible(true);
                 interfaceArtist.setLocationRelativeTo(null);
                 setVisible(false);

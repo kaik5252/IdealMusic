@@ -142,51 +142,44 @@ public class Database {
         }
     }
 
+    
     /**
      * Método responsável por realizar o login do usuário no banco de dados
      *
-     * @param user
+     * @param login
+     * @param password
      * @return
      * @author Kaik D' Andrade
      */
-    public Object[] readUser(Users user) {
+    public String readUser(String login, String password) {
 
         // Comando SQL
         sql = "SELECT * FROM users WHERE ulogin = ? AND upassword = sha2(?, 512)";
 
         try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
             setConnection();
             setPstm(getConn().prepareStatement(sql));
+            getPstm().setString(1, login);
+            getPstm().setString(2, password);
 
-            // Altera os "?" pelos valores corretos
-            getPstm().setString(1, user.getUlogin());
-            getPstm().setString(2, user.getUpassword());
-
-            // Executando o comando SQL no banco de dados
-            setRes(pstm.executeQuery());
+            // Executa o comando SQL no banco de dados
+            setRes(getPstm().executeQuery());
 
             // Se for true, salva o dado do campo `field` dentro de `data`
             if (getRes().next()) {
-                Object[] users = {
-                        getRes().getInt("uid"),
-                        getRes().getString("uname"),
-                        getRes().getString("utel"),
-                        getRes().getString("ulogin"),
-                        getRes().getString("upassword"),
-                        getRes().getString("utype")
-                };
-                
-                return users;
+                return getRes().getString("ulogin") + ";" + getRes().getString("utype");
             }
-            
+
             return null;
 
         } catch (SQLException error) {
             // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\login\n" + error);
+            PopUp.showWarning("DatabaseModel\\readAll\n" + error);
+
+            // Retorna null
             return null;
-            
+
         } finally {
             // Finaliza toda a conexão com o banco de dados
             setClose();

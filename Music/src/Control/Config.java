@@ -1,8 +1,6 @@
 package Control;
 
 import java.io.File;
-import javax.swing.JTextField;
-import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;

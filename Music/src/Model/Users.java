@@ -12,37 +12,12 @@ public final class Users {
     private String upassword;
     private String utype;
 
-    public Users(int id, String name, String tel, String login, String password, String type) {
-        setUid(id);
-        setUname(name);
-        setUtel(tel);
-        setUlogin(login);
-        setUpassword(password);
-        setUtype(type);
-    }
-
     public void createUser() {
         new Database().createUser(this);
     }
 
     public void readUser() {
-        Object[] readUser = new Database().readUser(this);
-        int count = 0;
-        for (Object registro : readUser) {
-            count = (count >= 7) ? 0 : count;
-            count++;
-            switch (count) {
-                case 1 -> setUid(Integer.parseInt((String) registro));
-                case 2 -> setUname((String) registro);
-                case 3 -> setUtel((String) registro);
-                case 4 -> setUlogin((String) registro);
-                case 5 -> setUlogin((String) registro);
-                case 6 -> setUlogin((String) registro);
-                default -> {
-                    
-                }
-            }
-        }
+        
     }
 
     public void updateUser() {
@@ -78,7 +53,7 @@ public final class Users {
      * @param uname the name to set
      */
     public void setUname(String uname) {
-        if (uname.trim().equals("")) {
+        if (uname.trim().equals("") || uname.trim() == null) {
             this.uname = null;
 
         } else {
