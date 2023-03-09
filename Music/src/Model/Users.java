@@ -5,132 +5,160 @@ package Model;
  */
 public final class Users {
 
-    private int id;
-    private String name;
-    private String tel;
-    private String login;
-    private String password;
-    private String type;
+    private int uid;
+    private String uname;
+    private String utel;
+    private String ulogin;
+    private String upassword;
+    private String utype;
 
     public Users(int id, String name, String tel, String login, String password, String type) {
-        setId(id);
-        setName(name);
-        setTel(tel);
-        setLogin(login);
-        setPassword(password);
-        setType(type);
+        setUid(id);
+        setUname(name);
+        setUtel(tel);
+        setUlogin(login);
+        setUpassword(password);
+        setUtype(type);
     }
 
     public void createUser() {
         new Database().createUser(this);
     }
-    
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
+
+    public void readUser() {
+        Object[] readUser = new Database().readUser(this);
+        int count = 0;
+        for (Object registro : readUser) {
+            count = (count >= 7) ? 0 : count;
+            count++;
+            switch (count) {
+                case 1 -> setUid(Integer.parseInt((String) registro));
+                case 2 -> setUname((String) registro);
+                case 3 -> setUtel((String) registro);
+                case 4 -> setUlogin((String) registro);
+                case 5 -> setUlogin((String) registro);
+                case 6 -> setUlogin((String) registro);
+                default -> {
+                    
+                }
+            }
+        }
+    }
+
+    public void updateUser() {
+
+    }
+
+    public void deleteUser() {
+
     }
 
     /**
-     * @param id the id to set
+     * @return the uid
      */
-    public void setId(int id) {
-        this.id = id;
+    public int getUid() {
+        return uid;
     }
 
     /**
-     * @return the name
+     * @param uid the uid to set
      */
-    public String getName() {
-        return name;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     /**
-     * @param name the name to set
+     * @return the uname
      */
-    public void setName(String name) {
-        if (name.trim().equals("")) {
-            this.name = null;
+    public String getUname() {
+        return uname;
+    }
+
+    /**
+     * @param uname the name to set
+     */
+    public void setUname(String uname) {
+        if (uname.trim().equals("")) {
+            this.uname = null;
 
         } else {
-            this.name = name.trim();
+            this.uname = uname.trim();
         }
     }
 
     /**
-     * @return the tel
+     * @return the utel
      */
-    public String getTel() {
-        return tel;
+    public String getUtel() {
+        return utel;
     }
 
     /**
-     * @param tel the tel to set
+     * @param utel the utel to set
      */
-    public void setTel(String tel) {
-        if (tel.trim().equals("")) {
-            this.tel = null;
+    public void setUtel(String utel) {
+        if (utel.trim().equals("")) {
+            this.utel = null;
 
         } else {
-            this.tel = tel.trim();
+            this.utel = utel.trim();
         }
     }
 
     /**
-     * @return the login
+     * @return the ulogin
      */
-    public String getLogin() {
-        return login;
+    public String getUlogin() {
+        return ulogin;
     }
 
     /**
-     * @param login the login to set
+     * @param ulogin the ulogin to set
      */
-    public void setLogin(String login) {
-        if (login.trim().equals("")) {
-            this.login = null;
+    public void setUlogin(String ulogin) {
+        if (ulogin.trim().equals("")) {
+            this.ulogin = null;
 
         } else {
-            this.login = login.trim();
+            this.ulogin = ulogin.trim();
         }
     }
 
     /**
-     * @return the password
+     * @return the upassword
      */
-    public String getPassword() {
-        return password;
+    public String getUpassword() {
+        return upassword;
     }
 
     /**
-     * @param password the password to set
+     * @param upassword the upassword to set
      */
-    public void setPassword(String password) {
-        if (password.trim().equals("")) {
-            this.password = null;
+    public void setUpassword(String upassword) {
+        if (upassword.trim().equals("")) {
+            this.upassword = null;
 
         } else {
-            this.password = password.trim();
+            this.upassword = upassword.trim();
         }
     }
 
     /**
-     * @return the type
+     * @return the utype
      */
-    public String getType() {
-        return type;
+    public String getUtype() {
+        return utype;
     }
 
     /**
-     * @param type the type to set
+     * @param utype the utype to set
      */
-    public void setType(String type) {
-        if (type.trim().contains("artist") || type.trim().contains("employee")) {
-            this.type = type.trim();
+    public void setUtype(String utype) {
+        if (utype.trim().contains("artist") || utype.trim().contains("employee")) {
+            this.utype = utype.trim();
 
         } else {
-            this.type = null;
+            this.utype = null;
         }
     }
 }

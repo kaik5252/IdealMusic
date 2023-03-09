@@ -5,64 +5,72 @@ package Model;
  */
 public final class Albums {
 
-    private int id;
-    private String name;
-    private String artist;
+    private int alid;
+    private String alname;
+    private String alartist;
 
     public Albums(int id, String name, String artist) {
-        setId(id);
-        setName(name);
-        setArtist(artist);
+        setAlid(id);
+        setAlname(name);
+        setAlartist(artist);
     }
     
     public void createAlbum() {
         
     }
     
+    public void updateAlbum() {
+    
+    }
+    
+    public void deleteAlbum() {
+    
+    }
+    
     /**
      * @return the id
      */
-    public int getId() {
-        return id;
+    public int getAlid() {
+        return alid;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setAlid(int id) {
+        this.alid = id;
     }
 
     /**
      * @return the name
      */
-    public String getName() {
-        return name;
+    public String getAlname() {
+        return alname;
     }
 
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
+    public void setAlname(String name) {
         if (name.trim().equals("")) {
-            this.name = null;
+            this.alname = null;
         } else {
-            this.name = name;
+            this.alname = name;
         }
     }
 
     /**
      * @return the artist
      */
-    public String getArtist() {
-        return artist;
+    public String getAlartist() {
+        return alartist;
     }
 
     /**
      * @param artist the artist to set
      */
-    public void setArtist(String artist) {
-        this.artist = artist;
+    public void setAlartist(String artist) {
+        this.alartist = artist;
     }
 
 }

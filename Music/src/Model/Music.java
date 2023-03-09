@@ -5,110 +5,118 @@ package Model;
  */
 public final class Music {
 
-    private int id;
-    private String name;
-    private String sound;
-    private String category;
-    private String album;
+    private int mid;
+    private String mname;
+    private String msound;
+    private String mcategory;
+    private String malbum;
 
-    public Music(int id, String name, String sound, String category, String album) {
-        setName(name);
-        setSound(sound);
-        setCategory(category);
-        setAlbum(album);
+    public Music(int mid, String mname, String msound, String mcategory, String malbum) {
+        setMname(mname);
+        setMsound(msound);
+        setMcategory(mcategory);
+        setMalbum(malbum);
     }
 
     public void createMusic() {
         new Database().createMusic(this);
     }
+    
+    public void updateMusic() {
+    
+    }
+    
+    public void deleteMusic() {
+    
+    }
 
     /**
      * @return the id
      */
-    public int getId() {
-        return id;
+    public int getMid() {
+        return mid;
     }
 
     /**
-     * @param id the id to set
+     * @param mid the mid to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setMid(int mid) {
+        this.mid = mid;
     }
 
     /**
-     * @return the name
+     * @return the mname
      */
-    public String getName() {
-        return name;
+    public String getMname() {
+        return mname;
     }
 
     /**
-     * @param name the name to set
+     * @param mname the mname to set
      */
-    public void setName(String name) {
-        if (name.trim().equals("")) {
-            this.name = null;
+    public void setMname(String mname) {
+        if (mname.trim().equals("")) {
+            this.mname = null;
 
         } else {
-            this.name = name;
+            this.mname = mname;
         }
     }
 
     /**
-     * @return the sound
+     * @return the msound
      */
-    public String getSound() {
-        return sound;
+    public String getMsound() {
+        return msound;
     }
 
     /**
-     * @param sound the sound to set
+     * @param msound the msound to set
      */
-    public void setSound(String sound) {
-        if (sound.trim().equals("")) {
-            this.sound = null;
+    public void setMsound(String msound) {
+        if (msound.trim().equals("")) {
+            this.msound = null;
 
         } else {
-            this.sound = sound;
+            this.msound = msound;
         }
     }
 
     /**
-     * @return the category
+     * @return the mcategory
      */
-    public String getCategory() {
-        return category;
+    public String getMcategory() {
+        return mcategory;
     }
 
     /**
-     * @param category the category to set
+     * @param mcategory the mcategory to set
      */
-    public void setCategory(String category) {
-        if (category.trim().equals("")) {
-            this.category = null;
+    public void setMcategory(String mcategory) {
+        if (mcategory.trim().equals("")) {
+            this.mcategory = null;
 
         } else {
-            this.category = category;
+            this.mcategory = mcategory;
         }
     }
 
     /**
-     * @return the album
+     * @return the malbum
      */
-    public String getAlbum() {
-        return album;
+    public String getMalbum() {
+        return malbum;
     }
 
     /**
-     * @param album the album to set
+     * @param malbum the malbum to set
      */
-    public void setAlbum(String album) {
-        if (album.trim().equals("")) {
-            this.album = null;
+    public void setMalbum(String malbum) {
+        if (malbum.trim().equals("")) {
+            this.malbum = null;
 
         } else {
-            this.album = album;
+            this.malbum = malbum;
         }
     }
 }

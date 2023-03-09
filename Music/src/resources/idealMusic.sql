@@ -43,7 +43,7 @@ CREATE TABLE music (
     mname VARCHAR(255) NOT NULL,
     msound VARCHAR(255) NOT NULL,
     mduration VARCHAR(5) NOT NULL,
-    mdate TIMESTAMP NOT NULL,
+    myear YEAR DEFAULT CONCAT(YEAR(CURDATE()), '-01-01'),
     mcategory INT NOT NULL,
     FOREIGN KEY (mcategory) REFERENCES category(cid)
 );
@@ -58,11 +58,12 @@ CREATE TABLE enclose (
 
 INSERT INTO category(cname) VALUES ('Pop');
 
-/*
-INSERT INTO users(ulogin, uname, upassword, utype) VALUES 
-('gabriel.souza', 'Gabriel', 'GaGa1234', 'employee'), 
-('kaik.francis', 'Kaik', 'KaKa1234', 'employee');
 
+INSERT INTO users(uname, utel, ulogin, upassword, utype) VALUES 
+('Gabriel Souza', '(21) 90000-0000', 'gabriel souza', '#GaGa1234', 'employee'), 
+('Kaik D` Andrade', '(21) 90000-0000', 'kaik francisco', '#KaKa1234', 'employee');
+
+/*
 INSERT INTO users(ulogin, uname, upassword, utype) VALUES 
 ('gloria', 'Gloria', 'SenhA1234', 'artist'), 
 ('pitty', 'Pitty', 'ConfiaveL1234', 'artist');

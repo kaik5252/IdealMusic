@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author Kaik D' Andrade
@@ -94,11 +93,11 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, user.getName());
-            getPstm().setString(2, user.getTel());
-            getPstm().setString(3, user.getLogin());
-            getPstm().setString(4, user.getPassword());
-            getPstm().setString(5, user.getType());
+            getPstm().setString(1, user.getUname());
+            getPstm().setString(2, user.getUtel());
+            getPstm().setString(3, user.getUlogin());
+            getPstm().setString(4, user.getUpassword());
+            getPstm().setString(5, user.getUtype());
 
             // Executa o comando SQL no banco de dados
             getPstm().execute();
@@ -150,10 +149,10 @@ public class Database {
      * @return
      * @author Kaik D' Andrade
      */
-    public int login(Users user) {
+    public Object[] readUser(Users user) {
 
         // Comando SQL
-        sql = "SELECT utype FROM users WHERE ulogin = ? AND upassword = sha2(?, 512)";
+        sql = "SELECT * FROM users WHERE ulogin = ? AND upassword = sha2(?, 512)";
 
         try {
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para exetuta-lo
@@ -161,27 +160,33 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Altera os "?" pelos valores corretos
-            getPstm().setString(1, user.getLogin());
-            getPstm().setString(2, user.getPassword());
+            getPstm().setString(1, user.getUlogin());
+            getPstm().setString(2, user.getUpassword());
 
             // Executando o comando SQL no banco de dados
             setRes(pstm.executeQuery());
 
+            // Se for true, salva o dado do campo `field` dentro de `data`
             if (getRes().next()) {
-                return getRes().getInt("uid");
-
-            } else {
-                // Retorna nulo se tiver algum dado errado
-                return 0;
+                Object[] users = {
+                        getRes().getInt("uid"),
+                        getRes().getString("uname"),
+                        getRes().getString("utel"),
+                        getRes().getString("ulogin"),
+                        getRes().getString("upassword"),
+                        getRes().getString("utype")
+                };
+                
+                return users;
             }
+            
+            return null;
 
         } catch (SQLException error) {
             // Caso gere um erro
             PopUp.showWarning("DatabaseModel\\login\n" + error);
-
-            // Retorna 0
-            return 0;
-
+            return null;
+            
         } finally {
             // Finaliza toda a conexão com o banco de dados
             setClose();
@@ -207,11 +212,11 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, user.getName());
-            getPstm().setString(2, user.getTel());
-            getPstm().setString(3, user.getLogin());
-            getPstm().setString(4, user.getPassword());
-            getPstm().setInt(5, user.getId());
+            getPstm().setString(1, user.getUname());
+            getPstm().setString(2, user.getUtel());
+            getPstm().setString(3, user.getUlogin());
+            getPstm().setString(4, user.getUpassword());
+            getPstm().setInt(5, user.getUid());
 
             // Executa o comando SQL no banco de dados
             getPstm().execute();
@@ -253,7 +258,7 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, music.getCategory());
+            getPstm().setString(1, music.getMcategory());
             setRes(getPstm().executeQuery());
 
             if (getRes().next()) {
@@ -266,8 +271,8 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, music.getName());
-            getPstm().setString(2, music.getSound().substring(music.getSound().lastIndexOf("/") + 1));
+            getPstm().setString(1, music.getMname());
+            getPstm().setString(2, music.getMsound().substring(music.getMsound().lastIndexOf("/") + 1));
             getPstm().setInt(3, idCategory);
 
             // Executa o comando SQL no banco de dados
@@ -286,7 +291,7 @@ public class Database {
 
             sql = "SELECT alid FROM album WHERE alname = ?";
             setPstm(getConn().prepareStatement(sql));
-            getPstm().setString(1, music.getAlbum());
+            getPstm().setString(1, music.getMalbum());
             setRes(getPstm().executeQuery());
 
             if (getRes().next()) {
@@ -297,8 +302,8 @@ public class Database {
             }
 
             // Copia a música para a pasta do projeto
-            Path source = Paths.get(music.getSound());
-            Path destination = Paths.get(retPath("sounds") + "/" + music.getSound().substring(music.getSound().lastIndexOf("/") + 1));
+            Path source = Paths.get(music.getMsound());
+            Path destination = Paths.get(retPath("sounds") + "/" + music.getMsound().substring(music.getMsound().lastIndexOf("/") + 1));
             Files.copy(source, destination);
 
         } catch (IOException | SQLException error) {
@@ -330,7 +335,7 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, abm.getArtist());
+            getPstm().setString(1, abm.getAlartist());
             setRes(getPstm().executeQuery());
 
             if (getRes().next()) {
@@ -343,7 +348,7 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, abm.getName());
+            getPstm().setString(1, abm.getAlname());
             getPstm().setInt(3, idArtist);
 
             // Executa o comando SQL no banco de dados
@@ -422,8 +427,8 @@ public class Database {
 
             // Se for true, salva o dado do campo `field` dentro de `data`
             while (getRes().next()) {
-                for (int i = 0; i < field.length; i++) {
-                    newLine += getRes().getString(field[i]) + ";";
+                for (String field1 : field) {
+                    newLine += getRes().getString(field1) + ";";
                 }
 
                 newLine = newLine.substring(0, newLine.lastIndexOf(";"));

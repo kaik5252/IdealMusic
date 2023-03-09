@@ -3,10 +3,11 @@ package AppMusic;
 import Control.Config;
 import Control.PopUp;
 import Model.Database;
+import Model.Users;
 
 public class APP extends javax.swing.JFrame {
 
-    private static final Database DB = new Database();
+    private Users user;
 
     public APP() {
         initComponents();
@@ -160,9 +161,13 @@ public class APP extends javax.swing.JFrame {
 
     private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
         if (Config.verifyTextFields(txtLoginLogin, txtLoginPassword)) {
-            //if (Config.isCorrect(txtLoginLogin, "login") && Config.isCorrect(txtLoginPassword, "password")) {
-            openInterface();
-            //}
+            user = new Users(0, null, null, txtLoginLogin.getText().trim(), new String(txtLoginPassword.getPassword()).trim(), null);
+            user.readUser();
+            if (user.getUlogin().equals("") || user.getUlogin() == null) {
+                openInterface();
+            } else {
+                PopUp.showNotefy("Usuário não encontrado...");
+            }
         }
 
         Config.clearTextFields(txtLoginLogin, txtLoginPassword);
@@ -207,7 +212,7 @@ public class APP extends javax.swing.JFrame {
             }
 
             case "artist" -> {
-                MusicInterface_Artist interfaceArtist = new MusicInterface_Artist();
+                MusicInterface_Artist interfaceArtist = new MusicInterface_Artist(user);
                 interfaceArtist.setVisible(true);
                 interfaceArtist.setLocationRelativeTo(null);
                 setVisible(false);

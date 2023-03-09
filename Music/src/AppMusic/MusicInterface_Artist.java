@@ -2,6 +2,7 @@ package AppMusic;
 
 import Control.Config;
 import Model.Database;
+import Model.Users;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -12,7 +13,7 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
     boolean muted = false;
     int som = 0;
 
-    public MusicInterface_Artist() {
+    public MusicInterface_Artist(Users user) {
         initComponents();
         setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
 
@@ -34,7 +35,7 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
             tableAlbum.getColumnModel().getColumn(colInit).setCellRenderer(tableCell);
         }
         
-        // labelMenuArtist.setText();
+        labelMenuArtist.setText(user.getUlogin());
     }
 
     /**
@@ -452,7 +453,7 @@ public class MusicInterface_Artist extends javax.swing.JFrame {
                 .addComponent(btnMenuMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelMenuArtist)
-                .addGap(18, 18, 18))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

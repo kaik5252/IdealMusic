@@ -12,38 +12,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Config {
 
-    private static final String PASSWORD_PATTERN = "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,20}$";
-    private static final String LOGIN_PATTERN = "^[a-zA-Z0-9#-_.]{6,30}$";
-
-    /**
-     * Método que retorna se o (treco) é correto
-     *
-     * @author Kaik D' Andrade
-     * @param textField
-     * @param type
-     * @return
-     */
-    public static boolean isCorrect(JTextField textField, String type) {
-
-        String text = textField.getText().trim();
-
-        switch (text) {
-            case "password" -> {
-                Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-                return pattern.matcher(text).matches();
-            }
-
-            case "login" -> {
-                Pattern pattern = Pattern.compile(LOGIN_PATTERN);
-                return pattern.matcher(text).matches();
-            }
-
-            default -> {
-                return false;
-            }
-        }
-    }
-
     /**
      * Método responsável por retornare se todos os campos de texto tem conteúdo
      *
