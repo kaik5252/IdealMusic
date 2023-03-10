@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
 
 /**
  * @author Kaik D' Andrade
@@ -22,6 +20,13 @@ import javax.sound.sampled.FloatControl;
  */
 public class Database {
 
+//    UPDATE album
+//INNER JOIN usuario
+//ON album.uid = usuario.uid
+//SET album.alid = usuario.uid
+//WHERE album.alname = 'nome_do_album';
+    
+    
     private static final String URL = "jdbc:mysql://localhost:3306/idealmusic?user=root&password=";
     private Connection conn;
     private PreparedStatement pstm;
@@ -92,6 +97,56 @@ public class Database {
         }
 
         return null;
+    }
+
+    public ArrayList<Object[]> readAllMusic(int mid) {
+
+        // Vareal...
+        ArrayList<Object[]> data = new ArrayList<>();
+
+        // Comando SQL
+        sql = "SELECT music.mid, music.mname, music.msound, music.mduration, music.myear, album.alname, category.cname "
+                + "FROM music "
+                + "INNER JOIN album ON music.mcategory = album.alid "
+                + "INNER JOIN category ON music.mcategory = category.cid "
+                + "WHERE music.mid = ?";
+
+        try {
+
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            getPstm().setInt(1, mid);
+
+            setRes(getPstm().executeQuery());
+
+            // Imprime os resultados
+            while (getRes().next()) {
+                Object[] abacate = {
+                    getRes().getString("mid"),
+                    getRes().getString("mname"),
+                    getRes().getString("msound"),
+                    getRes().getString("mduration"),
+                    getRes().getString("myear"),
+                    getRes().getString("alname"),
+                    getRes().getString("cname")
+                };
+
+                data.add(abacate);
+            }
+
+            return data;
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\readAllMusic\n" + error);
+            return null;
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
     }
 
     /**
@@ -245,6 +300,54 @@ public class Database {
         }
 
         return musics;
+    }
+
+    public ArrayList<String> readAllForWhere(String table, String where, int idWhere, String... field) {
+
+        // Inicializando a varíavel que armazena os dados vindo do banco de dados
+        ArrayList<String> data = new ArrayList<>();
+
+        // Varíavel...
+        String newLine = "";
+
+        // Comando SQL
+        sql = "SELECT * FROM " + table + " WHERE " + where + " = ?";
+
+        try {
+            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            getPstm().setInt(1, idWhere);
+
+            // Executa o comando SQL no banco de dados
+            setRes(getPstm().executeQuery());
+
+            // Se for true, salva o dado do campo `field` dentro de `data`
+            while (getRes().next()) {
+                for (String field1 : field) {
+                    newLine += getRes().getString(field1) + ";";
+                }
+
+                newLine = newLine.substring(0, newLine.lastIndexOf(";"));
+                data.add(newLine);
+                newLine = "";
+            }
+
+            return data;
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\readAllForWhere\n" + error);
+
+            // Retorna null
+            return null;
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
     }
 
     /**
