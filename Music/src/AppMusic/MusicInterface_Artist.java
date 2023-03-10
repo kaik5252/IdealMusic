@@ -4,10 +4,8 @@ import Control.Config;
 import Control.ConfigMusic;
 import Model.Database;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.SwingConstants;
-import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -425,7 +423,7 @@ public final class MusicInterface_Artist extends javax.swing.JFrame {
             .addGroup(panelPlayerLayout.createSequentialGroup()
                 .addGroup(panelPlayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPlayerLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelPlayerMusic))
                     .addGroup(panelPlayerLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
@@ -551,7 +549,7 @@ public final class MusicInterface_Artist extends javax.swing.JFrame {
                 .addComponent(btnMenuMusic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelMenuArtist)
-                .addGap(15, 15, 15))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -590,10 +588,10 @@ public final class MusicInterface_Artist extends javax.swing.JFrame {
         // Resumindo deixa a música no mudo ou restaura o som
         muted = !muted;
         if (muted) {
-            sliderPlayerVolume.setValue(-80);
             btnPlayerVolume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/mute.png")));
             sliderPlayerVolume.setVisible(false);
             som = sliderPlayerVolume.getValue();
+            sliderPlayerVolume.setValue(-80);
 
         } else {
             sliderPlayerVolume.setValue(som);

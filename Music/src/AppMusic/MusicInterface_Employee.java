@@ -133,6 +133,8 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         checkboxSelectEmployee = new javax.swing.JCheckBox();
         scrollSelectedList = new javax.swing.JScrollPane();
         tableSelectedList = new javax.swing.JTable();
+        btnSelectUpdateVisualizarEnter = new javax.swing.JButton();
+        txtSelectUpdateResultCheckbox = new javax.swing.JTextField();
         panelViewUpdates = new javax.swing.JPanel();
         panelViewUpdatesMusic = new javax.swing.JPanel();
         txtViewMusicSound = new javax.swing.JTextField();
@@ -150,7 +152,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         labelViewMusic7 = new javax.swing.JLabel();
         boxViewMusicAlbum = new javax.swing.JComboBox<>();
         txtViewMusicId = new javax.swing.JTextField();
-        txtCreateMusicDuration1 = new javax.swing.JFormattedTextField();
+        txtViewMusicDuration = new javax.swing.JFormattedTextField();
         labelViewMusic8 = new javax.swing.JLabel();
         txtViewMusicYear = new javax.swing.JTextField();
         labelViewMusic9 = new javax.swing.JLabel();
@@ -183,12 +185,10 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         labelViewArtist4 = new javax.swing.JLabel();
         labelViewArtist5 = new javax.swing.JLabel();
         txtViewArtistLogin = new javax.swing.JTextField();
-        labelViewArtist6 = new javax.swing.JLabel();
         txtViewArtistTel = new javax.swing.JFormattedTextField();
         btnViewArtistDelete = new javax.swing.JButton();
         btnViewArtistEdit = new javax.swing.JButton();
         txtViewArtistId = new javax.swing.JTextField();
-        txtViewArtistPassword = new javax.swing.JPasswordField();
         panelViewUpdatesEmployee = new javax.swing.JPanel();
         txtViewEmployeeName = new javax.swing.JTextField();
         labelViewEmployee1 = new javax.swing.JLabel();
@@ -198,12 +198,10 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         labelViewEmployee4 = new javax.swing.JLabel();
         labelViewEmployee5 = new javax.swing.JLabel();
         txtViewEmployeeLogin = new javax.swing.JTextField();
-        labelViewEmployee6 = new javax.swing.JLabel();
         txtViewEmployeeTel = new javax.swing.JFormattedTextField();
         btnViewEmployeeDelete = new javax.swing.JButton();
         btnViewEmployeeEdit = new javax.swing.JButton();
         txtViewEmployeeId = new javax.swing.JTextField();
-        txtViewEmployeePassword = new javax.swing.JPasswordField();
         panelPlayer = new javax.swing.JPanel();
         labelPLayerMusic = new javax.swing.JLabel();
         panelPlayerController = new javax.swing.JPanel();
@@ -1414,6 +1412,36 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
             tableSelectedList.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
+        btnSelectUpdateVisualizarEnter.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        btnSelectUpdateVisualizarEnter.setText("Visualizar");
+        btnSelectUpdateVisualizarEnter.setAlignmentY(0.0F);
+        btnSelectUpdateVisualizarEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSelectUpdateVisualizarEnter.setFocusable(false);
+        btnSelectUpdateVisualizarEnter.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnSelectUpdateVisualizarEnter.setMaximumSize(new java.awt.Dimension(100, 30));
+        btnSelectUpdateVisualizarEnter.setMinimumSize(new java.awt.Dimension(100, 30));
+        btnSelectUpdateVisualizarEnter.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnSelectUpdateVisualizarEnter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectUpdateVisualizarEnterActionPerformed(evt);
+            }
+        });
+
+        txtSelectUpdateResultCheckbox.setBackground(new java.awt.Color(173, 216, 230));
+        txtSelectUpdateResultCheckbox.setForeground(new java.awt.Color(173, 216, 230));
+        txtSelectUpdateResultCheckbox.setAlignmentX(0.0F);
+        txtSelectUpdateResultCheckbox.setAlignmentY(0.0F);
+        txtSelectUpdateResultCheckbox.setBorder(null);
+        txtSelectUpdateResultCheckbox.setCaretColor(new java.awt.Color(173, 216, 230));
+        txtSelectUpdateResultCheckbox.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtSelectUpdateResultCheckbox.setDisabledTextColor(new java.awt.Color(173, 216, 230));
+        txtSelectUpdateResultCheckbox.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        txtSelectUpdateResultCheckbox.setMaximumSize(new java.awt.Dimension(3, 10));
+        txtSelectUpdateResultCheckbox.setMinimumSize(new java.awt.Dimension(3, 10));
+        txtSelectUpdateResultCheckbox.setPreferredSize(new java.awt.Dimension(3, 10));
+        txtSelectUpdateResultCheckbox.setSelectedTextColor(new java.awt.Color(173, 216, 230));
+        txtSelectUpdateResultCheckbox.setSelectionColor(new java.awt.Color(173, 216, 230));
+
         javax.swing.GroupLayout panelSelectUpdatesLayout = new javax.swing.GroupLayout(panelSelectUpdates);
         panelSelectUpdates.setLayout(panelSelectUpdatesLayout);
         panelSelectUpdatesLayout.setHorizontalGroup(
@@ -1424,7 +1452,8 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                     .addComponent(scrollSelectedList)
                     .addGroup(panelSelectUpdatesLayout.createSequentialGroup()
                         .addComponent(btnSelectUpdateCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSelectUpdateVisualizarEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelSelectUpdatesLayout.createSequentialGroup()
                         .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSelectUpdatesLayout.createSequentialGroup()
@@ -1435,7 +1464,10 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                                 .addComponent(checkboxSelectAlbum))
                             .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(labelSelectUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelSelectUpdate1)))
+                                .addGroup(panelSelectUpdatesLayout.createSequentialGroup()
+                                    .addComponent(labelSelectUpdate1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtSelectUpdateResultCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(checkboxSelectEmployee)
                         .addGap(18, 18, 18)
@@ -1446,7 +1478,9 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
             panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSelectUpdatesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelSelectUpdate1)
+                .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSelectUpdate1)
+                    .addComponent(txtSelectUpdateResultCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelSelectUpdate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1459,7 +1493,9 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollSelectedList, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSelectUpdateCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelSelectUpdatesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSelectUpdateCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelectUpdateVisualizarEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
 
@@ -1581,17 +1617,17 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         txtViewMusicId.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         try {
-            txtCreateMusicDuration1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+            txtViewMusicDuration.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtCreateMusicDuration1.setAlignmentX(0.0F);
-        txtCreateMusicDuration1.setAlignmentY(0.0F);
-        txtCreateMusicDuration1.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        txtCreateMusicDuration1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtCreateMusicDuration1.setMaximumSize(new java.awt.Dimension(230, 30));
-        txtCreateMusicDuration1.setMinimumSize(new java.awt.Dimension(230, 30));
-        txtCreateMusicDuration1.setPreferredSize(new java.awt.Dimension(230, 30));
+        txtViewMusicDuration.setAlignmentX(0.0F);
+        txtViewMusicDuration.setAlignmentY(0.0F);
+        txtViewMusicDuration.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
+        txtViewMusicDuration.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        txtViewMusicDuration.setMaximumSize(new java.awt.Dimension(230, 30));
+        txtViewMusicDuration.setMinimumSize(new java.awt.Dimension(230, 30));
+        txtViewMusicDuration.setPreferredSize(new java.awt.Dimension(230, 30));
 
         labelViewMusic8.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
         labelViewMusic8.setText("Duração:");
@@ -1644,7 +1680,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtViewMusicYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCreateMusicDuration1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtViewMusicDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtViewMusicSound, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesMusicLayout.createSequentialGroup()
                                         .addComponent(btnViewMusicDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1680,7 +1716,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelViewMusic8)
-                    .addComponent(txtCreateMusicDuration1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtViewMusicDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelViewUpdatesMusicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelViewUpdatesMusicLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1972,12 +2008,12 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         txtViewArtistName.setAlignmentX(0.0F);
         txtViewArtistName.setAlignmentY(0.0F);
         txtViewArtistName.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtViewArtistName.setMaximumSize(new java.awt.Dimension(200, 30));
-        txtViewArtistName.setMinimumSize(new java.awt.Dimension(200, 30));
-        txtViewArtistName.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtViewArtistName.setMaximumSize(new java.awt.Dimension(230, 30));
+        txtViewArtistName.setMinimumSize(new java.awt.Dimension(230, 30));
+        txtViewArtistName.setPreferredSize(new java.awt.Dimension(230, 30));
 
         labelViewArtist1.setFont(new java.awt.Font("Cambria", 0, 26)); // NOI18N
-        labelViewArtist1.setText("Editar Artsita:");
+        labelViewArtist1.setText("Editar Artista:");
         labelViewArtist1.setAlignmentY(0.0F);
 
         labelViewArtist2.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
@@ -2010,20 +2046,16 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         txtViewArtistLogin.setAlignmentX(0.0F);
         txtViewArtistLogin.setAlignmentY(0.0F);
         txtViewArtistLogin.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtViewArtistLogin.setMaximumSize(new java.awt.Dimension(200, 30));
-        txtViewArtistLogin.setMinimumSize(new java.awt.Dimension(200, 30));
-        txtViewArtistLogin.setPreferredSize(new java.awt.Dimension(200, 30));
-
-        labelViewArtist6.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
-        labelViewArtist6.setText("Senha:");
-        labelViewArtist6.setAlignmentY(0.0F);
+        txtViewArtistLogin.setMaximumSize(new java.awt.Dimension(230, 30));
+        txtViewArtistLogin.setMinimumSize(new java.awt.Dimension(230, 30));
+        txtViewArtistLogin.setPreferredSize(new java.awt.Dimension(230, 30));
 
         txtViewArtistTel.setAlignmentX(0.0F);
         txtViewArtistTel.setAlignmentY(0.0F);
         txtViewArtistTel.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtViewArtistTel.setMaximumSize(new java.awt.Dimension(200, 30));
-        txtViewArtistTel.setMinimumSize(new java.awt.Dimension(200, 30));
-        txtViewArtistTel.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtViewArtistTel.setMaximumSize(new java.awt.Dimension(230, 30));
+        txtViewArtistTel.setMinimumSize(new java.awt.Dimension(230, 30));
+        txtViewArtistTel.setPreferredSize(new java.awt.Dimension(230, 30));
 
         btnViewArtistDelete.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         btnViewArtistDelete.setText("Deletar");
@@ -2068,14 +2100,6 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         txtViewArtistId.setMaximumSize(new java.awt.Dimension(3, 20));
         txtViewArtistId.setSelectionColor(new java.awt.Color(255, 255, 255));
 
-        txtViewArtistPassword.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        txtViewArtistPassword.setAlignmentX(0.0F);
-        txtViewArtistPassword.setAlignmentY(0.0F);
-        txtViewArtistPassword.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtViewArtistPassword.setMaximumSize(new java.awt.Dimension(200, 30));
-        txtViewArtistPassword.setMinimumSize(new java.awt.Dimension(200, 30));
-        txtViewArtistPassword.setPreferredSize(new java.awt.Dimension(200, 30));
-
         javax.swing.GroupLayout panelViewUpdatesArtistLayout = new javax.swing.GroupLayout(panelViewUpdatesArtist);
         panelViewUpdatesArtist.setLayout(panelViewUpdatesArtistLayout);
         panelViewUpdatesArtistLayout.setHorizontalGroup(
@@ -2087,20 +2111,8 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                         .addComponent(txtViewArtistId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(454, 454, 454))
                     .addGroup(panelViewUpdatesArtistLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(20, 20, 20)
                         .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesArtistLayout.createSequentialGroup()
-                                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelViewArtist6)
-                                    .addComponent(labelViewArtist5)
-                                    .addComponent(labelViewArtist2)
-                                    .addComponent(labelViewArtist4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtViewArtistName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtViewArtistTel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtViewArtistLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtViewArtistPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelViewArtist3)
@@ -2109,10 +2121,22 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnViewArtistRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelViewUpdatesArtistLayout.createSequentialGroup()
-                                    .addGap(11, 11, 11)
+                                    .addGap(160, 160, 160)
+                                    .addComponent(btnViewArtistEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesArtistLayout.createSequentialGroup()
+                                .addComponent(labelViewArtist4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtViewArtistTel, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelViewUpdatesArtistLayout.createSequentialGroup()
+                                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelViewArtist5)
+                                    .addComponent(labelViewArtist2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnViewArtistDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(59, 59, 59)
-                                    .addComponent(btnViewArtistEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtViewArtistLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtViewArtistName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelViewUpdatesArtistLayout.setVerticalGroup(
@@ -2125,27 +2149,22 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelViewArtist3)
                 .addGap(18, 18, 18)
-                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelViewUpdatesArtistLayout.createSequentialGroup()
-                        .addComponent(txtViewArtistName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtViewArtistTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelViewArtist4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtViewArtistLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelViewArtist5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtViewArtistPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelViewArtist6)))
+                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtViewArtistName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelViewArtist2))
-                .addGap(18, 18, 18)
-                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnViewArtistDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnViewArtistEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtViewArtistTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelViewArtist4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtViewArtistLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelViewArtist5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelViewUpdatesArtistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewArtistEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewArtistDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(txtViewArtistId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -2200,10 +2219,6 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         txtViewEmployeeLogin.setMinimumSize(new java.awt.Dimension(250, 30));
         txtViewEmployeeLogin.setPreferredSize(new java.awt.Dimension(250, 30));
 
-        labelViewEmployee6.setFont(new java.awt.Font("Cambria", 0, 16)); // NOI18N
-        labelViewEmployee6.setText("Senha:");
-        labelViewEmployee6.setAlignmentY(0.0F);
-
         txtViewEmployeeTel.setAlignmentX(0.0F);
         txtViewEmployeeTel.setAlignmentY(0.0F);
         txtViewEmployeeTel.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2249,14 +2264,6 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         txtViewEmployeeId.setMaximumSize(new java.awt.Dimension(3, 20));
         txtViewEmployeeId.setSelectionColor(new java.awt.Color(255, 255, 255));
 
-        txtViewEmployeePassword.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
-        txtViewEmployeePassword.setAlignmentX(0.0F);
-        txtViewEmployeePassword.setAlignmentY(0.0F);
-        txtViewEmployeePassword.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        txtViewEmployeePassword.setMaximumSize(new java.awt.Dimension(250, 30));
-        txtViewEmployeePassword.setMinimumSize(new java.awt.Dimension(250, 30));
-        txtViewEmployeePassword.setPreferredSize(new java.awt.Dimension(250, 30));
-
         javax.swing.GroupLayout panelViewUpdatesEmployeeLayout = new javax.swing.GroupLayout(panelViewUpdatesEmployee);
         panelViewUpdatesEmployee.setLayout(panelViewUpdatesEmployeeLayout);
         panelViewUpdatesEmployeeLayout.setHorizontalGroup(
@@ -2278,7 +2285,6 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                             .addGroup(panelViewUpdatesEmployeeLayout.createSequentialGroup()
                                 .addGroup(panelViewUpdatesEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelViewEmployee4)
-                                    .addComponent(labelViewEmployee6, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(labelViewEmployee5, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(labelViewEmployee2, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2289,8 +2295,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                                         .addComponent(btnViewEmployeeEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtViewEmployeeName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtViewEmployeeLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtViewEmployeeTel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtViewEmployeePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtViewEmployeeTel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelViewUpdatesEmployeeLayout.setVerticalGroup(
@@ -2314,15 +2319,11 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 .addGroup(panelViewUpdatesEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtViewEmployeeLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelViewEmployee5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelViewUpdatesEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtViewEmployeePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelViewEmployee6))
                 .addGap(18, 18, 18)
                 .addGroup(panelViewUpdatesEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnViewEmployeeDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnViewEmployeeEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addComponent(txtViewEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -2668,6 +2669,8 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
             model.addRow(newLine);
         }
+
+        txtSelectUpdateResultCheckbox.setText("music");
     }//GEN-LAST:event_checkboxSelectMusicActionPerformed
 
     private void btnEmployeeCreateAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeCreateAlbumActionPerformed
@@ -2738,6 +2741,8 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
             model.addRow(newLine);
         }
+
+        txtSelectUpdateResultCheckbox.setText("category");
     }//GEN-LAST:event_checkboxSelectCategoryActionPerformed
 
     private void checkboxSelectArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxSelectArtistActionPerformed
@@ -2759,10 +2764,13 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 model.addRow(newLine);
             }
         }
+
+        txtSelectUpdateResultCheckbox.setText("artist");
     }//GEN-LAST:event_checkboxSelectArtistActionPerformed
 
     private void btnEmployeeEditEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeEditEmployeeActionPerformed
         Config.openCard(panelMain, "panelUpdates");
+        Config.openCard(panelViewUpdates, "panelViewUpdatesEmployee");
         checkboxSelectEmployee.setSelected(true);
         DefaultTableModel model = (DefaultTableModel) tableSelectedList.getModel();
         model.setRowCount(0);
@@ -2781,10 +2789,40 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 model.addRow(newLine);
             }
         }
+
+        boxViewMusicCategory.removeAllItems();
+        boxViewMusicCategory.addItem("None");
+
+        ArrayList<String> data = new Database().readAll("category", "cname");
+
+        for (String abacate : data) {
+            boxViewMusicCategory.addItem(abacate);
+        }
+
+        boxViewAlbumArtist.removeAllItems();
+        boxViewAlbumArtist.addItem("None");
+
+        ArrayList<String> datas = new Database().readAllForWhere("users", "utype", 0, "artist", "uname");
+
+        for (String abacate : datas) {
+            boxViewAlbumArtist.addItem(abacate);
+        }
+
+        boxViewMusicAlbum.removeAllItems();
+        boxViewMusicAlbum.addItem("None");
+
+        data = new Database().readAll("album", "alname");
+
+        for (String abacate : data) {
+            boxViewMusicAlbum.addItem(abacate);
+        }
+
+        txtSelectUpdateResultCheckbox.setText("employee");
     }//GEN-LAST:event_btnEmployeeEditEmployeeActionPerformed
 
     private void btnEmployeeEditArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeEditArtistActionPerformed
         Config.openCard(panelMain, "panelUpdates");
+        Config.openCard(panelViewUpdates, "panelViewUpdatesArtist");
         checkboxSelectArtist.setSelected(true);
         DefaultTableModel model = (DefaultTableModel) tableSelectedList.getModel();
         model.setRowCount(0);
@@ -2803,10 +2841,40 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 model.addRow(newLine);
             }
         }
+
+        boxViewMusicCategory.removeAllItems();
+        boxViewMusicCategory.addItem("None");
+
+        ArrayList<String> data = new Database().readAll("category", "cname");
+
+        for (String abacate : data) {
+            boxViewMusicCategory.addItem(abacate);
+        }
+
+        boxViewAlbumArtist.removeAllItems();
+        boxViewAlbumArtist.addItem("None");
+
+        ArrayList<String> datas = new Database().readAllForWhere("users", "utype", 0, "artist", "uname");
+
+        for (String abacate : datas) {
+            boxViewAlbumArtist.addItem(abacate);
+        }
+
+        boxViewMusicAlbum.removeAllItems();
+        boxViewMusicAlbum.addItem("None");
+
+        data = new Database().readAll("album", "alname");
+
+        for (String abacate : data) {
+            boxViewMusicAlbum.addItem(abacate);
+        }
+
+        txtSelectUpdateResultCheckbox.setText("artist");
     }//GEN-LAST:event_btnEmployeeEditArtistActionPerformed
 
     private void btnEmployeeEditAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeEditAlbumActionPerformed
         Config.openCard(panelMain, "panelUpdates");
+        Config.openCard(panelViewUpdates, "panelViewUpdatesAlbum");
         checkboxSelectAlbum.setSelected(true);
         DefaultTableModel model = (DefaultTableModel) tableSelectedList.getModel();
         model.setRowCount(0);
@@ -2821,10 +2889,40 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
             model.addRow(newLine);
         }
+
+        boxViewMusicCategory.removeAllItems();
+        boxViewMusicCategory.addItem("None");
+
+        ArrayList<String> data = new Database().readAll("category", "cname");
+
+        for (String abacate : data) {
+            boxViewMusicCategory.addItem(abacate);
+        }
+
+        boxViewAlbumArtist.removeAllItems();
+        boxViewAlbumArtist.addItem("None");
+
+        ArrayList<String> datas = new Database().readAllForWhere("users", "utype", 0, "artist", "uname");
+
+        for (String abacate : datas) {
+            boxViewAlbumArtist.addItem(abacate);
+        }
+
+        boxViewMusicAlbum.removeAllItems();
+        boxViewMusicAlbum.addItem("None");
+
+        data = new Database().readAll("album", "alname");
+
+        for (String abacate : data) {
+            boxViewMusicAlbum.addItem(abacate);
+        }
+
+        txtSelectUpdateResultCheckbox.setText("album");
     }//GEN-LAST:event_btnEmployeeEditAlbumActionPerformed
 
     private void btnEmployeeEditMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeEditMusicActionPerformed
         Config.openCard(panelMain, "panelUpdates");
+        Config.openCard(panelViewUpdates, "panelViewUpdatesMusic");
         checkboxSelectMusic.setSelected(true);
         DefaultTableModel model = (DefaultTableModel) tableSelectedList.getModel();
         model.setRowCount(0);
@@ -2839,6 +2937,35 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
             model.addRow(newLine);
         }
+
+        boxViewMusicCategory.removeAllItems();
+        boxViewMusicCategory.addItem("None");
+
+        ArrayList<String> data = new Database().readAll("category", "cname");
+
+        for (String abacate : data) {
+            boxViewMusicCategory.addItem(abacate);
+        }
+
+        boxViewAlbumArtist.removeAllItems();
+        boxViewAlbumArtist.addItem("None");
+
+        ArrayList<String> datas = new Database().readAllForWhere("users", "utype", 0, "artist", "uname");
+
+        for (String abacate : datas) {
+            boxViewAlbumArtist.addItem(abacate);
+        }
+
+        boxViewMusicAlbum.removeAllItems();
+        boxViewMusicAlbum.addItem("None");
+
+        data = new Database().readAll("album", "alname");
+
+        for (String abacate : data) {
+            boxViewMusicAlbum.addItem(abacate);
+        }
+
+        txtSelectUpdateResultCheckbox.setText("music");
     }//GEN-LAST:event_btnEmployeeEditMusicActionPerformed
 
     private void btnEmployeeCreateMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeCreateMusicActionPerformed
@@ -2847,6 +2974,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
     private void btnEmployeeEditCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeEditCategoryActionPerformed
         Config.openCard(panelMain, "panelUpdates");
+        Config.openCard(panelViewUpdates, "panelViewUpdatesCategory");
         checkboxSelectCategory.setSelected(true);
         DefaultTableModel model = (DefaultTableModel) tableSelectedList.getModel();
         model.setRowCount(0);
@@ -2861,6 +2989,35 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
             model.addRow(newLine);
         }
+
+        boxViewMusicCategory.removeAllItems();
+        boxViewMusicCategory.addItem("None");
+
+        ArrayList<String> data = new Database().readAll("category", "cname");
+
+        for (String abacate : data) {
+            boxViewMusicCategory.addItem(abacate);
+        }
+
+        boxViewAlbumArtist.removeAllItems();
+        boxViewAlbumArtist.addItem("None");
+
+        ArrayList<String> datas = new Database().readAllForWhere("users", "utype", 0, "artist", "uname");
+
+        for (String abacate : datas) {
+            boxViewAlbumArtist.addItem(abacate);
+        }
+
+        boxViewMusicAlbum.removeAllItems();
+        boxViewMusicAlbum.addItem("None");
+
+        data = new Database().readAll("album", "alname");
+
+        for (String abacate : data) {
+            boxViewMusicAlbum.addItem(abacate);
+        }
+
+        txtSelectUpdateResultCheckbox.setText("category");
     }//GEN-LAST:event_btnEmployeeEditCategoryActionPerformed
 
     private void btnSelectUpdateCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUpdateCancelActionPerformed
@@ -2886,6 +3043,8 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
             model.addRow(newLine);
         }
+
+        txtSelectUpdateResultCheckbox.setText("album");
     }//GEN-LAST:event_checkboxSelectAlbumActionPerformed
 
     private void checkboxSelectEmployeeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkboxSelectEmployeeStateChanged
@@ -2911,6 +3070,8 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 model.addRow(newLine);
             }
         }
+
+        txtSelectUpdateResultCheckbox.setText("employee");
     }//GEN-LAST:event_checkboxSelectEmployeeActionPerformed
 
     private void btnCreateCategoryEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCategoryEnterActionPerformed
@@ -3006,42 +3167,42 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateMusicCategoryActionPerformed
 
     private void tableSelectedListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableSelectedListMouseClicked
-        if (evt.getClickCount() == 2) {
+
+    }//GEN-LAST:event_tableSelectedListMouseClicked
+
+    private void btnSelectUpdateVisualizarEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUpdateVisualizarEnterActionPerformed
+        if (tableSelectedList.getSelectedRow() > -1) {
             int row = tableSelectedList.getSelectedRow();
             int selectedId = Integer.parseInt(tableSelectedList.getValueAt(row, 0).toString());
 
-            if (checkboxSelectArtist.isSelected()) {
-                ArrayList<String> dados = new Database().readAllForWhere("users", "uid", selectedId, "uid", "uname", "utel", "ulogin", "upassword", "utype");
+            if (txtSelectUpdateResultCheckbox.getText().trim().equals("Artist")) {
+                ArrayList<String> dados = new Database().readAllForWhere("users", "uid", selectedId, null, "uid", "uname", "utel", "ulogin", "utype");
 
                 for (int i = 0; i < dados.size(); i++) {
-                    String[] elementos = dados.get(i).split(";");
-
-                    if (elementos[5].trim().equals("employee")) {
+                    Object[] elementos = dados.get(i)
+                    if (elementos[4].trim().equals("employee")) {
                         txtViewArtistId.setText(elementos[0]);
                         txtViewArtistName.setText(elementos[1]);
                         txtViewArtistTel.setText(elementos[2]);
                         txtViewArtistLogin.setText(elementos[3]);
-                        txtViewArtistPassword.setText(elementos[4]);
                     }
                 }
 
-            } else if (checkboxSelectEmployee.isSelected()) {
-                ArrayList<String> dados = new Database().readAllForWhere("users", "uid", selectedId, "uid", "uname", "utel", "ulogin", "upassword", "utype");
-
+            } else if (txtSelectUpdateResultCheckbox.getText().trim().equals("employee")) {
+                ArrayList<String> dados = new Database().readAllForWhere("users", "uid", selectedId, null, "uid", "uname", "utel", "ulogin", "utype");
                 for (int i = 0; i < dados.size(); i++) {
-                    String[] elementos = dados.get(i).split(";");
+                    String[] elementos = dados.get(i).split(",");
 
-                    if (elementos[5].trim().equals("artist")) {
+                    if (elementos[4].trim().equals("artist")) {
                         txtViewEmployeeId.setText(elementos[0]);
                         txtViewEmployeeName.setText(elementos[1]);
                         txtViewEmployeeTel.setText(elementos[2]);
                         txtViewEmployeeLogin.setText(elementos[3]);
-                        txtViewEmployeePassword.setText(elementos[4]);
                     }
                 }
 
-            } else if (checkboxSelectCategory.isSelected()) {
-                ArrayList<String> dados = new Database().readAllForWhere("category", "cid", selectedId, "cid", "cnmae");
+            } else if (txtSelectUpdateResultCheckbox.getText().trim().equals("category")) {
+                ArrayList<String> dados = new Database().readAllForWhere("category", "cid", selectedId, null, "cid", "cname");
 
                 for (int i = 0; i < dados.size(); i++) {
                     String[] elementos = dados.get(i).split(";");
@@ -3050,20 +3211,31 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                     txtViewCategoryName.setText(elementos[1]);
                 }
 
-            } else if (checkboxSelectMusic.isSelected()) {
-                ArrayList<Object[]> dados = new Database().readAllMusic(selectedId);
+            } else if (txtSelectUpdateResultCheckbox.getText().trim().equals("album")) {
+                ArrayList<String> dados = new Database().readAllForWhere("album", "alid", selectedId, null, "alid", "alname");
 
                 for (int i = 0; i < dados.size(); i++) {
-                    Object[] abacate = dados.get(i);     
-                    txtViewMusicId.setText((String) abacate[0]);
-                    txtViewCategoryName.setText((String) abacate[1]);
+                    String[] elementos = dados.get(i).split(";");
+
+                    txtViewAlbumId.setText(elementos[0]);
+                    txtViewAlbumName.setText(elementos[1]);
                 }
 
-            } else if (checkboxSelectAlbum.isSelected()) {
+            } else if (txtSelectUpdateResultCheckbox.getText().trim().equals("music")) {
+                ArrayList<String> dados = new Database().readAllForWhere("music", "mid", selectedId, null, "mid", "mname", "msound", "mduration", "myear");
+               
+                for (int i = 0; i < dados.size(); i++) {
+                    String[] elementos = dados.get(i).split(";");
 
+                    txtViewMusicId.setText(elementos[0]);
+                    txtViewMusicName.setText(elementos[1]);
+                    txtViewMusicSound.setText(elementos[2]);
+                    txtViewMusicDuration.setText(elementos[3]);
+                    txtViewMusicYear.setText(elementos[4]);
+                }
             }
         }
-    }//GEN-LAST:event_tableSelectedListMouseClicked
+    }//GEN-LAST:event_btnSelectUpdateVisualizarEnterActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxCreateAlbumArtist;
@@ -3102,6 +3274,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     private javax.swing.JButton btnPlayerNext;
     private javax.swing.JButton btnPlayerVolume;
     private javax.swing.JButton btnSelectUpdateCancel;
+    private javax.swing.JButton btnSelectUpdateVisualizarEnter;
     private javax.swing.JButton btnViewAlbumDelete;
     private javax.swing.JButton btnViewAlbumEdit;
     private javax.swing.JButton btnViewAlbumRefresh;
@@ -3169,7 +3342,6 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     private javax.swing.JLabel labelViewArtist3;
     private javax.swing.JLabel labelViewArtist4;
     private javax.swing.JLabel labelViewArtist5;
-    private javax.swing.JLabel labelViewArtist6;
     private javax.swing.JLabel labelViewCategory1;
     private javax.swing.JLabel labelViewCategory2;
     private javax.swing.JLabel labelViewCategory3;
@@ -3178,7 +3350,6 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     private javax.swing.JLabel labelViewEmployee3;
     private javax.swing.JLabel labelViewEmployee4;
     private javax.swing.JLabel labelViewEmployee5;
-    private javax.swing.JLabel labelViewEmployee6;
     private javax.swing.JLabel labelViewMusic1;
     private javax.swing.JLabel labelViewMusic2;
     private javax.swing.JLabel labelViewMusic4;
@@ -3223,23 +3394,22 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtCreateEmployeePassword;
     private javax.swing.JFormattedTextField txtCreateEmployeeTel;
     private javax.swing.JFormattedTextField txtCreateMusicDuration;
-    private javax.swing.JFormattedTextField txtCreateMusicDuration1;
     private javax.swing.JTextField txtCreateMusicName;
     private javax.swing.JTextField txtCreateMusicSound;
+    private javax.swing.JTextField txtSelectUpdateResultCheckbox;
     private javax.swing.JTextField txtViewAlbumId;
     private javax.swing.JTextField txtViewAlbumName;
     private javax.swing.JTextField txtViewArtistId;
     private javax.swing.JTextField txtViewArtistLogin;
     private javax.swing.JTextField txtViewArtistName;
-    private javax.swing.JPasswordField txtViewArtistPassword;
     private javax.swing.JFormattedTextField txtViewArtistTel;
     private javax.swing.JTextField txtViewCategoryId;
     private javax.swing.JTextField txtViewCategoryName;
     private javax.swing.JTextField txtViewEmployeeId;
     private javax.swing.JTextField txtViewEmployeeLogin;
     private javax.swing.JTextField txtViewEmployeeName;
-    private javax.swing.JPasswordField txtViewEmployeePassword;
     private javax.swing.JFormattedTextField txtViewEmployeeTel;
+    private javax.swing.JFormattedTextField txtViewMusicDuration;
     private javax.swing.JTextField txtViewMusicId;
     private javax.swing.JTextField txtViewMusicName;
     private javax.swing.JTextField txtViewMusicSound;

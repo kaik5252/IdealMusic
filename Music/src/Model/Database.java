@@ -25,8 +25,6 @@ public class Database {
 //ON album.uid = usuario.uid
 //SET album.alid = usuario.uid
 //WHERE album.alname = 'nome_do_album';
-    
-    
     private static final String URL = "jdbc:mysql://localhost:3306/idealmusic?user=root&password=";
     private Connection conn;
     private PreparedStatement pstm;
@@ -302,7 +300,7 @@ public class Database {
         return musics;
     }
 
-    public ArrayList<String> readAllForWhere(String table, String where, int idWhere, String... field) {
+    public ArrayList<String> readAllForWhere(String table, String where, int idWhere, String strWhere, String... field) {
 
         // Inicializando a varíavel que armazena os dados vindo do banco de dados
         ArrayList<String> data = new ArrayList<>();
@@ -318,7 +316,12 @@ public class Database {
             setConnection();
             setPstm(getConn().prepareStatement(sql));
 
-            getPstm().setInt(1, idWhere);
+            if (strWhere == null) {
+                getPstm().setInt(1, idWhere);
+                
+            } else {
+                getPstm().setString(1, strWhere);
+            }
 
             // Executa o comando SQL no banco de dados
             setRes(getPstm().executeQuery());

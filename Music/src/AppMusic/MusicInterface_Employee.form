@@ -2065,7 +2065,8 @@
                               <Component id="scrollSelectedList" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="btnSelectUpdateCancel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnSelectUpdateVisualizarEnter" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -2078,7 +2079,11 @@
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="labelSelectUpdate2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelSelectUpdate1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="labelSelectUpdate1" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="txtSelectUpdateResultCheckbox" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -2095,7 +2100,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="labelSelectUpdate1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelSelectUpdate1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtSelectUpdateResultCheckbox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="labelSelectUpdate2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -2109,7 +2117,10 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="scrollSelectedList" min="-2" pref="243" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnSelectUpdateCancel" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnSelectUpdateCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSelectUpdateVisualizarEnter" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2318,6 +2329,76 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="btnSelectUpdateVisualizarEnter">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Cambria" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Visualizar"/>
+                    <Property name="alignmentY" type="float" value="0.0"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                    <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[0, 0, 0, 0]"/>
+                    </Property>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[100, 30]"/>
+                    </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[100, 30]"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[100, 30]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectUpdateVisualizarEnterActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtSelectUpdateResultCheckbox">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e6" green="d8" red="ad" type="rgb"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e6" green="d8" red="ad" type="rgb"/>
+                    </Property>
+                    <Property name="alignmentX" type="float" value="0.0"/>
+                    <Property name="alignmentY" type="float" value="0.0"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                    <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e6" green="d8" red="ad" type="rgb"/>
+                    </Property>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Default Cursor"/>
+                    </Property>
+                    <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e6" green="d8" red="ad" type="rgb"/>
+                    </Property>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[0, 0, 0, 0]"/>
+                    </Property>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[3, 10]"/>
+                    </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[3, 10]"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[3, 10]"/>
+                    </Property>
+                    <Property name="selectedTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e6" green="d8" red="ad" type="rgb"/>
+                    </Property>
+                    <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e6" green="d8" red="ad" type="rgb"/>
+                    </Property>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panelViewUpdates">
@@ -2382,7 +2463,7 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Component id="txtViewMusicYear" max="32767" attributes="0"/>
-                                                  <Component id="txtCreateMusicDuration1" max="32767" attributes="0"/>
+                                                  <Component id="txtViewMusicDuration" max="32767" attributes="0"/>
                                                   <Component id="txtViewMusicSound" alignment="0" max="32767" attributes="0"/>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Component id="btnViewMusicDelete" min="-2" max="-2" attributes="0"/>
@@ -2430,7 +2511,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelViewMusic8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCreateMusicDuration1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtViewMusicDuration" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -2746,7 +2827,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="txtCreateMusicDuration1">
+                    <Component class="javax.swing.JFormattedTextField" name="txtViewMusicDuration">
                       <Properties>
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                           <Format format="##:##" subtype="-1" type="5"/>
@@ -3343,23 +3424,8 @@
                                       <EmptySpace min="-2" pref="454" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="labelViewArtist6" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="labelViewArtist5" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="labelViewArtist2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="labelViewArtist4" alignment="1" min="-2" pref="64" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="txtViewArtistName" alignment="1" max="32767" attributes="0"/>
-                                                  <Component id="txtViewArtistTel" alignment="1" max="32767" attributes="0"/>
-                                                  <Component id="txtViewArtistLogin" alignment="1" max="32767" attributes="0"/>
-                                                  <Component id="txtViewArtistPassword" alignment="1" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
                                           <Group type="103" alignment="1" groupAlignment="1" attributes="0">
                                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                                   <Component id="labelViewArtist3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -3370,10 +3436,27 @@
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                                  <Component id="btnViewArtistDelete" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                                                   <Component id="btnViewArtistEdit" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="labelViewArtist4" min="-2" pref="64" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtViewArtistTel" min="-2" pref="230" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="labelViewArtist5" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="labelViewArtist2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="btnViewArtistDelete" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="txtViewArtistLogin" max="32767" attributes="0"/>
+                                                      <Component id="txtViewArtistName" max="32767" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -3394,33 +3477,26 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="labelViewArtist3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="txtViewArtistName" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtViewArtistTel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelViewArtist4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtViewArtistLogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelViewArtist5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtViewArtistPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelViewArtist6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="labelViewArtist2" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtViewArtistName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelViewArtist2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnViewArtistDelete" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnViewArtistEdit" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtViewArtistTel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelViewArtist4" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="64" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtViewArtistLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelViewArtist5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnViewArtistEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnViewArtistDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="112" max="32767" attributes="0"/>
                               <Component id="txtViewArtistId" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
@@ -3439,13 +3515,13 @@
                           <Insets value="[0, 0, 0, 0]"/>
                         </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
+                          <Dimension value="[230, 30]"/>
                         </Property>
                         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
+                          <Dimension value="[230, 30]"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
+                          <Dimension value="[230, 30]"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -3454,7 +3530,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Cambria" size="26" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Editar Artsita:"/>
+                        <Property name="text" type="java.lang.String" value="Editar Artista:"/>
                         <Property name="alignmentY" type="float" value="0.0"/>
                       </Properties>
                     </Component>
@@ -3530,23 +3606,14 @@
                           <Insets value="[0, 0, 0, 0]"/>
                         </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
+                          <Dimension value="[230, 30]"/>
                         </Property>
                         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
+                          <Dimension value="[230, 30]"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
+                          <Dimension value="[230, 30]"/>
                         </Property>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="labelViewArtist6">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Cambria" size="16" style="0"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Senha:"/>
-                        <Property name="alignmentY" type="float" value="0.0"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JFormattedTextField" name="txtViewArtistTel">
@@ -3557,13 +3624,13 @@
                           <Insets value="[0, 0, 0, 0]"/>
                         </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
+                          <Dimension value="[230, 30]"/>
                         </Property>
                         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
+                          <Dimension value="[230, 30]"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
+                          <Dimension value="[230, 30]"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -3657,27 +3724,6 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JPasswordField" name="txtViewArtistPassword">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Cambria" size="14" style="0"/>
-                        </Property>
-                        <Property name="alignmentX" type="float" value="0.0"/>
-                        <Property name="alignmentY" type="float" value="0.0"/>
-                        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                          <Insets value="[0, 0, 0, 0]"/>
-                        </Property>
-                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
-                        </Property>
-                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
-                        </Property>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 30]"/>
-                        </Property>
-                      </Properties>
-                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="panelViewUpdatesEmployee">
@@ -3715,7 +3761,6 @@
                                           <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="labelViewEmployee4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="labelViewEmployee6" alignment="1" min="-2" max="-2" attributes="0"/>
                                                   <Component id="labelViewEmployee5" alignment="1" min="-2" max="-2" attributes="0"/>
                                                   <Component id="labelViewEmployee2" alignment="1" min="-2" max="-2" attributes="0"/>
                                               </Group>
@@ -3729,7 +3774,6 @@
                                                   <Component id="txtViewEmployeeName" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="txtViewEmployeeLogin" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="txtViewEmployeeTel" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtViewEmployeePassword" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -3764,17 +3808,12 @@
                                   <Component id="txtViewEmployeeLogin" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelViewEmployee5" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtViewEmployeePassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelViewEmployee6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnViewEmployeeDelete" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnViewEmployeeEdit" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="64" max="32767" attributes="0"/>
+                              <EmptySpace pref="106" max="32767" attributes="0"/>
                               <Component id="txtViewEmployeeId" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
@@ -3894,15 +3933,6 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="labelViewEmployee6">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Cambria" size="16" style="0"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Senha:"/>
-                        <Property name="alignmentY" type="float" value="0.0"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JFormattedTextField" name="txtViewEmployeeTel">
                       <Properties>
                         <Property name="alignmentX" type="float" value="0.0"/>
@@ -4005,27 +4035,6 @@
                         </Property>
                         <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JPasswordField" name="txtViewEmployeePassword">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Cambria" size="14" style="0"/>
-                        </Property>
-                        <Property name="alignmentX" type="float" value="0.0"/>
-                        <Property name="alignmentY" type="float" value="0.0"/>
-                        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                          <Insets value="[0, 0, 0, 0]"/>
-                        </Property>
-                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[250, 30]"/>
-                        </Property>
-                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[250, 30]"/>
-                        </Property>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[250, 30]"/>
                         </Property>
                       </Properties>
                     </Component>
