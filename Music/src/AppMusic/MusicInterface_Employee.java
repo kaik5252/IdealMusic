@@ -3179,13 +3179,13 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 ArrayList<String> dados = new Database().readAllForWhere("users", "uid", selectedId, null, "uid", "uname", "utel", "ulogin", "utype");
 
                 for (int i = 0; i < dados.size(); i++) {
-                    Object[] elementos = dados.get(i)
-                    if (elementos[4].trim().equals("employee")) {
-                        txtViewArtistId.setText(elementos[0]);
-                        txtViewArtistName.setText(elementos[1]);
-                        txtViewArtistTel.setText(elementos[2]);
-                        txtViewArtistLogin.setText(elementos[3]);
-                    }
+//                    Object[] elementos = dados.get(i)
+//                    if (elementos[4].trim().equals("employee")) {
+//                        txtViewArtistId.setText(elementos[0]);
+//                        txtViewArtistName.setText(elementos[1]);
+//                        txtViewArtistTel.setText(elementos[2]);
+//                        txtViewArtistLogin.setText(elementos[3]);
+//                    }
                 }
 
             } else if (txtSelectUpdateResultCheckbox.getText().trim().equals("employee")) {
