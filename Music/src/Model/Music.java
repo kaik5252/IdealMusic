@@ -8,12 +8,16 @@ public final class Music {
     private int mid;
     private String mname;
     private String msound;
+    private String mduration;
+    private String myear;
     private String mcategory;
     private String malbum;
 
-    public Music(int mid, String mname, String msound, String mcategory, String malbum) {
+    public Music(int mid, String mname, String msound, String mduration, String myear, String mcategory, String malbum) {
         setMname(mname);
         setMsound(msound);
+        setMduration(mduration);
+        setMyear(myear);
         setMcategory(mcategory);
         setMalbum(malbum);
     }
@@ -118,5 +122,33 @@ public final class Music {
         } else {
             this.malbum = malbum;
         }
+    }
+
+    /**
+     * @return the mduration
+     */
+    public String getMduration() {
+        return mduration;
+    }
+
+    /**
+     * @param mduration the mduration to set
+     */
+    public void setMduration(String mduration) {
+        this.mduration = mduration;
+    }
+
+    /**
+     * @return the myear
+     */
+    public String getMyear() {
+        return myear;
+    }
+
+    /**
+     * @param myear the myear to set
+     */
+    public void setMyear(String myear) {
+        this.myear = myear;
     }
 }

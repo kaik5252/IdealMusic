@@ -1,5 +1,6 @@
 package Control;
 
+import Model.Database;
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
@@ -10,7 +11,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * 
+ *
  * @author Kaik D' Andrade
  */
 public final class ConfigMusic {
@@ -18,13 +19,12 @@ public final class ConfigMusic {
     private Clip clip = null;
     boolean play = false;
     int musicDuraction = 0;
-    float volume = 0.0f;
     private FloatControl gainControl = null;
 
-    public ConfigMusic(String filePath) {
+    public ConfigMusic(int mid) {
         try {
             // Pega o arquivo da música (É necessário que o arquivo seja .wav a biblioteca usada não suporta .mp3)
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(Config.retPath("sounds") + "/" + new Database().readMusic(mid)).getAbsoluteFile());
 
             // Abre/Define o arquivo da música na variável clip
             setClip(AudioSystem.getClip());
@@ -35,7 +35,7 @@ public final class ConfigMusic {
 
             // Define a variável de controle do volume e a defini com o normal
             setGainControl((FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN));
-            getGainControl().setValue(volume);
+            getGainControl().setValue(0);
 
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException error) {
             // Caso gere um erro
@@ -44,27 +44,29 @@ public final class ConfigMusic {
     }
 
     public void start() {
-        if (!play) {
-            getClip().start();
-            play = true;
-        }
+        getClip().start();
     }
 
     public void volume(int volume) {
-        this.volume = (float) volume;
         getGainControl().setValue(volume);
     }
 
+    public void notStop() {
+        getClip().start();
+        getClip().setMicrosecondPosition(musicDuraction);
+    }
+    
     public void stop() {
-        if (play) {
-            getClip().stop();
-            musicDuraction = (int) getClip().getMicrosecondPosition();
-            play = false;
-        }
+        getClip().stop();
+        musicDuraction = (int) getClip().getMicrosecondPosition();
+    }
+    
+    public void finalStop() {
+        getClip().stop();
     }
 
-    public int getDurationLenghtMusic() {
-        return (int) getClip().getMicrosecondLength();
+    public double getDurationLenghtMusic() {
+        return getClip().getMicrosecondLength();
     }
 
     public int getDurationMusic() {

@@ -57,7 +57,7 @@ public class APP extends javax.swing.JFrame {
 
         btnLoginEnter.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         btnLoginEnter.setText("Entrar");
-        btnLoginEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLoginEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLoginEnter.setFocusable(false);
         btnLoginEnter.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnLoginEnter.setMaximumSize(new java.awt.Dimension(260, 30));
@@ -164,18 +164,14 @@ public class APP extends javax.swing.JFrame {
                 PopUp.showNotefy("Usuário não encontrado...");
 
             } else if (user.equals("NOT")) {
-                openInterface("employee", null);
+                openInterface("employee", null, 0);
 
             } else {
-                openInterface("artist", user);
-                System.out.println(user);
-
-                if (!user.contains(";")) {
-                    PopUp.showNotefy("Usuário não encontrado...");
-
-                } else {
-                    openInterface(user.substring(0, user.lastIndexOf(";")), user.substring(user.lastIndexOf(";") + 1));
-                }
+                openInterface(
+                        "artist",
+                        user.substring(0, user.lastIndexOf(";")),
+                        Integer.parseInt(user.substring(user.lastIndexOf(";") + 1))
+                );
             }
         }
 
@@ -205,7 +201,7 @@ public class APP extends javax.swing.JFrame {
      * @author Kaik D' Andrade
      * @param type
      */
-    private void openInterface(String type, String name) {
+    private void openInterface(String type, String name, int id) {
 
         switch (type) {
             case "employee" -> {
@@ -216,7 +212,7 @@ public class APP extends javax.swing.JFrame {
             }
 
             case "artist" -> {
-                MusicInterface_Artist interfaceArtist = new MusicInterface_Artist(name);
+                MusicInterface_Artist interfaceArtist = new MusicInterface_Artist(name, id);
                 interfaceArtist.setVisible(true);
                 interfaceArtist.setLocationRelativeTo(null);
                 setVisible(false);

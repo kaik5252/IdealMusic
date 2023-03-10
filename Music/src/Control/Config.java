@@ -1,6 +1,8 @@
 package Control;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -25,6 +27,19 @@ public class Config {
         }
 
         return true;
+    }
+
+    /**
+     * Método responsável por retornar o caminho absoluto do projeto, até a
+     * pasta `resources`
+     *
+     * @param folder
+     * @return String
+     * @author Kaik D' Andrade
+     */
+    public static String retPath(String folder) {
+        Path parentPath = Paths.get("").toAbsolutePath();
+        return parentPath.toString() + "/src/resources/" + folder;
     }
 
     /**

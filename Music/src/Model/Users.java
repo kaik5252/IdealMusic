@@ -12,7 +12,7 @@ public final class Users {
     private String upassword;
     private String utype;
 
-    public Users(int uid, String uname, String utel, String ulogin, String password, String type) {
+    public Users(int uid, String uname, String utel, String ulogin, String upassword, String utype) {
         setUid(uid);
         setUname(uname);
         setUtel(utel);
@@ -22,11 +22,11 @@ public final class Users {
     }
 
     public void createUser() {
-        new Database().createUser(this);
+
     }
 
     public void readUser() {
-        
+
     }
 
     public void updateUser() {
@@ -62,12 +62,7 @@ public final class Users {
      * @param uname the name to set
      */
     public void setUname(String uname) {
-        if (uname.trim().equals("") || uname.trim() == null) {
-            this.uname = null;
-
-        } else {
-            this.uname = uname.trim();
-        }
+        this.uname = uname.trim();
     }
 
     /**
@@ -81,12 +76,7 @@ public final class Users {
      * @param utel the utel to set
      */
     public void setUtel(String utel) {
-        if (utel.trim().equals("")) {
-            this.utel = null;
-
-        } else {
-            this.utel = utel.trim();
-        }
+        this.utel = utel.trim();
     }
 
     /**
@@ -100,12 +90,7 @@ public final class Users {
      * @param ulogin the ulogin to set
      */
     public void setUlogin(String ulogin) {
-        if (ulogin.trim().equals("")) {
-            this.ulogin = null;
-
-        } else {
-            this.ulogin = ulogin.trim();
-        }
+        this.ulogin = ulogin.trim();
     }
 
     /**
@@ -119,12 +104,7 @@ public final class Users {
      * @param upassword the upassword to set
      */
     public void setUpassword(String upassword) {
-        if (upassword.trim().equals("")) {
-            this.upassword = null;
-
-        } else {
-            this.upassword = upassword.trim();
-        }
+        this.upassword = upassword.trim();
     }
 
     /**
@@ -138,11 +118,6 @@ public final class Users {
      * @param utype the utype to set
      */
     public void setUtype(String utype) {
-        if (utype.trim().contains("artist") || utype.trim().contains("employee")) {
-            this.utype = utype.trim();
-
-        } else {
-            this.utype = null;
-        }
+        this.utype = utype;
     }
 }

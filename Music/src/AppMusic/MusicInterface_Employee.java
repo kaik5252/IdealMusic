@@ -7,6 +7,7 @@ import Model.Database;
 import Model.Music;
 import Model.Users;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +29,8 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         for (int colInit = 0; colInit < tableSelectedList.getColumnModel().getColumnCount(); colInit++) {
             tableSelectedList.getColumnModel().getColumn(colInit).setCellRenderer(tableCell);
         }
+
+        panelMusic();
     }
 
     /**
@@ -570,7 +573,6 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         labelCreateAlbum2.setForeground(new java.awt.Color(255, 255, 255));
         labelCreateAlbum2.setText("Nome:");
 
-        txtCreateAlbumName.setEditable(false);
         txtCreateAlbumName.setFont(new java.awt.Font("Cambria", 0, 14)); // NOI18N
         txtCreateAlbumName.setAlignmentX(0.0F);
         txtCreateAlbumName.setAlignmentY(0.0F);
@@ -584,6 +586,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         btnCreateAlbumCancel.setText("Cancelar");
         btnCreateAlbumCancel.setAlignmentY(0.0F);
         btnCreateAlbumCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCreateAlbumCancel.setFocusable(false);
         btnCreateAlbumCancel.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnCreateAlbumCancel.setMaximumSize(new java.awt.Dimension(90, 30));
         btnCreateAlbumCancel.setMinimumSize(new java.awt.Dimension(90, 30));
@@ -598,6 +601,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         btnCreateAlbumEnter.setText("Cadastrar");
         btnCreateAlbumEnter.setAlignmentY(0.0F);
         btnCreateAlbumEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCreateAlbumEnter.setFocusable(false);
         btnCreateAlbumEnter.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnCreateAlbumEnter.setMaximumSize(new java.awt.Dimension(90, 30));
         btnCreateAlbumEnter.setMinimumSize(new java.awt.Dimension(90, 30));
@@ -690,7 +694,6 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
         labelCreateCategory3.setForeground(new java.awt.Color(255, 255, 255));
         labelCreateCategory3.setText("Nome:");
 
-        txtCreateCategoryName.setEditable(false);
         txtCreateCategoryName.setAlignmentX(0.0F);
         txtCreateCategoryName.setAlignmentY(0.0F);
         txtCreateCategoryName.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -2575,7 +2578,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelPlayer, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
-                    .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 988, Short.MAX_VALUE))
+                    .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
@@ -2596,6 +2599,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
     private void btnMenuMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMusicActionPerformed
         Config.openCard(panelMain, "panelCreateMusic");
+        panelMusic();
     }//GEN-LAST:event_btnMenuMusicActionPerformed
 
     private void btnEmployeeCreateEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeCreateEmployeeActionPerformed
@@ -2635,6 +2639,16 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
     private void btnEmployeeCreateAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeCreateAlbumActionPerformed
         Config.openFrame(frameUtiliti, "Cadastrar Albúm:", panelUtilitiMain, "panelCreateAlbum");
+        boxCreateAlbumArtist.removeAllItems();
+        boxCreateAlbumArtist.addItem("None");
+
+        ArrayList<String> data = new Database().readAll("users", "utype", "ulogin");
+
+        for (String abacate : data) {
+            if (abacate.substring(0, abacate.lastIndexOf(";")).equals("artist")) {
+                boxCreateAlbumArtist.addItem(abacate.substring(abacate.lastIndexOf(";") + 1));
+            }
+        }
     }//GEN-LAST:event_btnEmployeeCreateAlbumActionPerformed
 
     private void btnEmployeeCreateArtistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeCreateArtistActionPerformed
@@ -2647,25 +2661,20 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
     private void btnCreateEmployeeEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEmployeeEnterActionPerformed
         if (Config.verifyTextFields(txtCreateEmployeeName, txtCreateEmployeeTel, txtCreateEmployeeLogin, txtCreateEmployeePassword)) {
-            new Users(
-                    0,
-                    txtCreateEmployeeLogin.getText().trim(),
+            new Database().createUser(
+                    txtCreateEmployeeName.getText().trim(),
                     txtCreateEmployeeTel.getText().trim(),
                     txtCreateEmployeeLogin.getText().trim(),
                     new String(txtCreateEmployeePassword.getPassword()).trim(),
-                    "employee"
-            ).createUser();
+                    "employee");
         }
+        
+        Config.clearTextFields(txtCreateEmployeeName, txtCreateEmployeeTel, txtCreateEmployeeLogin, txtCreateEmployeePassword);
     }//GEN-LAST:event_btnCreateEmployeeEnterActionPerformed
 
     private void btnCreateAlbumEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAlbumEnterActionPerformed
-        System.out.println(boxCreateAlbumArtist.getSelectedIndex());
-        if (Config.verifyTextFields(txtCreateAlbumName) && boxCreateAlbumArtist.getSelectedIndex() != 0) {
-            new Albums(
-                    0,
-                    txtCreateAlbumName.getText().trim(),
-                    boxCreateAlbumArtist.getSelectedItem().toString().trim()
-            ).createAlbum();
+        if (Config.verifyTextFields(txtCreateAlbumName) && boxCreateAlbumArtist.getSelectedIndex() > 0) {
+            new Database().createAlbum(boxCreateAlbumArtist.getSelectedItem().toString(), txtCreateAlbumName.getText().trim());
         }
     }//GEN-LAST:event_btnCreateAlbumEnterActionPerformed
 
@@ -2839,6 +2848,7 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     private void btnCreateCategoryEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCategoryEnterActionPerformed
         if (Config.verifyTextFields(txtCreateCategoryName)) {
             new Database().createCategory(txtCreateCategoryName.getText().trim());
+            Config.clearTextFields(txtCreateCategoryName);
         }
     }//GEN-LAST:event_btnCreateCategoryEnterActionPerformed
 
@@ -2847,14 +2857,16 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateArtistCancelActionPerformed
 
     private void btnCreateArtistEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateArtistEnterActionPerformed
-        new Users(
-                0,
-                txtCreateEmployeeLogin.getText().trim(),
-                txtCreateEmployeeTel.getText().trim(),
-                txtCreateEmployeeLogin.getText().trim(),
-                new String(txtCreateEmployeePassword.getPassword()).trim(),
-                "artist"
-        ).createUser();
+        if (Config.verifyTextFields(txtCreateArtistName, txtCreateArtistTel, txtCreateArtistLogin, txtCreateArtistPassword)) {
+            new Database().createUser(
+                    txtCreateArtistName.getText().trim(),
+                    txtCreateArtistTel.getText().trim(),
+                    txtCreateArtistLogin.getText().trim(),
+                    new String(txtCreateArtistPassword.getPassword()).trim(),
+                    "artist");
+        }
+        
+        Config.clearTextFields(txtCreateArtistName, txtCreateArtistTel, txtCreateArtistLogin, txtCreateArtistPassword);
     }//GEN-LAST:event_btnCreateArtistEnterActionPerformed
 
     private void btnCreateCategoryCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCategoryCancelActionPerformed
@@ -2892,12 +2904,14 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateMusicSelectActionPerformed
 
     private void btnCreateMusicEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicEnterActionPerformed
-        if (Config.verifyTextFields(txtCreateMusicName, txtCreateMusicSound, txtCreateMusicDuration) && boxCreateMusicAlbum.getSelectedIndex() != 0 && boxCreateMusicAlbum.getSelectedIndex() != 0) {
+        if (Config.verifyTextFields(txtCreateMusicName, txtCreateMusicSound, txtCreateMusicDuration) && boxCreateMusicAlbum.getSelectedIndex() > 0 && boxCreateMusicAlbum.getSelectedIndex() > 0) {
 
             new Music(
                     0,
                     txtCreateMusicName.getText().trim(),
                     txtCreateMusicSound.getText().trim(),
+                    txtCreateMusicDuration.getText().trim(),
+                    String.valueOf(Calendar.getInstance().get(Calendar.YEAR)),
                     boxCreateMusicCategory.getSelectedItem().toString().trim(),
                     boxCreateMusicAlbum.getSelectedItem().toString().trim()
             ).createMusic();
@@ -2907,6 +2921,16 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
 
     private void btnCreateMusicAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicAlbumActionPerformed
         Config.openFrame(frameUtiliti, "Cadastrar Albúm:", panelUtilitiMain, "panelCreateAlbum");
+        boxCreateAlbumArtist.removeAllItems();
+        boxCreateAlbumArtist.addItem("None");
+
+        ArrayList<String> data = new Database().readAll("users", "utype", "ulogin");
+
+        for (String abacate : data) {
+            if (abacate.substring(0, abacate.lastIndexOf(";")).equals("artist")) {
+                boxCreateAlbumArtist.addItem(abacate.substring(abacate.lastIndexOf(";") + 1));
+            }
+        }
     }//GEN-LAST:event_btnCreateMusicAlbumActionPerformed
 
     private void btnCreateMusicCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateMusicCategoryActionPerformed
@@ -3097,4 +3121,26 @@ public class MusicInterface_Employee extends javax.swing.JFrame {
     private javax.swing.JTextField txtViewMusicName;
     private javax.swing.JTextField txtViewMusicSound;
     // End of variables declaration//GEN-END:variables
+
+    public void panelMusic() {
+        boxCreateMusicAlbum.removeAllItems();
+        boxCreateMusicAlbum.addItem("None");
+
+        ArrayList<String> data = new Database().readAll("album", "alname");
+
+        for (String abacate : data) {
+            boxCreateMusicAlbum.addItem(abacate);
+        }
+
+        boxCreateMusicCategory.removeAllItems();
+        boxCreateMusicCategory.addItem("None");
+
+        data = new Database().readAll("category", "cname");
+
+        for (String abacate : data) {
+            boxCreateMusicCategory.addItem(abacate);
+        }
+
+        Config.openCard(panelMain, "panelCreateMusic");
+    }
 }

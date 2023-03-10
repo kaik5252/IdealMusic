@@ -1,5 +1,6 @@
 package Model;
 
+import Control.Config;
 import Control.PopUp;
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 /**
  * @author Kaik D' Andrade
@@ -60,30 +63,52 @@ public class Database {
         }
     }
 
-    /**
-     * Método responsável por retornar o caminho absoluto do projeto, até a
-     * pasta `resources`
-     *
-     * @param folder
-     * @return String
-     * @author Kaik D' Andrade
-     */
-    public static String retPath(String folder) {
-        Path parentPath = Paths.get("").toAbsolutePath();
-        return parentPath.toString() + "/src/resources/" + folder;
+    public String readMusic(int mid) {
+
+        // Comando SQL
+        sql = "SELECT msound FROM music WHERE mid = ?";
+
+        try {
+
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            getPstm().setInt(1, mid);
+
+            setRes(getPstm().executeQuery());
+
+            if (getRes().next()) {
+                return getRes().getString("msound");
+            }
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("ConfigMusic\\readMusic\n" + error);
+
+        } finally {
+            // Finaliza toda a conexão com o banco 
+            setClose();
+            sql = null;
+        }
+
+        return null;
     }
 
     /**
      * Método responsável por criar um novo usuário no banco de dados, seja ele
      * funcionário ou artista
      *
-     * @param user
+     * @param uname
+     * @param utel
+     * @param ulogin
+     * @param upassword
      * @author Kaik D' Andrade
+     * @param utype
      */
-    public void createUser(Users user) {
+    public void createUser(String uname, String utel, String ulogin, String upassword, String utype) {
 
         int id = 0;
-        String utype = null;
+
         // Comando SQL
         sql = "INSERT INTO users(uname, utel, ulogin, upassword, utype) VALUES (?, ?, ?, sha2(?, 512), ?)";
 
@@ -93,11 +118,11 @@ public class Database {
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, user.getUname());
-            getPstm().setString(2, user.getUtel());
-            getPstm().setString(3, user.getUlogin());
-            getPstm().setString(4, user.getUpassword());
-            getPstm().setString(5, user.getUtype());
+            getPstm().setString(1, uname);
+            getPstm().setString(2, utel);
+            getPstm().setString(3, ulogin);
+            getPstm().setString(4, upassword);
+            getPstm().setString(5, utype);
 
             // Executa o comando SQL no banco de dados
             getPstm().execute();
@@ -106,28 +131,29 @@ public class Database {
             setRes(getPstm().executeQuery());
             if (getRes().next()) {
                 id = getRes().getInt("uid");
-                utype = getRes().getString("utype");
-            }
 
-            switch (utype) {
-                case "employee" -> {
-                    sql = "INSERT INTO employee(emuser) VALUES (?)";
-                    setPstm(getConn().prepareStatement(sql));
-                    getPstm().setInt(1, id);
-                    getPstm().execute();
-                    break;
-                }
+                switch (getRes().getString("utype")) {
+                    case "employee" -> {
+                        sql = "INSERT INTO employee(emuser) VALUES (?)";
+                        setPstm(getConn().prepareStatement(sql));
+                        getPstm().setInt(1, id);
+                        getPstm().execute();
+                        PopUp.showNotefy("Sucesso!!! Funcionário cadastrado.");
+                        break;
+                    }
 
-                case "artist" -> {
-                    sql = "INSERT INTO artist(artuser) VALUES (?)";
-                    setPstm(getConn().prepareStatement(sql));
-                    getPstm().setInt(1, id);
-                    getPstm().execute();
-                    break;
-                }
+                    case "artist" -> {
+                        sql = "INSERT INTO artist(artuser) VALUES (?)";
+                        setPstm(getConn().prepareStatement(sql));
+                        getPstm().setInt(1, id);
+                        getPstm().execute();
+                        PopUp.showNotefy("Sucesso!!! Artista cadastrado.");
+                        break;
+                    }
 
-                default -> {
-                    break;
+                    default -> {
+                        break;
+                    }
                 }
             }
 
@@ -140,6 +166,85 @@ public class Database {
             setClose();
             sql = null;
         }
+    }
+
+    public ArrayList<Object[]> readMusicforArtist(int userId) {
+
+        ArrayList<Object[]> musics = new ArrayList<>();
+
+        sql = "SELECT * FROM music m "
+                + "INNER JOIN enclose e ON m.mid = e.enmusic "
+                + "INNER JOIN album a ON e.enalbum = a.alid "
+                + "WHERE a.alartist = ?";
+
+        try {
+
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            getPstm().setInt(1, userId);
+
+            setRes(getPstm().executeQuery());
+
+            while (getRes().next()) {
+                Object[] abacate = {
+                    getRes().getInt("mid"),
+                    getRes().getString("mname")
+                };
+
+                musics.add(abacate);
+            }
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\readMusicforArtist\n" + error);
+            return null;
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
+
+        return musics;
+    }
+
+    public ArrayList<Object[]> readAlbumforArtist(int userId) {
+
+        ArrayList<Object[]> musics = new ArrayList<>();
+
+        sql = "SELECT * FROM album WHERE alartist = ?";
+
+        try {
+
+            setConnection();
+            setPstm(getConn().prepareStatement(sql));
+
+            getPstm().setInt(1, userId);
+
+            setRes(getPstm().executeQuery());
+
+            while (getRes().next()) {
+                Object[] abacate = {
+                    getRes().getInt("alid"),
+                    getRes().getString("alname")
+                };
+
+                musics.add(abacate);
+            }
+
+        } catch (SQLException error) {
+            // Caso gere um erro
+            PopUp.showWarning("DatabaseModel\\readMusicforArtist\n" + error);
+            return null;
+
+        } finally {
+            // Finaliza toda a conexão com o banco de dados
+            setClose();
+            sql = null;
+        }
+
+        return musics;
     }
 
     /**
@@ -168,10 +273,12 @@ public class Database {
             // Se for true, salva o dado do campo `field` dentro de `data`
             if (getRes().next()) {
                 return switch (getRes().getString("utype")) {
-                    
-                    case "artist" -> getRes().getString("ulogin");
-                        
-                    default -> "NOT";
+
+                    case "artist" ->
+                        getRes().getString("ulogin") + ";" + getRes().getInt("uid");
+
+                    default ->
+                        "NOT";
                 };
             }
 
@@ -263,14 +370,16 @@ public class Database {
             }
 
             // Comando SQL
-            sql = "INSERT INTO music(mname, msound, mcategory) VALUES (?, ?, ?)";
+            sql = "INSERT INTO music(mname, msound, mduration, myear, mcategory) VALUES (?, ?, ?, ?, ?)";
 
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
             getPstm().setString(1, music.getMname());
-            getPstm().setString(2, music.getMsound().substring(music.getMsound().lastIndexOf("/") + 1));
-            getPstm().setInt(3, idCategory);
+            getPstm().setString(2, music.getMsound().substring(music.getMsound().lastIndexOf("\\") + 1));
+            getPstm().setString(3, music.getMduration());
+            getPstm().setString(4, music.getMyear());
+            getPstm().setInt(5, idCategory);
 
             // Executa o comando SQL no banco de dados
             getPstm().execute();
@@ -300,8 +409,10 @@ public class Database {
 
             // Copia a música para a pasta do projeto
             Path source = Paths.get(music.getMsound());
-            Path destination = Paths.get(retPath("sounds") + "/" + music.getMsound().substring(music.getMsound().lastIndexOf("/") + 1));
+            Path destination = Paths.get(Config.retPath("sounds") + "/" + music.getMsound().substring(music.getMsound().lastIndexOf("\\") + 1));
             Files.copy(source, destination);
+
+            PopUp.showNotefy("Sucesso!!! Música cadastrada.");
 
         } catch (IOException | SQLException error) {
             // Caso gere um erro
@@ -317,39 +428,39 @@ public class Database {
     /**
      * Método responsável por criar um novo albúm no banco de dados
      *
-     * @param abm
+     * @param ulogin
+     * @param alname
+     * @author Kaik D' Andrade
      */
-    public void createAlbums(Albums abm) {
-
-        int idArtist = 0;
-
+    public void createAlbum(String ulogin, String alname) {
         try {
             // Comando SQL
-            sql = "SELECT uid FROM users WHERE cname = ?";
+            sql = "SELECT * FROM users WHERE ulogin = ?";
 
             // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
             setConnection();
             setPstm(getConn().prepareStatement(sql));
 
             // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, abm.getAlartist());
+            getPstm().setString(1, ulogin);
             setRes(getPstm().executeQuery());
 
             if (getRes().next()) {
-                idArtist = getRes().getInt("uid");
+                System.out.println("foi?");
+                // Comando SQL
+                sql = "INSERT INTO album(alname, alartist) VALUES (?, ?)";
+
+                setPstm(getConn().prepareStatement(sql));
+
+                // Alterando os "?" pelos valores corretos
+                getPstm().setString(1, alname);
+                getPstm().setInt(2, getRes().getInt("uid"));
+
+                // Executa o comando SQL no banco de dados
+                getPstm().execute();
+
+                PopUp.showNotefy("Sucesso!!! Albúm cadastrado.");
             }
-
-            // Comando SQL
-            sql = "INSERT INTO album(alname, alartist) VALUES (?, ?)";
-
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, abm.getAlname());
-            getPstm().setInt(3, idArtist);
-
-            // Executa o comando SQL no banco de dados
-            getPstm().execute();
 
         } catch (SQLException error) {
             // Caso gere um erro
@@ -383,6 +494,8 @@ public class Database {
 
             // Executa o comando SQL no banco de dados
             getPstm().execute();
+
+            PopUp.showNotefy("Sucesso!! Categorial musical cadastrada!");
 
         } catch (SQLException error) {
             // Caso gere um erro
@@ -424,7 +537,7 @@ public class Database {
 
                 while (musicResult.next()) {
                     Object[] abacate = {
-                        musicResult.getInt("mid"),
+                        musicResult.getString("mid"),
                         musicResult.getString("mname")
                     };
 
@@ -525,7 +638,7 @@ public class Database {
 
             if (getRes().next()) {
                 String soundName = getRes().getString("msound");
-                File fileSound = new File(retPath("sounds") + soundName);
+                File fileSound = new File(Config.retPath("sounds") + soundName);
                 fileSound.delete();
             }
 

@@ -16,7 +16,7 @@ public final class Albums {
     }
     
     public void createAlbum() {
-        
+
     }
     
     public void updateAlbum() {
