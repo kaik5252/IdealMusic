@@ -2,14 +2,19 @@ package AppMusic;
 
 import Control.Config;
 import Control.PopUp;
-import Model.Database;
+import Model.Users;
+import static java.awt.Toolkit.getDefaultToolkit;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 
-public class APP extends javax.swing.JFrame {
+public class APP extends JFrame {
+
+    private Users users = new Users("users");
 
     public APP() {
         initComponents();
         setLocationRelativeTo(null);
-        setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
+        setIconImage(getDefaultToolkit().getImage("src/resources/icons/logo_icon.png"));
     }
 
     @SuppressWarnings("unchecked")
@@ -157,25 +162,18 @@ public class APP extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginLoginActionPerformed
 
     private void btnLoginEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEnterActionPerformed
-        if (Config.verifyTextFields(txtLoginLogin, txtLoginPassword)) {
-            String user = new Database().readUser(txtLoginLogin.getText().trim(), new String(txtLoginPassword.getPassword()).trim());
+        String textLogin = txtLoginLogin.getText().trim();
+        String textPassword = new String(txtLoginPassword.getPassword()).trim();
 
-            if (user == null) {
-                PopUp.showNotefy("Usuário não encontrado...");
-
-            } else if (user.equals("NOT")) {
-                openInterface("employee", null, 0);
-
+        if (!textLogin.equals("") && !textPassword.equals("")) {
+            if (users.loginUser(textLogin, textPassword)) {
+                ArrayList<Object[]> objectData = users.readUser(textLogin, textPassword, new String[]{"uid", "utype"});
+                openInterface(Integer.parseInt(String.valueOf(objectData.get(0)[0])), String.valueOf(objectData.get(0)[1]));
+                Config.clearTextFields(txtLoginLogin, txtLoginPassword);
             } else {
-                openInterface(
-                        "artist",
-                        user.substring(0, user.lastIndexOf(";")),
-                        Integer.parseInt(user.substring(user.lastIndexOf(";") + 1))
-                );
+                PopUp.showAlert("Credências não encontradas.\nVerifique os dados.", "Oooops!!");
             }
         }
-
-        Config.clearTextFields(txtLoginLogin, txtLoginPassword);
     }//GEN-LAST:event_btnLoginEnterActionPerformed
 
     public static void main(String args[]) {
@@ -194,16 +192,15 @@ public class APP extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtLoginPassword;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * Método responsável por pegar o tipo do usuário e abrir a interface
-     * correspondente
-     *
-     * @author Kaik D' Andrade
-     * @param type
-     */
-    private void openInterface(String type, String name, int id) {
-
+    private void openInterface(int id, String type) {
         switch (type) {
+            case "artist" -> {
+                MusicInterface_Artist interfaceArtist = new MusicInterface_Artist(id);
+                interfaceArtist.setVisible(true);
+                interfaceArtist.setLocationRelativeTo(null);
+                setVisible(false);
+            }
+
             case "employee" -> {
                 MusicInterface_Employee interfaceEmployee = new MusicInterface_Employee();
                 interfaceEmployee.setVisible(true);
@@ -211,15 +208,7 @@ public class APP extends javax.swing.JFrame {
                 setVisible(false);
             }
 
-            case "artist" -> {
-                MusicInterface_Artist interfaceArtist = new MusicInterface_Artist(name, id);
-                interfaceArtist.setVisible(true);
-                interfaceArtist.setLocationRelativeTo(null);
-                setVisible(false);
-            }
-
             default -> {
-                PopUp.showNotefy("Usuário inexistente...\nVerifique os dados e tente novamente.");
                 break;
             }
         }

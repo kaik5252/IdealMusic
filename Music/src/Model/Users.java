@@ -1,123 +1,38 @@
 package Model;
 
-/**
- * @author Kaik D' Andrade
- */
-public final class Users {
+import java.util.ArrayList;
 
-    private int uid;
-    private String uname;
-    private String utel;
-    private String ulogin;
-    private String upassword;
-    private String utype;
+public class Users extends Database {
 
-    public Users(int uid, String uname, String utel, String ulogin, String upassword, String utype) {
-        setUid(uid);
-        setUname(uname);
-        setUtel(utel);
-        setUlogin(ulogin);
-        setUpassword(upassword);
-        setUtype(utype);
+    public Users(String table) {
+        super(table);
     }
 
-    public void createUser() {
-
+    public boolean createUser(Object[] data) {
+        return create(new String[]{"ulogin", "upassword", "utype"}, data);
     }
 
-    public void readUser() {
-
+    public boolean loginUser(String login, String password) {
+        return read("WHERE ulogin = ? AND upassword = sha2(?, 512) LIMIT 1", new Object[]{login, password});
     }
 
-    public void updateUser() {
-
+    public ArrayList<Object[]> readUser(String login, String password, String[] fields) {
+        return read("WHERE ulogin = ? AND upassword = sha2(?, 512) LIMIT 1", new Object[]{login, password}, fields, null);
     }
 
-    public void deleteUser() {
-
+    public ArrayList<Object[]> readUser(String aditional, Object[] fields, String[] results) {
+        return read(aditional, fields, results, null);
     }
 
-    /**
-     * @return the uid
-     */
-    public int getUid() {
-        return uid;
+    public ArrayList<Object[]> readUser(int uid, String[] fields) {
+        return read("WHERE uid = ?", new Object[]{uid}, fields, null);
     }
 
-    /**
-     * @param uid the uid to set
-     */
-    public void setUid(int uid) {
-        this.uid = uid;
+    public boolean updateUser(String[] fields, Object[] data, int uid) {
+        return update(fields, data, "uid", uid);
     }
 
-    /**
-     * @return the uname
-     */
-    public String getUname() {
-        return uname;
-    }
-
-    /**
-     * @param uname the name to set
-     */
-    public void setUname(String uname) {
-        this.uname = uname.trim();
-    }
-
-    /**
-     * @return the utel
-     */
-    public String getUtel() {
-        return utel;
-    }
-
-    /**
-     * @param utel the utel to set
-     */
-    public void setUtel(String utel) {
-        this.utel = utel.trim();
-    }
-
-    /**
-     * @return the ulogin
-     */
-    public String getUlogin() {
-        return ulogin;
-    }
-
-    /**
-     * @param ulogin the ulogin to set
-     */
-    public void setUlogin(String ulogin) {
-        this.ulogin = ulogin.trim();
-    }
-
-    /**
-     * @return the upassword
-     */
-    public String getUpassword() {
-        return upassword;
-    }
-
-    /**
-     * @param upassword the upassword to set
-     */
-    public void setUpassword(String upassword) {
-        this.upassword = upassword.trim();
-    }
-
-    /**
-     * @return the utype
-     */
-    public String getUtype() {
-        return utype;
-    }
-
-    /**
-     * @param utype the utype to set
-     */
-    public void setUtype(String utype) {
-        this.utype = utype;
+    public boolean deleteUser(int uid) {
+        return delete("uid", uid);
     }
 }

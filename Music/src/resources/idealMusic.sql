@@ -1,4 +1,7 @@
-/* @author Rodrigo Rocha */
+/**
+ * @author Rodrigo Rodrigues
+ * @author Kaik D' Andrade
+**/
 
 DROP DATABASE IF EXISTS idealmusic;
 CREATE DATABASE idealmusic CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
@@ -6,31 +9,16 @@ use idealmusic;
 
 CREATE TABLE users (
     uid INT AUTO_INCREMENT PRIMARY KEY,
-    uname VARCHAR(255) NOT NULL,
-    utel VARCHAR(15) NOT NULL,
     ulogin VARCHAR(30) NOT NULL,
     upassword VARCHAR(128) NOT NULL,
     utype ENUM('employee', 'artist') NOT NULL
 );
 
-CREATE TABLE employee (
-    emid INT AUTO_INCREMENT PRIMARY KEY,
-    emstatus ENUM('employee', 'adm') DEFAULT 'employee',
-    emuser INT,
-    FOREIGN KEY (emuser) REFERENCES users(uid)
-);
-
-CREATE TABLE artist (
-    artid INT AUTO_INCREMENT PRIMARY KEY,
-    artuser INT,
-    FOREIGN KEY (artuser) REFERENCES users(uid)
-);
-
 CREATE TABLE album (
     alid INT AUTO_INCREMENT PRIMARY KEY,
     alname VARCHAR(255) NOT NULL,
-    alartist INT,
-    FOREIGN KEY (alartist) REFERENCES users(uid)
+    alusers INT,
+    FOREIGN KEY (alusers) REFERENCES users(uid)
 );
 
 CREATE TABLE category (
@@ -42,9 +30,11 @@ CREATE TABLE music (
     mid INT AUTO_INCREMENT PRIMARY KEY,
     mname VARCHAR(255) NOT NULL,
     msound VARCHAR(255) NOT NULL,
-    mduration VARCHAR(5) NOT NULL,
-    myear YEAR NOT NULL,
+    mduration VARCHAR(255) NOT NULL,
+    mrelease INT NOT NULL,
     mcategory INT NOT NULL,
+    musers INT,
+    FOREIGN KEY (musers) REFERENCES users(uid),
     FOREIGN KEY (mcategory) REFERENCES category(cid)
 );
 
@@ -56,19 +46,20 @@ CREATE TABLE enclose (
     FOREIGN KEY (enmusic) REFERENCES music(mid)
 );
 
-INSERT INTO category(cname) VALUES ('Pop');
+INSERT INTO category(cname) VALUES ("Pop");
 
+INSERT INTO users(ulogin, upassword, utype) VALUES 
+("gloria", sha2("gg2023", 512), "artist"), 
+("pitty", sha2("pitty2023", 512), "artist"),
+("gabriel souza", sha2("rootgabriel", 512), "employee"), 
+("kaik francisco", sha2("rootkaik", 512), "employee");
 
-INSERT INTO users(uname, utel, ulogin, upassword, utype) VALUES 
-('Gabriel Souza', '(21) 90000-0000', 'gabriel souza', sha2('rootgabriel', 512), 'employee'), 
-('Kaik D` Andrade', '(21) 90000-0000', 'kaik francisco', sha2('rootkaik', 512), 'employee'),
-('Gloria Groove', '(21) 90000-0000', 'gloria', sha2('gg2023', 512), 'artist'), 
-('Pitty', '(21) 90000-0000', 'pitty', sha2('pitty2023', 512), 'artist');
+INSERT INTO album(alname, alusers) VALUES ("Teste Albúm", 1);
 
-INSERT INTO album(alname, alartist) VALUES ("Teste Albúm", 3);
+INSERT INTO music(mname, msound, mduration, mrelease, mcategory, musers) VALUES 
+("SOS A TODOS", "sound.wav", "03:15", 2023, 1, 1),
+("SOS DEUS", "sound.wav", "03:15", 2023, 1, 1);
 
-INSERT INTO music(mname, msound, mduration, mcategory) VALUES ("SOS A TODOS", "sound.wav", '03:15', 1);
-INSERT INTO music(mname, msound, mduration, mcategory) VALUES ("SOS DEUS", "sound.wav", '03:15', 1);
-
-INSERT INTO enclose(enalbum, enmusic) VALUES (1, 1);
-INSERT INTO enclose(enalbum, enmusic) VALUES (1, 2);
+INSERT INTO enclose(enalbum, enmusic) VALUES 
+(1, 1), 
+(1, 2);

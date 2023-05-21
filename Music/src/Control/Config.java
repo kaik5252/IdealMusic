@@ -1,8 +1,6 @@
 package Control;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -11,24 +9,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Kaik D' Andrade
  */
 public class Config {
-
-    /**
-     * Método responsável por retornare se todos os campos de texto tem conteúdo
-     *
-     * @author Kaik D' Andrade
-     * @param fields
-     * @return
-     */
-    public static boolean verifyTextFields(javax.swing.JTextField... fields) {
-        for (javax.swing.JTextField field : fields) {
-            if (field.getText().trim().isEmpty()) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     /**
      * Método responsável por retornar o caminho absoluto do projeto, até a
      * pasta `resources`
@@ -38,8 +18,7 @@ public class Config {
      * @author Kaik D' Andrade
      */
     public static String retPath(String folder) {
-        Path parentPath = Paths.get("").toAbsolutePath();
-        return parentPath.toString() + "/src/resources/" + folder;
+        return System.getProperty("user.dir") + "\\src\\resources/" + folder;
     }
 
     /**

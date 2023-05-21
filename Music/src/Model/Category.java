@@ -1,60 +1,25 @@
 package Model;
 
-/**
- * @author Kaik D' Andrade
- */
-public final class Category {
-    
-    private int cid;
-    private String cname;
+import java.util.ArrayList;
 
-    public Category(int cid, String cname) {
-        setCid(cid);
-        setCname(cname);
+public class Category extends Database {
+    public Category(String table) {
+        super(table);
     }
     
-    public void createCategory() {
-    
+    public boolean createCategory(String cname) {
+        return create(new String[]{"cname"}, new Object[]{cname});
     }
     
-    public void updateCategory() {
-    
+    public ArrayList<Object[]> readCategory(String aditional, Object[] data, String[] results) {
+        return read(aditional, data, results, null);
     }
     
-    public void deleteCategory() {
-    
+    public boolean updateCategory(String[] fields, Object[] data, int cid) {
+        return update(fields, data, "cid", cid);
     }
     
-    /**
-     * @return the cid
-     */
-    public int getCid() {
-        return cid;
-    }
-
-    /**
-     * @param cid the cid to set
-     */
-    public void setCid(int cid) {
-        this.cid = cid;
-    }
-
-    /**
-     * @return the cname
-     */
-    public String getCname() {
-        return cname;
-    }
-
-    /**
-     * @param cname the cname to set
-     */
-    public void setCname(String cname) {
-        if(cname.trim().equals("")) {
-            this.cname = null;
-            
-        } else {
-            this.cname = cname;
-        }
+    public boolean deleteCategory(int cid) {
+        return delete("cid", cid);
     }
 }

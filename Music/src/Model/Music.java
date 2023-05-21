@@ -1,154 +1,57 @@
 package Model;
 
-/**
- * @author Kaik D' Andrade
- */
-public final class Music {
+import java.util.ArrayList;
 
-    private int mid;
-    private String mname;
-    private String msound;
-    private String mduration;
-    private String myear;
-    private String mcategory;
-    private String malbum;
+public class Music extends Database {
 
-    public Music(int mid, String mname, String msound, String mduration, String myear, String mcategory, String malbum) {
-        setMname(mname);
-        setMsound(msound);
-        setMduration(mduration);
-        setMyear(myear);
-        setMcategory(mcategory);
-        setMalbum(malbum);
+    public Music(String table) {
+        super(table);
     }
 
-    public void createMusic() {
-        new Database().createMusic(this);
-    }
-    
-    public void updateMusic() {
-    
-    }
-    
-    public void deleteMusic() {
-    
+    public boolean createMusic() {
+        return false;
     }
 
-    /**
-     * @return the id
-     */
-    public int getMid() {
-        return mid;
-    }
+    public ArrayList<Object[]> readMusicForAlbum(int alid, String[] fields) {
+        ArrayList<Object[]> arrayDataAlbum = read("WHERE enalbum = ?", new Object[]{alid}, new String[]{"enmusic"}, "enclose");
+        ArrayList<Object[]> resultList = new ArrayList<>();
 
-    /**
-     * @param mid the mid to set
-     */
-    public void setMid(int mid) {
-        this.mid = mid;
-    }
-
-    /**
-     * @return the mname
-     */
-    public String getMname() {
-        return mname;
-    }
-
-    /**
-     * @param mname the mname to set
-     */
-    public void setMname(String mname) {
-        if (mname.trim().equals("")) {
-            this.mname = null;
-
-        } else {
-            this.mname = mname;
+        for (int i = 0; i < arrayDataAlbum.size(); i++) {
+            ArrayList<Object[]> arrayDataMusic = read("WHERE mid = ?", new Object[]{arrayDataAlbum.get(i)[0]}, fields, null);
+            resultList.addAll(arrayDataMusic);
         }
+        return resultList;
     }
 
-    /**
-     * @return the msound
-     */
-    public String getMsound() {
-        return msound;
+    public ArrayList<Object[]> readMusic(Object[] data, String[] results) {
+        return read("WHERE musers = ?", data, results, null);
     }
 
-    /**
-     * @param msound the msound to set
-     */
-    public void setMsound(String msound) {
-        if (msound.trim().equals("")) {
-            this.msound = null;
-
-        } else {
-            this.msound = msound;
-        }
+    public ArrayList<Object[]> readMusic(int mid, String[] results) {
+        return read("WHERE mid = ?", new Object[]{mid}, results, null);
     }
 
-    /**
-     * @return the mcategory
-     */
-    public String getMcategory() {
-        return mcategory;
+    public ArrayList<Object[]> readMusic(String aditional, Object[] data, String[] results) {
+        return read(aditional, data, results, null);
     }
 
-    /**
-     * @param mcategory the mcategory to set
-     */
-    public void setMcategory(String mcategory) {
-        if (mcategory.trim().equals("")) {
-            this.mcategory = null;
-
-        } else {
-            this.mcategory = mcategory;
-        }
+    public boolean updateMusic() {
+        return false;
     }
 
-    /**
-     * @return the malbum
-     */
-    public String getMalbum() {
-        return malbum;
+    public boolean deleteMusic(int mid) {
+        /*
     }
+        Object[][] dataread();
+        File file = new File(filePath);
 
-    /**
-     * @param malbum the malbum to set
-     */
-    public void setMalbum(String malbum) {
-        if (malbum.trim().equals("")) {
-            this.malbum = null;
-
-        } else {
-            this.malbum = malbum;
-        }
-    }
-
-    /**
-     * @return the mduration
-     */
-    public String getMduration() {
-        return mduration;
-    }
-
-    /**
-     * @param mduration the mduration to set
-     */
-    public void setMduration(String mduration) {
-        this.mduration = mduration;
-    }
-
-    /**
-     * @return the myear
-     */
-    public String getMyear() {
-        return myear;
-    }
-
-    /**
-     * @param myear the myear to set
-     */
-    public void setMyear(String myear) {
-        this.myear = myear;
+        // Verificação se o arquivo existe antes de deletar
+        if (file.exists()) {
+            // Deletar o arquivo
+            boolean deleted = file.delete();
+            delete();
+            delete();
+         */
+        return false;
     }
 }

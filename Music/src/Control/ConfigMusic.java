@@ -3,6 +3,7 @@ package Control;
 import Model.Database;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -23,8 +24,10 @@ public final class ConfigMusic {
 
     public ConfigMusic(int mid) {
         try {
+            String dir = System.getProperty("user.dir") + "/src/resources/sounds/vicio.wav";
+            File file = new File(String.valueOf(dir)).getAbsoluteFile();
             // Pega o arquivo da música (É necessário que o arquivo seja .wav a biblioteca usada não suporta .mp3)
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(Config.retPath("sounds") + "/" + new Database().readMusic(mid)).getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
 
             // Abre/Define o arquivo da música na variável clip
             setClip(AudioSystem.getClip());
@@ -103,5 +106,10 @@ public final class ConfigMusic {
      */
     public void setGainControl(FloatControl gainControl) {
         this.gainControl = gainControl;
+    }
+    
+    public static void main(String[] args) {
+        ConfigMusic cm = new ConfigMusic(1);
+        cm.start();
     }
 }

@@ -1,456 +1,238 @@
 package Model;
 
-import Control.Config;
 import Control.PopUp;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
+import java.sql.Types;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * @author Kaik D' Andrade
- * @author Gabriel Souza
- */
 public class Database {
 
-//    UPDATE album
-//INNER JOIN usuario
-//ON album.uid = usuario.uid
-//SET album.alid = usuario.uid
-//WHERE album.alname = 'nome_do_album';
-    
-    
     private static final String URL = "jdbc:mysql://localhost:3306/idealmusic?user=root&password=";
     private Connection conn;
     private PreparedStatement pstm;
     private ResultSet res;
-    public String sql;
+    private String table;
+    private String sql;
 
-    /**
-     * Método responsável por realizar a conexão com o banco de dados
-     */
-    public void setConnection() {
+    public Database(String table) {
+        this.table = table;
+    }
+
+    private Connection setConnection() {
         try {
-            // Inicializa a conexão se ocorrer nenhum error
-            setConn(DriverManager.getConnection(URL));
+            return DriverManager.getConnection(URL);
 
         } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning(error);
+            PopUp.showWarning("Problema no banco de dados, desculpe-nos.");
+            return null;
         }
     }
 
-    /**
-     * Método responsável por finalizar a conexão com o banco de dados
-     */
-    public void setClose() {
-        // Zera as variáveis referentes ao banco de dados
-        if (getRes() != null) try {
-            getRes().close();
+    private void setClose() {
+        if (res != null) try {
+            res.close();
         } catch (SQLException ignore) {
         }
 
-        if (getPstm() != null) try {
-            getPstm().close();
+        if (pstm != null) try {
+            pstm.close();
         } catch (SQLException ignore) {
         }
 
-        if (getConn() != null) try {
-            getConn().close();
+        if (conn != null) try {
+            conn.close();
         } catch (SQLException ignore) {
         }
+
+        sql = null;
     }
 
-    public String readMusic(int mid) {
-
-        // Comando SQL
-        sql = "SELECT msound FROM music WHERE mid = ?";
-
-        try {
-
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            getPstm().setInt(1, mid);
-
-            setRes(getPstm().executeQuery());
-
-            if (getRes().next()) {
-                return getRes().getString("msound");
+    private String getValuesForQuery(String[] arrayStr) {
+        String str = "";
+        for (int i = 1; i <= arrayStr.length; i++) {
+            str += "?, ";
+            if (i == arrayStr.length) {
+                str = str.substring(0, str.length() - 2);
             }
+        }
+        return str;
+    }
 
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("ConfigMusic\\readMusic\n" + error);
+    private PreparedStatement resolvedPreparedStatement(PreparedStatement pstm, Object[] data) throws SQLException {
+        for (int i = 0; i < data.length; i++) {
+            if (data[i].getClass() == String.class) {
+                pstm.setString(i + 1, (String) data[i]);
 
-        } finally {
-            // Finaliza toda a conexão com o banco 
-            setClose();
-            sql = null;
+            } else if (data[i].getClass() == Integer.class) {
+                pstm.setInt(i + 1, (int) data[i]);
+
+            } else if (data[i].getClass() == Double.class) {
+                pstm.setDouble(i + 1, (Double) data[i]);
+            }
         }
 
-        return null;
+        return pstm;
     }
 
-    public ArrayList<Object[]> readAllMusic(int mid) {
-
-        // Vareal...
-        ArrayList<Object[]> data = new ArrayList<>();
-
-        // Comando SQL
-        sql = "SELECT music.mid, music.mname, music.msound, music.mduration, music.myear, album.alname, category.cname "
-                + "FROM music "
-                + "INNER JOIN album ON music.mcategory = album.alid "
-                + "INNER JOIN category ON music.mcategory = category.cid "
-                + "WHERE music.mid = ?";
-
+    protected boolean create(String[] SQLValues, Object[] data) {
         try {
+            sql = "INSERT INTO " + table + "(" + String.join(", ", SQLValues) + ") VALUES (" + getValuesForQuery(SQLValues) + ")";
+            conn = setConnection();
+            pstm = resolvedPreparedStatement(conn.prepareStatement(sql), data);
 
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            getPstm().setInt(1, mid);
-
-            setRes(getPstm().executeQuery());
-
-            // Imprime os resultados
-            while (getRes().next()) {
-                Object[] abacate = {
-                    getRes().getString("mid"),
-                    getRes().getString("mname"),
-                    getRes().getString("msound"),
-                    getRes().getString("mduration"),
-                    getRes().getString("myear"),
-                    getRes().getString("alname"),
-                    getRes().getString("cname")
-                };
-
-                data.add(abacate);
-            }
-
-            return data;
+            return pstm.executeUpdate() > 0;
 
         } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\readAllMusic\n" + error);
-            return null;
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por criar um novo usuário no banco de dados, seja ele
-     * funcionário ou artista
-     *
-     * @param uname
-     * @param utel
-     * @param ulogin
-     * @param upassword
-     * @author Kaik D' Andrade
-     * @param utype
-     */
-    public void createUser(String uname, String utel, String ulogin, String upassword, String utype) {
-
-        int id = 0;
-
-        // Comando SQL
-        sql = "INSERT INTO users(uname, utel, ulogin, upassword, utype) VALUES (?, ?, ?, sha2(?, 512), ?)";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, uname);
-            getPstm().setString(2, utel);
-            getPstm().setString(3, ulogin);
-            getPstm().setString(4, upassword);
-            getPstm().setString(5, utype);
-
-            // Executa o comando SQL no banco de dados
-            getPstm().execute();
-
-            setPstm(getConn().prepareStatement("SELECT * FROM users ORDER BY uid DESC LIMIT 1"));
-            setRes(getPstm().executeQuery());
-            if (getRes().next()) {
-                id = getRes().getInt("uid");
-
-                switch (getRes().getString("utype")) {
-                    case "employee" -> {
-                        sql = "INSERT INTO employee(emuser) VALUES (?)";
-                        setPstm(getConn().prepareStatement(sql));
-                        getPstm().setInt(1, id);
-                        getPstm().execute();
-                        PopUp.showNotefy("Sucesso!!! Funcionário cadastrado.");
-                        break;
-                    }
-
-                    case "artist" -> {
-                        sql = "INSERT INTO artist(artuser) VALUES (?)";
-                        setPstm(getConn().prepareStatement(sql));
-                        getPstm().setInt(1, id);
-                        getPstm().execute();
-                        PopUp.showNotefy("Sucesso!!! Artista cadastrado.");
-                        break;
-                    }
-
-                    default -> {
-                        break;
-                    }
-                }
-            }
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\createUser\n" + error);
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    public ArrayList<Object[]> readMusicforArtist(int userId) {
-
-        ArrayList<Object[]> musics = new ArrayList<>();
-
-        sql = "SELECT * FROM music m "
-                + "INNER JOIN enclose e ON m.mid = e.enmusic "
-                + "INNER JOIN album a ON e.enalbum = a.alid "
-                + "WHERE a.alartist = ?";
-
-        try {
-
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            getPstm().setInt(1, userId);
-
-            setRes(getPstm().executeQuery());
-
-            while (getRes().next()) {
-                Object[] abacate = {
-                    getRes().getInt("mid"),
-                    getRes().getString("mname")
-                };
-
-                musics.add(abacate);
-            }
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\readMusicforArtist\n" + error);
-            return null;
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-
-        return musics;
-    }
-
-    public ArrayList<Object[]> readAlbumforArtist(int userId) {
-
-        ArrayList<Object[]> musics = new ArrayList<>();
-
-        sql = "SELECT * FROM album WHERE alartist = ?";
-
-        try {
-
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            getPstm().setInt(1, userId);
-
-            setRes(getPstm().executeQuery());
-
-            while (getRes().next()) {
-                Object[] abacate = {
-                    getRes().getInt("alid"),
-                    getRes().getString("alname")
-                };
-
-                musics.add(abacate);
-            }
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\readMusicforArtist\n" + error);
-            return null;
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-
-        return musics;
-    }
-
-    public ArrayList<String> readAllForWhere(String table, String where, int idWhere, String... field) {
-
-        // Inicializando a varíavel que armazena os dados vindo do banco de dados
-        ArrayList<String> data = new ArrayList<>();
-
-        // Varíavel...
-        String newLine = "";
-
-        // Comando SQL
-        sql = "SELECT * FROM " + table + " WHERE " + where + " = ?";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            getPstm().setInt(1, idWhere);
-
-            // Executa o comando SQL no banco de dados
-            setRes(getPstm().executeQuery());
-
-            // Se for true, salva o dado do campo `field` dentro de `data`
-            while (getRes().next()) {
-                for (String field1 : field) {
-                    newLine += getRes().getString(field1) + ";";
-                }
-
-                newLine = newLine.substring(0, newLine.lastIndexOf(";"));
-                data.add(newLine);
-                newLine = "";
-            }
-
-            return data;
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\readAllForWhere\n" + error);
-
-            // Retorna null
-            return null;
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por realizar o login do usuário no banco de dados
-     *
-     * @param login
-     * @param password
-     * @return
-     * @author Kaik D' Andrade
-     */
-    public String readUser(String login, String password) {
-
-        // Comando SQL
-        sql = "SELECT * FROM users WHERE ulogin = ? AND upassword = sha2(?, 512)";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-            getPstm().setString(1, login);
-            getPstm().setString(2, password);
-
-            // Executa o comando SQL no banco de dados
-            setRes(getPstm().executeQuery());
-
-            // Se for true, salva o dado do campo `field` dentro de `data`
-            if (getRes().next()) {
-                return switch (getRes().getString("utype")) {
-
-                    case "artist" ->
-                        getRes().getString("ulogin") + ";" + getRes().getInt("uid");
-
-                    default ->
-                        "NOT";
-                };
-            }
-
-            return null;
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\readUser\n" + error);
-
-            // Retorna null
-            return null;
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por alterar os dados de nome e email do usuário
-     *
-     * @param user
-     * @return
-     * @author Gabriel Souza
-     */
-    public boolean updateUser(Users user) {
-
-        // Comando SQL
-        sql = "UPDATE users SET uname = ?, utel = ?, ulogin = ?, upassword = sha2(?, 512) WHERE uid = ?";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, user.getUname());
-            getPstm().setString(2, user.getUtel());
-            getPstm().setString(3, user.getUlogin());
-            getPstm().setString(4, user.getUpassword());
-            getPstm().setInt(5, user.getUid());
-
-            // Executa o comando SQL no banco de dados
-            getPstm().execute();
-
-            // Retorna true
-            return true;
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\updateUser\n" + error);
-
-            // Retorna false
+            PopUp.showWarning("Erro ao adicionar dados ao banco de dados.\n" + error);
             return false;
 
         } finally {
-            // Finaliza a toda a conexão com o banco de dados
             setClose();
-            sql = null;
         }
     }
 
-    /**
-     * Método resposável por cadastrar uma nova música no banco de dados
-     *
-     * @param music
-     * @author Kaik D' Andrade
-     */
+    protected ArrayList<Object[]> read(String aditional, Object[] data, String[] results, String table) {
+        try {
+            aditional = aditional == null ? "" : " " + aditional;
+            if (table == null) {
+                sql = "SELECT * FROM " + this.table + aditional;
+            } else {
+                sql = "SELECT * FROM " + table + aditional;
+            }
+            conn = setConnection();
+            if (!aditional.equals("")) {
+                pstm = resolvedPreparedStatement(conn.prepareStatement(sql), data);
+            } else {
+                pstm = conn.prepareStatement(sql);
+            }
+            res = pstm.executeQuery();
+
+            ArrayList<Object[]> resultList = new ArrayList<>();
+            ResultSetMetaData metaData = (ResultSetMetaData) res.getMetaData();
+
+            // Criar mapa para armazenar os tipos das colunas
+            Map<String, Integer> columnTypes = new HashMap<>();
+
+            // Preencher o mapa com os tipos das colunas usando os nomes das colunas fornecidos
+            for (String columnName : results) {
+                int columnIndex = -1;
+                for (int i = 1; i <= metaData.getColumnCount(); i++) {
+                    if (columnName.equalsIgnoreCase(metaData.getColumnName(i))) {
+                        columnIndex = i;
+                        break;
+                    }
+                }
+                if (columnIndex != -1) {
+                    int columnType = metaData.getColumnType(columnIndex);
+                    columnTypes.put(columnName, columnType);
+                }
+            }
+
+            while (res.next()) {
+                Object[] row = new Object[results.length];
+                for (int i = 0; i < results.length; i++) {
+                    String columnName = (String) results[i];
+                    int columnType = columnTypes.get(columnName);
+
+                    switch (columnType) {
+                        case Types.VARCHAR:
+                        case Types.CHAR:
+                            row[i] = res.getString(columnName);
+                            break;
+
+                        case Types.INTEGER:
+                        case Types.BIGINT:
+                            row[i] = res.getInt(columnName);
+                            break;
+
+                        case Types.DOUBLE:
+                            row[i] = res.getDouble(columnName);
+                            break;
+
+                        default:
+                            row[i] = "NULL";
+                            break;
+                    }
+                }
+                resultList.add(row);
+            }
+            return resultList;
+
+        } catch (SQLException error) {
+            PopUp.showWarning("Erro ao ler os dados do banco de dados.\n" + error);
+            return null;
+
+        } finally {
+            setClose();
+        }
+    }
+
+    protected boolean read(String aditional, Object[] data) {
+        try {
+            aditional = aditional == null ? "" : " " + aditional;
+            sql = "SELECT * FROM " + table + aditional;
+
+            conn = setConnection();
+            if (!aditional.equals("")) {
+                pstm = resolvedPreparedStatement(conn.prepareStatement(sql), data);
+            } else {
+                pstm = conn.prepareStatement(sql);
+            }
+            res = pstm.executeQuery();
+            return res.next();
+
+        } catch (SQLException error) {
+            PopUp.showWarning("Erro ao ler os dados do banco de dados.\n" + error);
+            return false;
+
+        } finally {
+            setClose();
+        }
+    }
+
+    protected boolean update(String[] fields, Object[] data, String SQLId, int id) {
+        try {
+            sql = "UPDATE " + table + " SET " + String.join(" = ?, ", fields) + " = ? WHERE " + SQLId + " = " + id;
+            System.out.println(sql);
+            conn = setConnection();
+            pstm = resolvedPreparedStatement(conn.prepareStatement(sql), data);
+
+            return pstm.executeUpdate() > 0;
+
+        } catch (SQLException error) {
+            PopUp.showWarning("Erro ao alterar os dados do banco de dados.\n" + error);
+            return false;
+
+        } finally {
+            setClose();
+        }
+    }
+
+    protected boolean delete(String SQLId, int id) {
+        try {
+            sql = "DELETE FROM " + table + " WHERE " + SQLId + " = ?";
+            conn = setConnection();
+            pstm = resolvedPreparedStatement(conn.prepareStatement(sql), new Object[]{id});
+
+            return pstm.executeUpdate() > 0;
+
+        } catch (SQLException error) {
+            PopUp.showWarning("Erro ao deletar os dados do banco de dados.\n" + error);
+            return false;
+
+        } finally {
+            setClose();
+        }
+    }
+
+    /*
     public void createMusic(Music music) {
 
         int idCategory = 0;
@@ -527,323 +309,5 @@ public class Database {
             sql = null;
         }
     }
-
-    /**
-     * Método responsável por criar um novo albúm no banco de dados
-     *
-     * @param ulogin
-     * @param alname
-     * @author Kaik D' Andrade
      */
-    public void createAlbum(String ulogin, String alname) {
-        try {
-            // Comando SQL
-            sql = "SELECT * FROM users WHERE ulogin = ?";
-
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, ulogin);
-            setRes(getPstm().executeQuery());
-
-            if (getRes().next()) {
-                System.out.println("foi?");
-                // Comando SQL
-                sql = "INSERT INTO album(alname, alartist) VALUES (?, ?)";
-
-                setPstm(getConn().prepareStatement(sql));
-
-                // Alterando os "?" pelos valores corretos
-                getPstm().setString(1, alname);
-                getPstm().setInt(2, getRes().getInt("uid"));
-
-                // Executa o comando SQL no banco de dados
-                getPstm().execute();
-
-                PopUp.showNotefy("Sucesso!!! Albúm cadastrado.");
-            }
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\createAlbum\n" + error);
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por cadastrar uma nova categoria no banco de dados
-     *
-     * @param name
-     * @author Kaik D' Andrade
-     */
-    public void createCategory(String name) {
-
-        // Comando SQL
-        sql = "INSERT INTO category(cname) VALUES (?)";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setString(1, name);
-
-            // Executa o comando SQL no banco de dados
-            getPstm().execute();
-
-            PopUp.showNotefy("Sucesso!! Categorial musical cadastrada!");
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\createCategory\n" + error);
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por retornar todas as músicas que há em um albúm
-     *
-     * @param idAlbum
-     * @return
-     * @author Gabriel Souza
-     */
-    public ArrayList<Object[]> readMusicForAlbum(int idAlbum) {
-
-        // Vareavel que armazenará os dados que vierem do banco de dados
-        ArrayList<Object[]> data = new ArrayList<>();
-
-        try {
-            // Comando SQL
-            sql = "SELECT * FROM enclose WHERE enalbum = ?";
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-            getPstm().setInt(1, idAlbum);
-            setRes(getPstm().executeQuery());
-
-            while (getRes().next()) {
-                // Comando SQL
-                sql = "SELECT * FROM music WHERE mid = ?";
-                setPstm(getConn().prepareStatement(sql));
-                getPstm().setInt(1, getRes().getInt("enmusic"));
-                ResultSet musicResult = getPstm().executeQuery();
-
-                while (musicResult.next()) {
-                    Object[] abacate = {
-                        musicResult.getString("mid"),
-                        musicResult.getString("mname")
-                    };
-
-                    data.add(abacate);
-                }
-            }
-
-            return data;
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\readMusicForAlbum\n" + error);
-
-        } finally {
-            // Finaliza a toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-
-        return null;
-    }
-
-    /**
-     * Método responsável por ler e retornar todas os registro de uma coluna de
-     * alguma tabela do banco de dados
-     *
-     * @param table
-     * @param field
-     * @return
-     */
-    public ArrayList<String> readAll(String table, String... field) {
-
-        // Inicializando a varíavel que armazena os dados vindo do banco de dados
-        ArrayList<String> data = new ArrayList<>();
-
-        // Varíavel...
-        String newLine = "";
-
-        // Comando SQL
-        sql = "SELECT * FROM " + table;
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Executa o comando SQL no banco de dados
-            setRes(getPstm().executeQuery());
-
-            // Se for true, salva o dado do campo `field` dentro de `data`
-            while (getRes().next()) {
-                for (String field1 : field) {
-                    newLine += getRes().getString(field1) + ";";
-                }
-
-                newLine = newLine.substring(0, newLine.lastIndexOf(";"));
-                data.add(newLine);
-                newLine = "";
-            }
-
-            return data;
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\readAll\n" + error);
-
-            // Retorna null
-            return null;
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por excluir música
-     *
-     * @param id
-     * @author Kaik D' Andrade
-     */
-    public void deleteMusic(int id) {
-
-        // Comando SQL
-        sql = "SELECT * FROM music WHERE mid = ?";
-
-        try {
-            // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-            setConnection();
-            setPstm(getConn().prepareStatement(sql));
-
-            // Alterando os "?" pelos valores corretos
-            getPstm().setInt(1, id);
-
-            // Executa o comando SQL no banco de dados
-            setRes(getPstm().executeQuery());
-
-            if (getRes().next()) {
-                String soundName = getRes().getString("msound");
-                File fileSound = new File(Config.retPath("sounds") + soundName);
-                fileSound.delete();
-            }
-
-            sql = "DELETE FROM music WHERE mid = ?";
-            setPstm(getConn().prepareStatement(sql));
-            getPstm().setInt(1, id);
-            getPstm().execute();
-
-        } catch (SQLException error) {
-            // Caso gere um erro
-            PopUp.showWarning("DatabaseModel\\deleteMusic\n" + error);
-
-        } finally {
-            // Finaliza toda a conexão com o banco de dados
-            setClose();
-            sql = null;
-        }
-    }
-
-    /**
-     * Método responsável por deletar um resgistro do banco de dados do banco de
-     * dados
-     *
-     * @param id
-     * @param campoId
-     * @param table
-     * @author Kaik D' Andrade
-     */
-    public void delete(int id, String campoId, String table) {
-
-        // Verifica se o usuário confirmou a "exclusão" dos dados
-        if (PopUp.showConfirm("Aviso:", "Deseja realmente excluir este usuário?")) {
-            if (PopUp.showConfirmAlert("Realmente Deseja excluir esse registro.\nIsso Será permanente! Isto é sem volta!\\nAo clicar em proseguir automaticamente você assina o termo de responsabilidade...\nIsto é qualquer problema gerado por conta da exclusão desse dado cabe apenas a você!")) {
-
-                // Comando SQL
-                sql = "DELETE FROM ? WHERE ? = ?";
-
-                try {
-                    // Conecta ao banco de dados, depois prepara, filtra e sanitiza o sql para executa-lo
-                    setConnection();
-                    setPstm(getConn().prepareStatement(sql));
-
-                    // Altera os "?" pelos valores corretos
-                    getPstm().setString(1, table);
-                    getPstm().setString(2, campoId);
-                    getPstm().setInt(3, id);
-
-                    // Executa o comando SQL no banco de dados
-                    getPstm().execute();
-
-                } catch (SQLException error) {
-                    // Caso gere um erro
-                    PopUp.showWarning("DatabaseModel\\deleteUser\n" + error);
-
-                } finally {
-                    // Finaliza toda a conexão com o banco de dados
-                    setClose();
-                    sql = null;
-                }
-            }
-        }
-    }
-
-    /**
-     * @return the conn
-     */
-    public Connection getConn() {
-        return conn;
-    }
-
-    /**
-     * @param conn the conn to set
-     */
-    public void setConn(Connection conn) {
-        this.conn = conn;
-    }
-
-    /**
-     * @return the pstm
-     */
-    public PreparedStatement getPstm() {
-        return pstm;
-    }
-
-    /**
-     * @param pstm the pstm to set
-     */
-    public void setPstm(PreparedStatement pstm) {
-        this.pstm = pstm;
-    }
-
-    /**
-     * @return the res
-     */
-    public ResultSet getRes() {
-        return res;
-    }
-
-    /**
-     * @param res the res to set
-     */
-    public void setRes(ResultSet res) {
-        this.res = res;
-    }
 }
